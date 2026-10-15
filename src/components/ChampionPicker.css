@@ -88,11 +88,11 @@
 }
 
 .champ-card .champ-icon {
-  filter: drop-shadow(0 2px 3px rgba(23, 34, 56, 0.25));
+  box-shadow: 0 2px 3px rgba(23, 34, 56, 0.25);
 }
 
 .champ-card.active .champ-icon {
-  filter: drop-shadow(0 0 6px rgba(224, 169, 46, 0.8));
+  box-shadow: 0 0 6px rgba(224, 169, 46, 0.8);
 }
 
 .champ-role-dot {
