@@ -1,0 +1,51 @@
+import type { ChampionRole, Comp, ItemsData, SetData, SetMeta } from './types'
+import configJson from '../data/config.json'
+import itemsJson from '../data/items.json'
+
+const metaModules = import.meta.glob<{ default: unknown }>('../data/sets/*/meta.json', {
+  eager: true,
+})
+const compModules = import.meta.glob<{ default: unknown }>('../data/sets/*/comps.json', {
+  eager: true,
+})
+const championModules = import.meta.glob<{ default: unknown }>('../data/sets/*/champions.json', {
+  eager: true,
+})
+
+function setIdFromPath(path: string): string {
+  const match = path.match(/\/sets\/([^/]+)\//)
+  return match ? match[1] : ''
+}
+
+function pickModule(
+  modules: Record<string, { default: unknown }>,
+  setId: string,
+  fallback: unknown,
+): unknown {
+  const entry = Object.entries(modules).find(([path]) => setIdFromPath(path) === setId)
+  if (entry) return entry[1].default
+  const first = Object.values(modules)[0]
+  return first ? first.default : fallback
+}
+
+export const items = itemsJson as unknown as ItemsData
+
+export const activeSet: SetData = {
+  meta: pickModule(metaModules, configJson.activeSet, {}) as SetMeta,
+  comps: pickModule(compModules, configJson.activeSet, []) as Comp[],
+  championRoles: pickModule(championModules, configJson.activeSet, {}) as Record<
+    string,
+    ChampionRole
+  >,
+}
+
+export const championUniverse = Array.from(
+  new Set([
+    ...Object.keys(activeSet.championRoles ?? {}),
+    ...activeSet.comps.flatMap((comp) => [
+      ...comp.earlyChampions,
+      ...comp.itemHolders,
+      ...comp.roster,
+    ]),
+  ]),
+).sort()

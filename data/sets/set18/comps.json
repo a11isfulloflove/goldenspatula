@@ -1,0 +1,1744 @@
+[
+  {
+    "id": "azir-reroll",
+    "name": "Azir Rammus Reroll",
+    "tier": "S",
+    "playstyle": "3-cost reroll (lose streak OK)",
+    "difficulty": "medium",
+    "traits": [
+      "Executioner"
+    ],
+    "conditions": [
+      "Hextech Gunblade Azir",
+      "At least 3 Rods"
+    ],
+    "itemNeeds": {
+      "rod": 3,
+      "tank": 1
+    },
+    "earlyChampions": [
+      "Azir",
+      "Rammus"
+    ],
+    "itemHolders": [
+      "Azir",
+      "Veigar",
+      "Teemo"
+    ],
+    "roster": [
+      "Azir",
+      "Rammus",
+      "Zyra",
+      "Teemo",
+      "Soraka"
+    ],
+    "carryItems": [
+      {
+        "champion": "Azir",
+        "bis": [
+          "Hextech Gunblade",
+          "Rabadon's Deathcap",
+          "Guinsoo's Rageblade"
+        ],
+        "alternatives": [
+          "Any AP item after Gunblade"
+        ]
+      },
+      {
+        "champion": "Rammus",
+        "bis": [
+          "Crownguard",
+          "Gargoyle Stoneplate",
+          "Warmog's Armor"
+        ]
+      },
+      {
+        "champion": "Zyra",
+        "bis": [
+          "Leftover AP / utility"
+        ]
+      }
+    ],
+    "tips": [
+      "Rammus' shield scales with AP, so Crownguard is a natural fit on him",
+      "Feed order for the Blackthorn: Teemo 3 first, then Soraka 2, then Teemo 2",
+      "Level to 7 on 4-1, stabilize with 2-star Azir and Rammus, then slow roll here"
+    ]
+  },
+  {
+    "id": "khazix-reroll",
+    "name": "Kha'Zix Reroll",
+    "tier": "S",
+    "playstyle": "3-cost reroll (high tempo)",
+    "difficulty": "hard",
+    "traits": [
+      "Ravager",
+      "Executioner",
+      "Spellweaver",
+      "Rapidfire"
+    ],
+    "conditions": [
+      "Kha'Zix found in stage 2 (2-1 to 2-3)",
+      "Best-in-slot items on Kha'Zix",
+      "High tempo, lots of items"
+    ],
+    "itemNeeds": {
+      "damage": 2,
+      "tank": 1
+    },
+    "earlyChampions": [
+      "Kha'Zix"
+    ],
+    "itemHolders": [
+      "Kha'Zix"
+    ],
+    "roster": [
+      "Kha'Zix",
+      "Hecarim",
+      "Diana",
+      "Ezreal",
+      "Aphelios",
+      "Alune"
+    ],
+    "carryItems": [
+      {
+        "champion": "Kha'Zix",
+        "bis": [
+          "Rabadon's Deathcap",
+          "Hand of Justice",
+          "Edge of Night"
+        ],
+        "alternatives": [
+          "Striker's Flail",
+          "Lich Bane"
+        ]
+      },
+      {
+        "champion": "Diana",
+        "bis": [
+          "Leftover AP"
+        ]
+      },
+      {
+        "champion": "Ezreal",
+        "bis": [
+          "Leftover AD"
+        ]
+      },
+      {
+        "champion": "Hecarim",
+        "bis": [
+          "Gargoyle Stoneplate",
+          "Protector's Vow",
+          "Warmog's Armor"
+        ]
+      }
+    ],
+    "tips": [
+      "Kha'Zix only evolves on takedowns, so an early copy starts snowballing much sooner",
+      "Tuck Hecarim right beside Kha'Zix so he soaks the first damage aimed at him",
+      "This is a tempo line: no Kha'Zix by stage 3 means pivot to something else"
+    ]
+  },
+  {
+    "id": "draven-fast9",
+    "name": "Draven Fast 9",
+    "tier": "S",
+    "playstyle": "fast 9 (economy)",
+    "difficulty": "hard",
+    "traits": [],
+    "conditions": [
+      "Guinsoo's Draven (required)",
+      "Economy to reach level 9 by 5-2",
+      "Lots of items for 5-costs"
+    ],
+    "itemNeeds": {
+      "bow": 1,
+      "rod": 1,
+      "tank": 1
+    },
+    "earlyChampions": [
+      "Xayah",
+      "Cinderling"
+    ],
+    "itemHolders": [
+      "Xayah",
+      "Cinderling",
+      "Camille",
+      "Akali"
+    ],
+    "roster": [
+      "Draven",
+      "Maokai",
+      "Ezreal",
+      "Taric",
+      "Sentinel",
+      "Kennen",
+      "Gnar",
+      "Ivern"
+    ],
+    "carryItems": [
+      {
+        "champion": "Draven",
+        "bis": [
+          "Guinsoo's Rageblade",
+          "Kraken's Fury",
+          "Deathblade"
+        ],
+        "alternatives": [
+          "Last Whisper",
+          "Giant Slayer",
+          "Infinity Edge"
+        ]
+      },
+      {
+        "champion": "Maokai",
+        "bis": [
+          "Generic tank"
+        ]
+      },
+      {
+        "champion": "Kennen",
+        "bis": [
+          "Leftover AP"
+        ]
+      },
+      {
+        "champion": "Gnar",
+        "bis": [
+          "Leftover AD"
+        ]
+      }
+    ],
+    "tips": [
+      "The whole plan is hitting level 9 — if you catch yourself rolling deep on 8, the game has gone wrong",
+      "Guinsoo's is non-negotiable on Draven; nearly everything else on the board is flexible",
+      "Maokai grows with game length, so reach 9 and roll around 5-1 while there is still game left"
+    ]
+  },
+  {
+    "id": "riftbeast-reroll",
+    "name": "Riftbeast Reroll",
+    "tier": "A",
+    "playstyle": "3-cost reroll",
+    "difficulty": "easy",
+    "traits": [
+      "Riftbeast",
+      "Brawler"
+    ],
+    "conditions": [
+      "Pebbles or Cinderling copies",
+      "Early 5 Riftbeast",
+      "Combat / item augments"
+    ],
+    "itemNeeds": {
+      "damage": 1,
+      "tank": 1
+    },
+    "earlyChampions": [
+      "Cinderling",
+      "Pebbles",
+      "Scuttlecrab",
+      "Krug"
+    ],
+    "itemHolders": [
+      "Pebbles",
+      "Cinderling"
+    ],
+    "roster": [
+      "Cinderling",
+      "Pebbles",
+      "Krug",
+      "Scuttlecrab",
+      "Elder Dragon"
+    ],
+    "carryItems": [
+      {
+        "champion": "Cinderling",
+        "bis": [
+          "Infinity Edge",
+          "Spear of Shojin",
+          "Last Whisper"
+        ],
+        "alternatives": [
+          "Blue Buff",
+          "Deathblade",
+          "Striker's Flail"
+        ]
+      },
+      {
+        "champion": "Pebbles",
+        "bis": [
+          "Blue Buff",
+          "Archangel's Staff",
+          "Jeweled Gauntlet"
+        ],
+        "alternatives": [
+          "Rabadon's Deathcap"
+        ]
+      },
+      {
+        "champion": "Krug",
+        "bis": [
+          "Generic tank"
+        ]
+      }
+    ],
+    "tips": [
+      "Items are flexible on Cinderling, but Pebbles really wants his full core set",
+      "Put the Alpha Mark on Scuttle Crab or a 3-star Krug to stall fights longer",
+      "Have 5 Riftbeast active by 3-1, then climb levels toward the 7-unit breakpoint"
+    ]
+  },
+  {
+    "id": "aphelios-flex",
+    "name": "Aphelios Flex",
+    "tier": "A",
+    "playstyle": "fast 8 (flex)",
+    "difficulty": "medium",
+    "traits": [
+      "Vanguard",
+      "Rapidfire"
+    ],
+    "conditions": [
+      "High tempo",
+      "Lots of Swords"
+    ],
+    "itemNeeds": {
+      "sword": 2
+    },
+    "earlyChampions": [
+      "Cinderling",
+      "Xayah",
+      "Camille"
+    ],
+    "itemHolders": [
+      "Cinderling",
+      "Xayah",
+      "Camille"
+    ],
+    "roster": [
+      "Aphelios",
+      "Nidalee",
+      "Brambleback",
+      "Sentinel",
+      "Amumu",
+      "Kog'Maw",
+      "Alune",
+      "Lux"
+    ],
+    "carryItems": [
+      {
+        "champion": "Aphelios",
+        "bis": [
+          "Infinity Edge",
+          "Red Buff",
+          "Kraken's Fury"
+        ],
+        "alternatives": [
+          "Guinsoo's Rageblade",
+          "Deathblade",
+          "Last Whisper",
+          "Giant Slayer"
+        ]
+      },
+      {
+        "champion": "Nidalee",
+        "bis": [
+          "Spear of Shojin",
+          "Infinity Edge",
+          "Sterak's Gage"
+        ],
+        "alternatives": [
+          "Deathblade",
+          "Hand of Justice"
+        ]
+      },
+      {
+        "champion": "Brambleback",
+        "bis": [
+          "Sterak's Gage",
+          "Edge of Night",
+          "Quicksilver"
+        ],
+        "note": "2 of 3 required"
+      },
+      {
+        "champion": "Sentinel",
+        "bis": [
+          "Protector's Vow",
+          "Adaptive Helm",
+          "Warmog's Armor"
+        ]
+      },
+      {
+        "champion": "Amumu",
+        "bis": [
+          "Crownguard",
+          "Gargoyle Stoneplate",
+          "Warmog's Armor"
+        ]
+      }
+    ],
+    "tips": [
+      "The go-to AD plan when your economy can't stretch to a Draven level-9 board",
+      "Red Buff is his best item, but slamming Guinsoo's early for tempo is perfectly fine",
+      "Give Nidalee a Shojin — she rescues games where you are low on HP"
+    ]
+  },
+  {
+    "id": "cassiopeia-reroll",
+    "name": "Defender Cassiopeia",
+    "tier": "A",
+    "playstyle": "3-cost reroll",
+    "difficulty": "medium",
+    "traits": [
+      "Defender",
+      "Vanguard"
+    ],
+    "conditions": [
+      "Early Cassiopeia",
+      "2 sets of tank items"
+    ],
+    "itemNeeds": {
+      "rod": 2,
+      "tank": 2
+    },
+    "earlyChampions": [
+      "Cassiopeia",
+      "Karma",
+      "Pebbles"
+    ],
+    "itemHolders": [
+      "Karma",
+      "Pebbles"
+    ],
+    "roster": [
+      "Cassiopeia",
+      "Rammus",
+      "Fiddlesticks",
+      "Elise",
+      "Soraka",
+      "Rengar"
+    ],
+    "carryItems": [
+      {
+        "champion": "Cassiopeia",
+        "bis": [
+          "Hextech Gunblade",
+          "Rabadon's Deathcap",
+          "Spear of Shojin"
+        ],
+        "alternatives": [
+          "Archangel's Staff",
+          "Blue Buff"
+        ]
+      },
+      {
+        "champion": "Rammus",
+        "bis": [
+          "Gargoyle Stoneplate",
+          "Crownguard",
+          "Bramblevest"
+        ]
+      },
+      {
+        "champion": "Fiddlesticks",
+        "bis": [
+          "Sunfire Cape",
+          "Ionic Spark",
+          "Spirit Visage"
+        ]
+      },
+      {
+        "champion": "Elise",
+        "bis": [
+          "Gargoyle Stoneplate",
+          "Crownguard",
+          "Warmog's Armor"
+        ]
+      }
+    ],
+    "tips": [
+      "Cassiopeia is item-hungry: without Deathcap or Archangel's her damage drops hard",
+      "Rammus stands beside Fiddlesticks on the flank and taunts attackers away from him",
+      "The 3-star targets are Cassiopeia, Rammus and Fiddlesticks — slow roll at level 7"
+    ]
+  },
+  {
+    "id": "invoker-ahri-morgana",
+    "name": "Invoker Ahri Morgana",
+    "tier": "A",
+    "playstyle": "fast 8/9",
+    "difficulty": "hard",
+    "traits": [
+      "Invoker"
+    ],
+    "conditions": [
+      "Invoker Emblem on Ahri (bumps to S tier)",
+      "Lots of high quality items"
+    ],
+    "itemNeeds": {
+      "rod": 2,
+      "tank": 1
+    },
+    "earlyChampions": [
+      "Karma",
+      "Pebbles"
+    ],
+    "itemHolders": [
+      "Karma",
+      "Pebbles"
+    ],
+    "roster": [
+      "Ahri",
+      "Morgana",
+      "Sett",
+      "Sentinel",
+      "Taric",
+      "Lux"
+    ],
+    "carryItems": [
+      {
+        "champion": "Ahri",
+        "bis": [
+          "Jeweled Gauntlet",
+          "Striker's Flail"
+        ],
+        "alternatives": [
+          "Spear of Shojin",
+          "Blue Buff",
+          "Nashor's Tooth"
+        ],
+        "note": "Invoker Emblem is best-in-slot"
+      },
+      {
+        "champion": "Morgana",
+        "bis": [
+          "Void Staff",
+          "Morellonomicon",
+          "Rabadon's Deathcap"
+        ],
+        "note": "Utility items required"
+      },
+      {
+        "champion": "Sett",
+        "bis": [
+          "Generic tank"
+        ]
+      },
+      {
+        "champion": "Sentinel",
+        "bis": [
+          "Protector's Vow",
+          "Adaptive Helm"
+        ]
+      }
+    ],
+    "tips": [
+      "Strict item requirements — if your components look poor, look for another line",
+      "Front Ahri on the enemy carry's side of the board to reach the backline",
+      "Plan a roll down on 4-2 for 2-star Ahri and Morgana"
+    ]
+  },
+  {
+    "id": "elderwood-executioners",
+    "name": "Elderwood Executioners",
+    "tier": "A",
+    "playstyle": "tempo into fast 9",
+    "difficulty": "medium",
+    "traits": [
+      "Elderwood",
+      "Executioner"
+    ],
+    "conditions": [
+      "Elderwood / Executioner emblems (bump up a tier)",
+      "Lots of items",
+      "Tempo"
+    ],
+    "itemNeeds": {
+      "damage": 2,
+      "mana": 1
+    },
+    "earlyChampions": [
+      "Kha'Zix",
+      "Ornn",
+      "Xayah",
+      "LeBlanc"
+    ],
+    "itemHolders": [
+      "Xayah",
+      "LeBlanc"
+    ],
+    "roster": [
+      "Ezreal",
+      "Soraka",
+      "Hecarim",
+      "Kennen",
+      "Gnar",
+      "Lux",
+      "Ornn",
+      "Kha'Zix"
+    ],
+    "carryItems": [
+      {
+        "champion": "Ezreal",
+        "bis": [
+          "Spear of Shojin",
+          "Deathblade",
+          "Last Whisper"
+        ],
+        "alternatives": [
+          "Blue Buff",
+          "Striker's Flail",
+          "Red Buff"
+        ]
+      },
+      {
+        "champion": "Soraka",
+        "bis": [
+          "Rabadon's Deathcap",
+          "Nashor's Tooth",
+          "Adaptive Helm"
+        ],
+        "alternatives": [
+          "Blue Buff",
+          "Spear of Shojin"
+        ]
+      },
+      {
+        "champion": "Hecarim",
+        "bis": [
+          "Generic tank"
+        ]
+      }
+    ],
+    "tips": [
+      "Both AD and AP items are playable in this shell — slam early for tempo",
+      "Mana items are mandatory on Ezreal and Soraka for them to function",
+      "Cap the board at level 9 around Kennen, Gnar and an Elderwood Lux"
+    ]
+  },
+  {
+    "id": "veigar-reroll",
+    "name": "Veigar Reroll",
+    "tier": "A",
+    "playstyle": "1-cost reroll",
+    "difficulty": "medium",
+    "traits": [
+      "Spellweaver",
+      "Flora Fatalis"
+    ],
+    "conditions": [
+      "Artifact or emblem (Consuming Flora ideal)",
+      "Early LeBlanc and Ornn",
+      "Early Veigar with a slam"
+    ],
+    "itemNeeds": {
+      "rod": 1,
+      "tear": 1,
+      "tank": 1
+    },
+    "earlyChampions": [
+      "Veigar",
+      "LeBlanc",
+      "Ornn",
+      "Karma",
+      "Rek'Sai"
+    ],
+    "itemHolders": [
+      "Veigar"
+    ],
+    "roster": [
+      "Veigar",
+      "LeBlanc",
+      "Ornn",
+      "Karma",
+      "Rek'Sai",
+      "Alistar",
+      "Ahri",
+      "Alune",
+      "Malphite"
+    ],
+    "carryItems": [
+      {
+        "champion": "Veigar",
+        "bis": [
+          "Jeweled Gauntlet",
+          "Blue Buff"
+        ],
+        "alternatives": [
+          "Spear of Shojin"
+        ]
+      },
+      {
+        "champion": "LeBlanc",
+        "bis": [
+          "Spear of Shojin",
+          "Leftover AP"
+        ]
+      },
+      {
+        "champion": "Ornn / Alistar",
+        "bis": [
+          "Gargoyle Stoneplate",
+          "Generic tank"
+        ]
+      }
+    ],
+    "tips": [
+      "Sit at level 4 and roll on 3-1 for Veigar copies",
+      "Veigar stacks AP from early kills — without the snowball he can't break late front lines",
+      "Plan a second carry (Ahri or Alune) once stage 5 arrives"
+    ]
+  },
+  {
+    "id": "dragon-fast9",
+    "name": "Dragon Fast 9",
+    "tier": "B",
+    "playstyle": "fast 9 (high risk)",
+    "difficulty": "hard",
+    "traits": [
+      "Riftbeast"
+    ],
+    "conditions": [
+      "Level 9 reached by round 5-2",
+      "Big economy throughout",
+      "Enough items to equip multiple 5-cost carries"
+    ],
+    "itemNeeds": {
+      "sword": 1,
+      "bow": 1,
+      "tank": 1
+    },
+    "earlyChampions": [
+      "Cinderling",
+      "Camille",
+      "Xayah"
+    ],
+    "itemHolders": [
+      "Cinderling",
+      "Camille",
+      "Xayah"
+    ],
+    "roster": [
+      "Elder Dragon",
+      "Draven",
+      "Maokai",
+      "Sentinel",
+      "Taric",
+      "Kog'Maw",
+      "Krug",
+      "Scuttlecrab",
+      "Sett",
+      "Amumu"
+    ],
+    "carryItems": [
+      {
+        "champion": "Elder Dragon",
+        "bis": [
+          "Infinity Edge",
+          "Hand of Justice",
+          "Sterak's Gage"
+        ],
+        "alternatives": [
+          "Deathblade",
+          "Striker's Flail"
+        ]
+      },
+      {
+        "champion": "Draven",
+        "bis": [
+          "Guinsoo's Rageblade",
+          "Kraken's Fury",
+          "Deathblade"
+        ],
+        "alternatives": [
+          "Last Whisper",
+          "Giant Slayer",
+          "Infinity Edge"
+        ]
+      },
+      {
+        "champion": "Maokai",
+        "bis": [
+          "Generic tank"
+        ]
+      },
+      {
+        "champion": "Sentinel",
+        "bis": [
+          "Protector's Vow",
+          "Adaptive Helm"
+        ]
+      }
+    ],
+    "tips": [
+      "Feast or famine: Elder Dragon at 1-star loses most fights, at 2-star he can win the lobby",
+      "The frontline is completely open — pair any two of Sett + Krug, Maokai + Scuttle Crab, or Sentinel + Taric",
+      "Skip Shred and Sunder items if you run Kog'Maw, his trait already applies them"
+    ]
+  },
+  {
+    "id": "kayle-reroll",
+    "name": "Solar Kayle",
+    "tier": "B",
+    "playstyle": "1-cost reroll",
+    "difficulty": "medium",
+    "traits": [
+      "Solar",
+      "Rapidfire",
+      "Eclipse"
+    ],
+    "conditions": [
+      "Strong Kayle or Xayah opener",
+      "Item-heavy and econ-heavy start",
+      "Cursed Crown augment makes it S tier"
+    ],
+    "itemNeeds": {
+      "bow": 1,
+      "rod": 1
+    },
+    "earlyChampions": [
+      "Kayle",
+      "Xayah",
+      "Ornn"
+    ],
+    "itemHolders": [
+      "Xayah",
+      "Kayle",
+      "Ornn"
+    ],
+    "roster": [
+      "Kayle",
+      "Xayah",
+      "Ornn",
+      "Rakan",
+      "Leona",
+      "Sejuani",
+      "Hecarim"
+    ],
+    "carryItems": [
+      {
+        "champion": "Kayle",
+        "bis": [
+          "Guinsoo's Rageblade",
+          "Jeweled Gauntlet",
+          "Rabadon's Deathcap"
+        ],
+        "alternatives": [
+          "Hextech Gunblade",
+          "Archangel's Staff",
+          "Red Buff"
+        ]
+      },
+      {
+        "champion": "Xayah",
+        "bis": [
+          "Guinsoo's Rageblade",
+          "Leftover AD"
+        ]
+      },
+      {
+        "champion": "Ornn",
+        "bis": [
+          "Warmog's Armor",
+          "Gargoyle Stoneplate",
+          "Spirit Visage"
+        ]
+      },
+      {
+        "champion": "Rakan",
+        "bis": [
+          "Protector's Vow"
+        ]
+      }
+    ],
+    "tips": [
+      "The comp needs five 3-stars total to come online — patience beats panic rolling",
+      "If the bench fills up, sell Sejuani first and Rakan second; never sell Kayle, Ornn or Xayah",
+      "At level 9 swap Hecarim out for a third Lunar unit to unlock Eclipse"
+    ]
+  },
+  {
+    "id": "flora-malphite",
+    "name": "Flora Malphite",
+    "tier": "B",
+    "playstyle": "fast 8/9 (flex)",
+    "difficulty": "medium",
+    "traits": [
+      "Flora Fatalis",
+      "Executioner"
+    ],
+    "conditions": [
+      "AP-heavy start",
+      "Emblems raise the ceiling (Executioner Emblem pushes it to S tier)",
+      "Flexible attitude toward the last three board slots"
+    ],
+    "itemNeeds": {
+      "rod": 2,
+      "tear": 1,
+      "tank": 1
+    },
+    "earlyChampions": [
+      "Malphite",
+      "Soraka",
+      "Zyra"
+    ],
+    "itemHolders": [
+      "Karma",
+      "Akali"
+    ],
+    "roster": [
+      "Malphite",
+      "Soraka",
+      "Zyra",
+      "Azir",
+      "Fiddlesticks",
+      "Kennen"
+    ],
+    "carryItems": [
+      {
+        "champion": "Soraka",
+        "bis": [
+          "Rabadon's Deathcap",
+          "Nashor's Tooth",
+          "Adaptive Helm"
+        ],
+        "alternatives": [
+          "Spear of Shojin",
+          "Archangel's Staff"
+        ]
+      },
+      {
+        "champion": "Zyra",
+        "bis": [
+          "Jeweled Gauntlet",
+          "Void Staff",
+          "Spear of Shojin"
+        ]
+      },
+      {
+        "champion": "Malphite",
+        "bis": [
+          "Gargoyle Stoneplate",
+          "Crownguard",
+          "Spirit Visage"
+        ]
+      },
+      {
+        "champion": "Kennen / Azir",
+        "bis": [
+          "Leftover AP"
+        ]
+      }
+    ],
+    "tips": [
+      "The frontline trait is what keeps Malphite alive — the comp does not function without it",
+      "Feed a 3-cost (usually Fiddlesticks) to the Blackthorn for maximum Malphite stats",
+      "Only five units are mandatory, so the flex slots at level 8 adapt to whatever 5-costs you hit"
+    ]
+  },
+  {
+    "id": "juggernaut-flex",
+    "name": "Juggernaut Flex",
+    "tier": "B",
+    "playstyle": "tempo into fast 9",
+    "difficulty": "easy",
+    "traits": [
+      "Juggernaut",
+      "Brawler"
+    ],
+    "conditions": [
+      "Early Juggernaut units",
+      "Plenty of items to slam"
+    ],
+    "itemNeeds": {
+      "damage": 1,
+      "tank": 1
+    },
+    "earlyChampions": [
+      "Amumu",
+      "Gromp",
+      "Karma",
+      "Cinderling"
+    ],
+    "itemHolders": [
+      "Karma",
+      "Cinderling",
+      "Gromp"
+    ],
+    "roster": [
+      "Amumu",
+      "Ashe",
+      "Zyra",
+      "Sivir",
+      "Alune",
+      "Maokai",
+      "Scuttlecrab"
+    ],
+    "carryItems": [
+      {
+        "champion": "Ashe",
+        "bis": [
+          "Red Buff",
+          "Last Whisper",
+          "Spear of Shojin"
+        ]
+      },
+      {
+        "champion": "Sivir",
+        "bis": [
+          "Infinity Edge",
+          "Spear of Shojin",
+          "Striker's Flail"
+        ],
+        "alternatives": [
+          "Blue Buff",
+          "Leftover AD"
+        ]
+      },
+      {
+        "champion": "Zyra",
+        "bis": [
+          "Archangel's Staff",
+          "Void Staff"
+        ],
+        "alternatives": [
+          "Leftover AP"
+        ]
+      },
+      {
+        "champion": "Amumu",
+        "bis": [
+          "Crownguard",
+          "Warmog's Armor",
+          "Gargoyle Stoneplate"
+        ]
+      }
+    ],
+    "tips": [
+      "Your slams pick the backline: AP items point at Zyra or Alune, AD items at Sivir into Ashe",
+      "Pure tempo plan — slam early, keep winning, and ride the frontline to level 9",
+      "Fielding Maokai as early as possible makes the late-game win-out much easier thanks to his HP scaling"
+    ]
+  },
+  {
+    "id": "ashe-fast9",
+    "name": "Ashe Fast 9",
+    "tier": "B",
+    "playstyle": "fast 9 (economy)",
+    "difficulty": "hard",
+    "traits": [
+      "Blossom",
+      "Juggernaut"
+    ],
+    "conditions": [
+      "Level 9 reached by round 5-2",
+      "A Spear of Shojin available for Ashe",
+      "Strong economy from a Blossom, Sivir or Invoker opener"
+    ],
+    "itemNeeds": {
+      "sword": 1,
+      "tear": 1,
+      "tank": 1
+    },
+    "earlyChampions": [
+      "Karma",
+      "Sivir",
+      "Ahri",
+      "Morgana"
+    ],
+    "itemHolders": [
+      "Cinderling",
+      "Karma"
+    ],
+    "roster": [
+      "Ashe",
+      "Ahri",
+      "Maokai",
+      "Sett",
+      "Alune",
+      "Taric",
+      "Gnar",
+      "Sivir",
+      "Morgana"
+    ],
+    "carryItems": [
+      {
+        "champion": "Ashe",
+        "bis": [
+          "Spear of Shojin",
+          "Red Buff",
+          "Last Whisper"
+        ],
+        "alternatives": [
+          "Blue Buff",
+          "Morellonomicon",
+          "Infinity Edge"
+        ]
+      },
+      {
+        "champion": "Ahri",
+        "bis": [
+          "Jeweled Gauntlet",
+          "Striker's Flail"
+        ],
+        "alternatives": [
+          "Nashor's Tooth",
+          "Spear of Shojin",
+          "Blue Buff"
+        ]
+      },
+      {
+        "champion": "Maokai / Sett",
+        "bis": [
+          "Generic tank"
+        ]
+      },
+      {
+        "champion": "Alune",
+        "bis": [
+          "Utility",
+          "Leftover AP"
+        ]
+      }
+    ],
+    "tips": [
+      "The friendliest fast-9 entry: any Ahri, Sivir or Blossom start can funnel into it — the only real demands are a Shojin and the econ to hit 9",
+      "Her arrow flies toward the biggest clump of enemies, so park her across from the enemy stack",
+      "Don't waste items on a 1-star Maokai — he needs time to scale before he's worth equipping"
+    ]
+  },
+  {
+    "id": "solar-akali",
+    "name": "Solar Akali",
+    "tier": "B",
+    "playstyle": "1-cost reroll",
+    "difficulty": "hard",
+    "traits": [
+      "Solar",
+      "Ravager"
+    ],
+    "conditions": [
+      "Camille and Akali both on the board early",
+      "Plenty of Ornn copies",
+      "Artifacts or reroll augments raise it a tier"
+    ],
+    "itemNeeds": {
+      "damage": 1
+    },
+    "earlyChampions": [
+      "Akali",
+      "Camille",
+      "Ornn"
+    ],
+    "itemHolders": [
+      "Akali",
+      "Camille",
+      "Ornn"
+    ],
+    "roster": [
+      "Akali",
+      "Camille",
+      "Ornn",
+      "Leona",
+      "Kayle",
+      "Sejuani"
+    ],
+    "carryItems": [
+      {
+        "champion": "Akali",
+        "bis": [
+          "Edge of Night",
+          "Hand of Justice",
+          "Lich Bane"
+        ],
+        "note": "Artifacts first: Lich Bane is close to an auto-win"
+      },
+      {
+        "champion": "Camille",
+        "bis": [
+          "Sterak's Gage",
+          "Infinity Edge",
+          "Quicksilver"
+        ]
+      }
+    ],
+    "tips": [
+      "Akali likes AP and Camille likes AD, so there is almost always something worth slamming on 2-1",
+      "Ornn copies matter as much as carry copies — the Forge artifact is what raises the cap",
+      "Completely uncontested or premium augments required: missing your 3-stars here is punishing"
+    ]
+  },
+  {
+    "id": "caitlyn-reroll",
+    "name": "Caitlyn Reroll",
+    "tier": "B",
+    "playstyle": "2-cost reroll",
+    "difficulty": "easy",
+    "traits": [
+      "Hunter",
+      "Juggernaut"
+    ],
+    "conditions": [
+      "Guinsoo's or Kraken's Fury ready to slam",
+      "Two sets of AD items",
+      "Bow-heavy components"
+    ],
+    "itemNeeds": {
+      "bow": 2,
+      "sword": 1
+    },
+    "earlyChampions": [
+      "Caitlyn",
+      "Scuttlecrab",
+      "Sejuani",
+      "Sivir"
+    ],
+    "itemHolders": [
+      "Caitlyn",
+      "Cinderling"
+    ],
+    "roster": [
+      "Caitlyn",
+      "Scuttlecrab",
+      "Sejuani",
+      "Sivir",
+      "Ashe",
+      "Gnar",
+      "Draven",
+      "Brambleback"
+    ],
+    "carryItems": [
+      {
+        "champion": "Caitlyn",
+        "bis": [
+          "Guinsoo's Rageblade",
+          "Kraken's Fury",
+          "Giant Slayer"
+        ],
+        "alternatives": [
+          "Deathblade"
+        ]
+      },
+      {
+        "champion": "Scuttlecrab",
+        "bis": [
+          "Warmog's Armor",
+          "Gargoyle Stoneplate",
+          "Spirit Visage"
+        ]
+      },
+      {
+        "champion": "Sejuani",
+        "bis": [
+          "Leftover tank"
+        ]
+      },
+      {
+        "champion": "Sivir",
+        "bis": [
+          "Last Whisper",
+          "Leftover AD"
+        ]
+      }
+    ],
+    "tips": [
+      "She has no spell — mana items do literally nothing on her, stack attack speed instead",
+      "Stabilize on 3-2 around 2-star Caitlyn with 2 Hunter and 4 Juggernaut",
+      "After the 3-stars, climb levels and look for Ashe at 9 — a Shojin Ashe here is a top-2 board"
+    ]
+  },
+  {
+    "id": "blossom-ahri",
+    "name": "Blossom Ahri",
+    "tier": "B",
+    "playstyle": "fast 8/9",
+    "difficulty": "medium",
+    "traits": [
+      "Blossom",
+      "Spellweaver"
+    ],
+    "conditions": [
+      "3 Blossom active early",
+      "Item augments",
+      "Economy to reach level 9"
+    ],
+    "itemNeeds": {
+      "rod": 2,
+      "tear": 1,
+      "tank": 1
+    },
+    "earlyChampions": [
+      "Karma",
+      "Yorick",
+      "Krug",
+      "Gnar"
+    ],
+    "itemHolders": [
+      "Karma",
+      "Yorick"
+    ],
+    "roster": [
+      "Ahri",
+      "Sett",
+      "Ashe",
+      "Gnar",
+      "Yorick",
+      "Karma",
+      "Sivir",
+      "Zyra",
+      "Alune",
+      "Maokai"
+    ],
+    "carryItems": [
+      {
+        "champion": "Ahri",
+        "bis": [
+          "Spear of Shojin",
+          "Jeweled Gauntlet",
+          "Striker's Flail"
+        ],
+        "alternatives": [
+          "Rabadon's Deathcap",
+          "Blue Buff"
+        ]
+      },
+      {
+        "champion": "Sett",
+        "bis": [
+          "Warmog's Armor",
+          "Bramblevest",
+          "Dragon's Claw"
+        ],
+        "alternatives": [
+          "Gargoyle Stoneplate",
+          "Adaptive Helm"
+        ]
+      },
+      {
+        "champion": "Ashe",
+        "bis": [
+          "Red Buff",
+          "Spear of Shojin",
+          "Last Whisper"
+        ]
+      }
+    ],
+    "tips": [
+      "Three Blossom must stay on the board for a full fight to earn the upgraded wisp — you can't toggle it mid-round",
+      "Click econ wisps by default and only grab combat wisps when protecting a streak or when they cost 1 gold",
+      "The plan stalls at level 8 — reaching Ashe is what actually caps the board"
+    ]
+  },
+  {
+    "id": "invoker-nidalee",
+    "name": "Invoker Nidalee",
+    "tier": "B",
+    "playstyle": "fast 8/9",
+    "difficulty": "medium",
+    "traits": [
+      "Invoker",
+      "Primal"
+    ],
+    "conditions": [
+      "Rod-heavy start (three or more)",
+      "Willing to flex the frontline on 4-2",
+      "Both an econ and an item augment"
+    ],
+    "itemNeeds": {
+      "rod": 3,
+      "tank": 1
+    },
+    "earlyChampions": [
+      "Rakan",
+      "Karma",
+      "Nidalee"
+    ],
+    "itemHolders": [
+      "Karma"
+    ],
+    "roster": [
+      "Nidalee",
+      "Morgana",
+      "Sentinel",
+      "Vi",
+      "Kog'Maw",
+      "Rakan",
+      "Taric",
+      "Alune",
+      "Amumu",
+      "Sett"
+    ],
+    "carryItems": [
+      {
+        "champion": "Nidalee",
+        "bis": [
+          "Guinsoo's Rageblade",
+          "Jeweled Gauntlet",
+          "Striker's Flail"
+        ],
+        "alternatives": [
+          "Rabadon's Deathcap",
+          "Giant Slayer"
+        ]
+      },
+      {
+        "champion": "Morgana",
+        "bis": [
+          "Morellonomicon",
+          "Rabadon's Deathcap"
+        ]
+      },
+      {
+        "champion": "Sentinel",
+        "bis": [
+          "Protector's Vow",
+          "Adaptive Helm"
+        ]
+      }
+    ],
+    "tips": [
+      "It fights the lobby for Sentinel and Morgana, so stay flexible on 4-2 and build the frontline from whatever 2-stars you find",
+      "Nidalee wants Guinsoo's plus ideally a Jeweled Gauntlet; Morgana genuinely needs her burn item",
+      "The Nidalee emblem is the best spatula use here and bumps the whole comp up"
+    ]
+  },
+  {
+    "id": "adaptor-yi-reroll",
+    "name": "Adaptor Master Yi",
+    "tier": "B",
+    "playstyle": "3-cost reroll",
+    "difficulty": "medium",
+    "traits": [
+      "Adaptor",
+      "Primal",
+      "Brawler"
+    ],
+    "conditions": [
+      "Bow-heavy components",
+      "Early Master Yi or a Rengar orb",
+      "Artifacts raise it a tier"
+    ],
+    "itemNeeds": {
+      "bow": 2,
+      "damage": 1
+    },
+    "earlyChampions": [
+      "Master Yi",
+      "Kog'Maw",
+      "Rengar"
+    ],
+    "itemHolders": [
+      "Master Yi",
+      "Kog'Maw"
+    ],
+    "roster": [
+      "Master Yi",
+      "Kog'Maw",
+      "Rengar",
+      "Nidalee",
+      "Vi",
+      "Krug"
+    ],
+    "carryItems": [
+      {
+        "champion": "Master Yi (AP)",
+        "bis": [
+          "Guinsoo's Rageblade",
+          "Edge of Night",
+          "Titan's Resolve"
+        ],
+        "note": "Guinsoo's keeps him in the correct Adaptor form"
+      },
+      {
+        "champion": "Master Yi (AD)",
+        "bis": [
+          "Quicksilver",
+          "Edge of Night",
+          "Titan's Resolve"
+        ],
+        "note": "Play this version when paired with Rengar"
+      },
+      {
+        "champion": "Rengar",
+        "bis": [
+          "Guinsoo's Rageblade",
+          "Edge of Night",
+          "Titan's Resolve"
+        ]
+      },
+      {
+        "champion": "Kog'Maw",
+        "bis": [
+          "Infinity Edge",
+          "Spear of Shojin",
+          "Red Buff"
+        ]
+      },
+      {
+        "champion": "Vi",
+        "bis": [
+          "Gargoyle Stoneplate",
+          "Warmog's Armor",
+          "Spirit Visage"
+        ]
+      }
+    ],
+    "tips": [
+      "Yi's build direction follows his partner: solo Yi goes AP items, Yi with Rengar goes AD",
+      "Yi 3-star is the one non-negotiable — a 2-star Kog'Maw can cover the rest of the damage",
+      "This line struggles from behind, so only enter it with an early Yi, an orb or an artifact in hand"
+    ]
+  },
+  {
+    "id": "trist-rengar-reroll",
+    "name": "Tristana Rengar",
+    "tier": "B",
+    "playstyle": "3-cost reroll (needs emblem)",
+    "difficulty": "medium",
+    "traits": [
+      "Hunter",
+      "Sprykin",
+      "Fae"
+    ],
+    "conditions": [
+      "A trait emblem in hand (Hunter, Sprykin or Fae)",
+      "Early Rengar or his orb augment",
+      "Uncontested lobby"
+    ],
+    "itemNeeds": {
+      "damage": 2,
+      "tank": 1
+    },
+    "earlyChampions": [
+      "Rengar",
+      "Tristana",
+      "Rammus",
+      "Lillia",
+      "Xayah",
+      "Rakan"
+    ],
+    "itemHolders": [
+      "Rengar",
+      "Tristana",
+      "Xayah",
+      "Rakan"
+    ],
+    "roster": [
+      "Rengar",
+      "Tristana",
+      "Rammus",
+      "Lillia",
+      "Xayah",
+      "Rakan"
+    ],
+    "carryItems": [
+      {
+        "champion": "Tristana",
+        "bis": [
+          "Guinsoo's Rageblade",
+          "Hextech Gunblade",
+          "Giant Slayer"
+        ],
+        "alternatives": [
+          "Deathblade",
+          "Kraken's Fury"
+        ]
+      },
+      {
+        "champion": "Rengar",
+        "bis": [
+          "Titan's Resolve"
+        ],
+        "note": "Add Sterak's for Fae, Bloodthirster for Hunter, Guinsoo's for Sprykin"
+      },
+      {
+        "champion": "Rammus",
+        "bis": [
+          "Gargoyle Stoneplate",
+          "Generic tank"
+        ]
+      }
+    ],
+    "tips": [
+      "The emblem you find decides the shape of the board — Rengar is the best holder of all three",
+      "A Lilia pickup is a cheap way to stabilize stage 4 while slow rolling",
+      "Only level past the reroll point after the 3-stars land, then add whatever trait the emblem needs"
+    ]
+  },
+  {
+    "id": "primal-malphite",
+    "name": "Primal Malphite",
+    "tier": "C",
+    "playstyle": "level 8 tempo",
+    "difficulty": "medium",
+    "traits": [
+      "Primal",
+      "Flora Fatalis",
+      "Sentinel"
+    ],
+    "conditions": [
+      "Two full sets of AD items",
+      "High-quality tank items",
+      "Sword-heavy start"
+    ],
+    "itemNeeds": {
+      "sword": 3,
+      "tank": 1
+    },
+    "earlyChampions": [
+      "Malphite",
+      "Nidalee",
+      "Sivir",
+      "Kog'Maw"
+    ],
+    "itemHolders": [
+      "Camille",
+      "Akali",
+      "Cinderling"
+    ],
+    "roster": [
+      "Malphite",
+      "Nidalee",
+      "Sivir",
+      "Sentinel",
+      "Kog'Maw",
+      "Krug",
+      "Ashe",
+      "Taric"
+    ],
+    "carryItems": [
+      {
+        "champion": "Nidalee",
+        "bis": [
+          "Infinity Edge",
+          "Spear of Shojin",
+          "Hand of Justice"
+        ],
+        "alternatives": [
+          "Deathblade",
+          "Striker's Flail",
+          "Giant Slayer"
+        ]
+      },
+      {
+        "champion": "Sivir",
+        "bis": [
+          "Infinity Edge",
+          "Striker's Flail",
+          "Red Buff"
+        ],
+        "alternatives": [
+          "Deathblade",
+          "Giant Slayer",
+          "Spear of Shojin"
+        ]
+      },
+      {
+        "champion": "Malphite",
+        "bis": [
+          "Gargoyle Stoneplate",
+          "Spirit Visage",
+          "Crownguard"
+        ]
+      },
+      {
+        "champion": "Sentinel",
+        "bis": [
+          "Protector's Vow",
+          "Adaptive Helm"
+        ]
+      }
+    ],
+    "tips": [
+      "Nidalee jumps to the least-equipped nearby unit after a kill — point her at the enemy's weak side",
+      "The Blackthorn sacrifice gives Malphite his biggest stat boost, but never Alpha-Mark the unit you feed",
+      "It contests Malphite and Sentinel with the lobby, so be the richest player on 4-2 and roll first"
+    ]
+  },
+  {
+    "id": "solar-yunara",
+    "name": "Solar Yunara",
+    "tier": "C",
+    "playstyle": "2-cost reroll (expensive)",
+    "difficulty": "hard",
+    "traits": [
+      "Solar",
+      "Blossom"
+    ],
+    "conditions": [
+      "Huge economy",
+      "Two full sets of carry items",
+      "LeBlanc opener for the econ engine"
+    ],
+    "itemNeeds": {
+      "sword": 1,
+      "rod": 1,
+      "tear": 1,
+      "tank": 1
+    },
+    "earlyChampions": [
+      "LeBlanc",
+      "Yunara",
+      "Karma",
+      "Yorick",
+      "Sejuani"
+    ],
+    "itemHolders": [
+      "LeBlanc",
+      "Yunara",
+      "Karma"
+    ],
+    "roster": [
+      "Yunara",
+      "LeBlanc",
+      "Karma",
+      "Yorick",
+      "Sejuani",
+      "Azir"
+    ],
+    "carryItems": [
+      {
+        "champion": "Yunara",
+        "bis": [
+          "Spear of Shojin",
+          "Last Whisper",
+          "Deathblade"
+        ],
+        "alternatives": [
+          "Giant Slayer",
+          "Striker's Flail"
+        ]
+      },
+      {
+        "champion": "LeBlanc",
+        "bis": [
+          "Spear of Shojin",
+          "Jeweled Gauntlet",
+          "Void Staff"
+        ]
+      },
+      {
+        "champion": "Karma",
+        "bis": [
+          "Utility items"
+        ]
+      },
+      {
+        "champion": "Sejuani",
+        "bis": [
+          "Gargoyle Stoneplate",
+          "Warmog's Armor",
+          "Crownguard"
+        ]
+      }
+    ],
+    "tips": [
+      "Five 3-stars plus level 8 is a lot to ask — the Blossom and LeBlanc econ engines are what make it possible",
+      "Staying strong through stages 3 and 4 is the whole game: her clones print units while you're ahead",
+      "At level 7 swap Azir out for a third Solar, then bring him back at 8"
+    ]
+  }
+]
