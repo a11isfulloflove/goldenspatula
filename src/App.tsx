@@ -5,6 +5,7 @@ import { recommend } from './engine/recommend'
 import { MAX_PER_COMPONENT } from './constants'
 import { loadPersistedInput, savePersistedInput } from './persistence'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import ComponentPicker from './components/ComponentPicker'
 import ChampionPicker from './components/ChampionPicker'
 import ResultsPanel from './components/ResultsPanel'
@@ -62,6 +63,7 @@ function App() {
         onReset={reset}
         resetSignal={resetSignal}
       />
+      <Footer />
     </div>
   )
 }
