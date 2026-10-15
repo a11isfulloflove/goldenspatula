@@ -1,0 +1,241 @@
+.comp-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.15s, transform 0.15s;
+  animation: rise 0.35s ease both;
+}
+
+.comp-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.comp-card.best {
+  border-color: var(--gold-border);
+  box-shadow: 0 0 0 1px var(--gold-border), var(--shadow-md);
+  background: linear-gradient(180deg, #fffdf5, var(--bg-card) 60%);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+.comp-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.rank {
+  font-family: var(--mono);
+  color: var(--text-dim);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.comp-title {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex: 1;
+  min-width: 160px;
+}
+
+.comp-title h3 {
+  font-size: 18px;
+}
+
+.comp-sub {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.score-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.score-bar {
+  flex: 1;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--bg-inset);
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(23, 34, 56, 0.08);
+}
+
+.score-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f0b429, #2fae6e);
+  transition: width 0.35s ease;
+}
+
+.score-label {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-strong);
+  min-width: 78px;
+  text-align: right;
+}
+
+.best-tag {
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.needs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.need {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 3px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-inset);
+  color: var(--text-dim);
+}
+
+.need.ok {
+  color: var(--green);
+  background: var(--green-soft);
+  border-color: var(--green-border);
+}
+
+.need.partial {
+  color: var(--amber);
+  background: var(--amber-soft);
+  border-color: var(--amber-border);
+}
+
+.need.none {
+  color: var(--red);
+  background: var(--red-soft);
+  border-color: var(--red-border);
+}
+
+.need.unused {
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.champ-matches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.champ-match {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-strong);
+  padding: 3px 11px;
+  border-radius: 999px;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-border);
+}
+
+.champ-match em {
+  color: var(--text-dim);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.comp-section h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+
+.comp-section ul {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.comp-section li {
+  font-size: 14px;
+  color: var(--text);
+  padding-left: 15px;
+  position: relative;
+}
+
+.comp-section li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold-bright);
+}
+
+.carries {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.carry {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  font-size: 14px;
+}
+
+.carry-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--text-strong);
+  font-weight: 700;
+  min-width: 130px;
+}
+
+.carry-items {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 6px;
+}
+
+.carry-item-wrap {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.dot {
+  color: var(--text-dim);
+}
+
+.carry-alt,
+.carry-note {
+  color: var(--text-dim);
+  font-size: 13px;
+  font-style: italic;
+}

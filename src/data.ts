@@ -39,6 +39,10 @@ export const activeSet: SetData = {
   >,
 }
 
+export function roleOf(name: string): string {
+  return activeSet.championRoles?.[name] ?? 'flex'
+}
+
 export const championUniverse = Array.from(
   new Set([
     ...Object.keys(activeSet.championRoles ?? {}),
