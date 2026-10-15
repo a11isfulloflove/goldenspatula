@@ -1,0 +1,17 @@
+.app-footer {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 13px;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.app-footer .disclaimer {
+  font-size: 11px;
+  color: #b3bdcc;
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.45;
+}

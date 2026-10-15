@@ -1,0 +1,142 @@
+.components {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+  gap: 12px;
+}
+
+.component-wrap {
+  position: relative;
+}
+
+.component {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 8px 10px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+
+.component:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
+}
+
+.component:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.component.active {
+  border-color: var(--gold-border);
+  background: var(--gold-soft);
+}
+
+.tile {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  transition: transform 0.15s;
+}
+
+.tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 2px 3px rgba(23, 34, 56, 0.25);
+  transition: box-shadow 0.15s;
+}
+
+.component:hover .tile {
+  transform: scale(1.08);
+}
+
+.component.active .tile img {
+  box-shadow: 0 0 6px rgba(224, 169, 46, 0.8);
+}
+
+.component-name {
+  color: var(--text-strong);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.component-stat {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.tile-controls {
+  position: absolute;
+  top: -9px;
+  right: -9px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 1;
+}
+
+.tile-minus {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  color: var(--text-strong);
+  display: grid;
+  place-items: center;
+  box-shadow: var(--shadow-sm);
+  transition: color 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.minus-bar {
+  width: 10px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.tile-minus:hover {
+  color: var(--red);
+  border-color: var(--red-border);
+  transform: scale(1.1);
+}
+
+.tile-minus:active {
+  transform: scale(0.9);
+}
+
+.tile-count {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--bg-card);
+  box-shadow: var(--shadow-sm);
+  animation: pop 0.25s ease;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.4);
+  }
+  70% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

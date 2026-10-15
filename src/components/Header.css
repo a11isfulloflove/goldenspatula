@@ -1,0 +1,43 @@
+.app-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.app-header h1 {
+  font-size: 38px;
+  letter-spacing: -1px;
+  background: linear-gradient(120deg, #8a5b06, #d99a06 55%, #edb93f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.app-header .tagline {
+  color: var(--text);
+}
+
+.meta-badges {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  background: var(--bg-card);
+}
+
+@media (max-width: 640px) {
+  .app-header h1 {
+    font-size: 30px;
+  }
+}

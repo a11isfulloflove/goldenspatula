@@ -1,0 +1,123 @@
+import { useMemo, useState } from 'react'
+import type { Recommendation } from '../engine/recommend'
+import CompCard from './CompCard'
+import TierList from './TierList'
+import './ResultsPanel.css'
+
+const DIFFICULTY_FILTERS = [
+  { id: 'all', label: 'All' },
+  { id: 'easy', label: 'Easy' },
+  { id: 'medium', label: 'Medium' },
+  { id: 'hard', label: 'Hard' },
+] as const
+
+type DifficultyFilter = (typeof DIFFICULTY_FILTERS)[number]['id']
+
+interface ExpandedState {
+  id: string | null
+  epoch: number
+}
+
+export default function ResultsPanel({
+  recs,
+  hasInput,
+  onReset,
+  resetSignal,
+}: {
+  recs: Recommendation[]
+  hasInput: boolean
+  onReset: () => void
+  resetSignal: number
+}) {
+  const [viewMode, setViewMode] = useState<'ranked' | 'tiers'>('ranked')
+  const [difficulty, setDifficulty] = useState<DifficultyFilter>('all')
+  const [expanded, setExpanded] = useState<ExpandedState>({ id: null, epoch: 0 })
+
+  const expandedId = expanded.epoch === resetSignal ? expanded.id : null
+
+  const visibleRecs = useMemo(
+    () =>
+      difficulty === 'all' ? recs : recs.filter((r) => r.comp.difficulty === difficulty),
+    [recs, difficulty],
+  )
+
+  return (
+    <section className="panel">
+      <div className="panel-head">
+        <h2>3 · Recommended comps</h2>
+        <div className="head-actions">
+          <div className="view-toggle">
+            <button
+              type="button"
+              className={viewMode === 'ranked' ? 'active' : ''}
+              onClick={() => setViewMode('ranked')}
+            >
+              Your ranking
+            </button>
+            <button
+              type="button"
+              className={viewMode === 'tiers' ? 'active' : ''}
+              onClick={() => setViewMode('tiers')}
+            >
+              Tier list
+            </button>
+          </div>
+          <span className="filter-label">Difficulty</span>
+          <div className="view-toggle" role="group" aria-label="Filter by difficulty">
+            {DIFFICULTY_FILTERS.map((option) => (
+              <button
+                key={option.id}
+                type="button"
+                className={difficulty === option.id ? 'active' : ''}
+                onClick={() => setDifficulty(option.id)}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+          {hasInput && (
+            <button type="button" className="reset" onClick={onReset}>
+              Reset
+            </button>
+          )}
+        </div>
+      </div>
+
+      {viewMode === 'ranked' &&
+        (!hasInput ? (
+          <div className="empty-state">
+            <span>
+              Pick a few components or champions from your opening shops and carousel to see
+              which comps fit your start. Or browse the tier list view.
+            </span>
+          </div>
+        ) : visibleRecs.length === 0 ? (
+          <div className="empty-state">
+            <span>No comps match this difficulty filter.</span>
+          </div>
+        ) : (
+          <div className="results">
+            {visibleRecs.map((rec, index) => (
+              <CompCard key={rec.comp.id} rec={rec} rank={index} delay={index * 60} />
+            ))}
+          </div>
+        ))}
+
+      {viewMode === 'tiers' && visibleRecs.length > 0 && (
+        <TierList
+          recs={visibleRecs}
+          hasInput={hasInput}
+          expandedId={expandedId}
+          onToggle={(id) =>
+            setExpanded({ id: expandedId === id ? null : id, epoch: resetSignal })
+          }
+        />
+      )}
+      {viewMode === 'tiers' && visibleRecs.length === 0 && (
+        <div className="empty-state">
+          <span>No comps match this difficulty filter.</span>
+        </div>
+      )}
+    </section>
+  )
+}
