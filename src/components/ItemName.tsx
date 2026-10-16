@@ -11,7 +11,7 @@ function MiniItemIcon({ id }: { id: string }) {
   if (!src) return null
   return (
     <span className="mini-icon">
-      <img src={src} alt="" draggable={false} />
+      <img src={src} alt="" draggable={false} decoding="async" />
     </span>
   )
 }
@@ -19,7 +19,15 @@ function MiniItemIcon({ id }: { id: string }) {
 function ItemIcon({ name, size = 'sm' }: { name: string; size?: 'sm' | 'md' }) {
   const file = items.itemIcons?.[name]
   if (!file) return null
-  return <img className={`item-icon ${size}`} src={`/items/${file}`} alt="" draggable={false} />
+  return (
+    <img
+      className={`item-icon ${size}`}
+      src={`/items/${file}`}
+      alt=""
+      draggable={false}
+      decoding="async"
+    />
+  )
 }
 
 export default function ItemName({ name }: { name: string }) {

@@ -28,7 +28,12 @@ export default function ComponentPicker({
               >
                 <span className="tile">
                   {component.icon && (
-                    <img src={`/items/${component.icon}`} alt="" draggable={false} />
+                    <img
+                      src={`/items/${component.icon}`}
+                      alt=""
+                      draggable={false}
+                      decoding="async"
+                    />
                   )}
                 </span>
                 <span className="component-name">{component.short}</span>

@@ -14,6 +14,7 @@ export default function ChampionPortrait({
       src={`/champs/${championSlug(name)}.png`}
       alt=""
       loading="lazy"
+      decoding="async"
       draggable={false}
       onError={(event) => {
         event.currentTarget.style.display = 'none'
