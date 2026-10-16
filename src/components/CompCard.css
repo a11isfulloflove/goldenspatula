@@ -51,6 +51,7 @@
 }
 
 .comp-title h3 {
+  font-family: var(--font-display);
   font-size: 18px;
 }
 

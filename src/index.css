@@ -33,6 +33,7 @@
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
+  --font-display: 'Fraunces Variable', 'Georgia', serif;
 
   font: 16px/1.5 var(--sans);
   color-scheme: dark;

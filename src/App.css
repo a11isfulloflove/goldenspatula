@@ -27,6 +27,7 @@
 }
 
 .panel-head h2 {
+  font-family: var(--font-display);
   font-size: 18px;
 }
 

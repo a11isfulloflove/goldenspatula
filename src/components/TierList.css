@@ -11,6 +11,7 @@
 }
 
 .tier-medallion {
+  font-family: var(--font-display);
   width: 46px;
   border-radius: 12px;
   display: grid;
