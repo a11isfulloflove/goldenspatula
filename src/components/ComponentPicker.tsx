@@ -1,5 +1,4 @@
 import { items } from '../data'
-import { COMPONENT_COLORS } from '../componentMeta'
 import './ComponentPicker.css'
 
 export default function ComponentPicker({
@@ -20,7 +19,6 @@ export default function ComponentPicker({
       <div className="components">
         {items.components.map((component) => {
           const count = counts[component.id] ?? 0
-          const color = COMPONENT_COLORS[component.id] ?? '#93a0b4'
           return (
             <div className="component-wrap" key={component.id}>
               <button
@@ -46,9 +44,7 @@ export default function ComponentPicker({
                   >
                     <span className="minus-bar" aria-hidden="true" />
                   </button>
-                  <span className="tile-count" style={{ background: color }}>
-                    {count}
-                  </span>
+                  <span className="tile-count">{count}</span>
                 </div>
               )}
             </div>

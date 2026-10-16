@@ -18,7 +18,7 @@
 .comp-card.best {
   border-color: var(--gold-border);
   box-shadow: 0 0 0 1px var(--gold-border), var(--shadow-md);
-  background: linear-gradient(180deg, #fffdf5, var(--bg-card) 60%);
+  background: linear-gradient(180deg, rgba(212, 160, 46, 0.1), var(--bg-card) 60%);
 }
 
 @keyframes rise {
@@ -77,7 +77,7 @@
 .score-fill {
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, #f0b429, #2fae6e);
+  background: linear-gradient(90deg, #f0c04a, #4fae7e);
   transition: width 0.35s ease;
 }
 

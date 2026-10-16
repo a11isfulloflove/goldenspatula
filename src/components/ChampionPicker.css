@@ -88,18 +88,18 @@
 }
 
 .champ-card .champ-icon {
-  box-shadow: 0 2px 3px rgba(23, 34, 56, 0.25);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.45);
 }
 
 .champ-card.active .champ-icon {
-  box-shadow: 0 0 6px rgba(224, 169, 46, 0.8);
+  box-shadow: 0 0 8px rgba(240, 192, 74, 0.55);
 }
 
 .champ-role-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #93a0b4;
+  background: #77746b;
 }
 
 .champ-role-icon {
@@ -109,15 +109,15 @@
 }
 
 .champ-card.role-carry .champ-role-icon {
-  color: #d24a4a;
+  color: #e06c6c;
 }
 
 .champ-card.role-tank .champ-role-icon {
-  color: #2a6fd6;
+  color: #6ea8f0;
 }
 
 .champ-card.role-support .champ-role-icon {
-  color: #178a4c;
+  color: #5bbd84;
 }
 
 .champ-card-name {

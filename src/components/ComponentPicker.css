@@ -51,8 +51,8 @@
   border-radius: 12px;
   border: 2px solid rgba(255, 255, 255, 0.95);
   box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 2px 3px rgba(23, 34, 56, 0.25);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.45);
   transition: box-shadow 0.15s;
 }
 
@@ -61,7 +61,7 @@
 }
 
 .component.active .tile img {
-  box-shadow: 0 0 6px rgba(224, 169, 46, 0.8);
+  box-shadow: 0 0 8px rgba(240, 192, 74, 0.55);
 }
 
 .component-name {
@@ -119,11 +119,12 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  color: #fff;
+  color: #141518;
   font-size: 13px;
   font-weight: 800;
   display: grid;
   place-items: center;
+  background: var(--gold);
   border: 2px solid var(--bg-card);
   box-shadow: var(--shadow-sm);
   animation: pop 0.25s ease;

@@ -1,41 +1,41 @@
 :root {
-  --bg: #f4f6fb;
-  --bg-card: #ffffff;
-  --bg-inset: #f0f3f9;
-  --bg-hover: #f7f9fc;
-  --border: #e2e8f2;
-  --border-strong: #cbd5e6;
-  --text: #4b5768;
-  --text-strong: #1b2739;
-  --text-dim: #93a0b4;
-  --gold: #b97d0a;
-  --gold-bright: #e0a92e;
-  --gold-soft: #fdf4da;
-  --gold-border: #ecd27a;
-  --green: #178a4c;
-  --green-soft: #e5f7ec;
-  --green-border: #9fe0bb;
-  --amber: #b26a05;
-  --amber-soft: #fdf0dc;
-  --amber-border: #f0cd92;
-  --red: #cf4444;
-  --red-soft: #fdeaea;
-  --red-border: #f2b3b3;
-  --purple: #7c4fe0;
-  --purple-soft: #f1eafe;
-  --purple-border: #cdb6f8;
-  --blue: #2a6fd6;
-  --blue-soft: #e7f0fd;
-  --blue-border: #b3d0f5;
-  --shadow-sm: 0 1px 2px rgba(23, 34, 56, 0.06);
-  --shadow-md: 0 6px 18px rgba(23, 34, 56, 0.09);
-  --shadow-lg: 0 12px 32px rgba(23, 34, 56, 0.14);
+  --bg: #141518;
+  --bg-card: #1f2126;
+  --bg-inset: #16171b;
+  --bg-hover: #262932;
+  --border: #2a2d33;
+  --border-strong: #3a3e46;
+  --text-strong: #ece7dd;
+  --text: #c9c4b8;
+  --text-dim: #9a978e;
+  --gold: #d4a02e;
+  --gold-bright: #f0c04a;
+  --gold-soft: rgba(212, 160, 46, 0.14);
+  --gold-border: rgba(212, 160, 46, 0.45);
+  --green: #5bbd84;
+  --green-soft: rgba(91, 189, 132, 0.12);
+  --green-border: rgba(91, 189, 132, 0.35);
+  --amber: #e0a24a;
+  --amber-soft: rgba(224, 162, 74, 0.12);
+  --amber-border: rgba(224, 162, 74, 0.35);
+  --red: #e06c6c;
+  --red-soft: rgba(224, 108, 108, 0.12);
+  --red-border: rgba(224, 108, 108, 0.35);
+  --purple: #a78bfa;
+  --purple-soft: rgba(167, 139, 250, 0.12);
+  --purple-border: rgba(167, 139, 250, 0.35);
+  --blue: #6ea8f0;
+  --blue-soft: rgba(110, 168, 240, 0.12);
+  --blue-border: rgba(110, 168, 240, 0.35);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.55);
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 16px/1.5 var(--sans);
-  color-scheme: light;
+  color-scheme: dark;
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
@@ -49,8 +49,8 @@
 body {
   margin: 0;
   background:
-    radial-gradient(600px 300px at 15% 0%, rgba(224, 169, 46, 0.07), transparent 70%),
-    radial-gradient(700px 350px at 90% 10%, rgba(59, 130, 246, 0.06), transparent 70%),
+    radial-gradient(600px 300px at 15% 0%, rgba(212, 160, 46, 0.05), transparent 70%),
+    radial-gradient(700px 350px at 90% 10%, rgba(212, 160, 46, 0.03), transparent 70%),
     var(--bg);
 }
 
