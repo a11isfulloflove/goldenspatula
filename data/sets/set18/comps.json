@@ -1,7 +1,7 @@
 [
   {
     "id": "azir-reroll",
-    "name": "Azir Rammus Reroll",
+    "name": "Azir Rammus reroll",
     "tier": "S",
     "playstyle": "3-cost reroll (lose streak OK)",
     "difficulty": "medium",
@@ -67,7 +67,7 @@
   },
   {
     "id": "khazix-reroll",
-    "name": "Kha'Zix Reroll",
+    "name": "Kha'Zix reroll",
     "tier": "S",
     "playstyle": "3-cost reroll (high tempo)",
     "difficulty": "hard",
@@ -142,7 +142,7 @@
   },
   {
     "id": "draven-fast9",
-    "name": "Draven Fast 9",
+    "name": "Draven fast 9",
     "tier": "S",
     "playstyle": "fast 9 (economy)",
     "difficulty": "hard",
@@ -218,7 +218,7 @@
   },
   {
     "id": "riftbeast-reroll",
-    "name": "Riftbeast Reroll",
+    "name": "Riftbeast reroll",
     "tier": "A",
     "playstyle": "3-cost reroll",
     "difficulty": "easy",
@@ -292,7 +292,7 @@
   },
   {
     "id": "aphelios-flex",
-    "name": "Aphelios Flex",
+    "name": "Aphelios flex",
     "tier": "A",
     "playstyle": "fast 8 (flex)",
     "difficulty": "medium",
@@ -621,7 +621,7 @@
   },
   {
     "id": "veigar-reroll",
-    "name": "Veigar Reroll",
+    "name": "Veigar reroll",
     "tier": "A",
     "playstyle": "1-cost reroll",
     "difficulty": "medium",
@@ -694,7 +694,7 @@
   },
   {
     "id": "dragon-fast9",
-    "name": "Dragon Fast 9",
+    "name": "Dragon fast 9",
     "tier": "B",
     "playstyle": "fast 9 (high risk)",
     "difficulty": "hard",
@@ -941,7 +941,7 @@
   },
   {
     "id": "juggernaut-flex",
-    "name": "Juggernaut Flex",
+    "name": "Juggernaut flex",
     "tier": "B",
     "playstyle": "tempo into fast 9",
     "difficulty": "easy",
@@ -1025,7 +1025,7 @@
   },
   {
     "id": "ashe-fast9",
-    "name": "Ashe Fast 9",
+    "name": "Ashe fast 9",
     "tier": "B",
     "playstyle": "fast 9 (economy)",
     "difficulty": "hard",
@@ -1173,7 +1173,7 @@
   },
   {
     "id": "caitlyn-reroll",
-    "name": "Caitlyn Reroll",
+    "name": "Caitlyn reroll",
     "tier": "B",
     "playstyle": "2-cost reroll",
     "difficulty": "easy",
