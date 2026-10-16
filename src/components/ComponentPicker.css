@@ -9,6 +9,8 @@
 }
 
 .component {
+  position: relative;
+  overflow: hidden;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -34,6 +36,23 @@
 .component.active {
   border-color: var(--gold-border);
   background: var(--gold-soft);
+}
+
+.component.active::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(240, 192, 74, 0.1) 47%,
+    rgba(255, 244, 214, 0.16) 50%,
+    rgba(240, 192, 74, 0.1) 53%,
+    transparent 62%
+  );
+  animation: card-shimmer 4s ease-in-out infinite;
 }
 
 .tile {

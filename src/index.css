@@ -90,3 +90,21 @@ a:focus-visible,
 a {
   color: var(--gold);
 }
+
+@keyframes card-shimmer {
+  0%,
+  60% {
+    transform: translateX(-120%);
+  }
+
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .component.active::after,
+  .champ-card.active::after {
+    animation: none;
+  }
+}
