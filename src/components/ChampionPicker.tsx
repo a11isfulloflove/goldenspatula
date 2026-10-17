@@ -43,8 +43,10 @@ export default function ChampionPicker({
   return (
     <section className="panel">
       <div className="panel-head">
-        <h2>2 · Champions you&apos;ve been offered</h2>
-        <span className="panel-hint">Early copies signal which line to play</span>
+        <div className="panel-head-text">
+          <h2>2 · Champions you&apos;ve been offered</h2>
+          <span className="panel-hint">Pick 1-3 champions · early copies signal which line to play</span>
+        </div>
       </div>
       <div className="champ-controls">
         <input

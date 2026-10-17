@@ -13,8 +13,10 @@ export default function ComponentPicker({
   return (
     <section className="panel">
       <div className="panel-head">
-        <h2>1 · Your item components</h2>
-        <span className="panel-hint">Tap an item to add · use the − button to remove</span>
+        <div className="panel-head-text">
+          <h2>1 · Your item components</h2>
+          <span className="panel-hint">Tap to add · − removes · 2-3 items is plenty</span>
+        </div>
       </div>
       <div className="components">
         {items.components.map((component) => {

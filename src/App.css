@@ -31,6 +31,13 @@
   font-size: 18px;
 }
 
+.panel-head-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
 .panel-hint {
   font-size: 13px;
   color: var(--text-dim);
