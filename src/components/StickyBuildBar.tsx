@@ -1,10 +1,22 @@
 import { useEffect, useState } from 'react'
 import type { Recommendation } from '../engine/recommend'
 import { TIER_CLASS } from '../constants'
+import { items } from '../data'
+import type { ItemComponent } from '../types'
 import ChampionPortrait from './ChampionPortrait'
 import './StickyBuildBar.css'
 
 const TOP_COUNT = 3
+
+function buildPickedComponents(counts: Record<string, number>): ItemComponent[] {
+  const picked: ItemComponent[] = []
+  for (const [id, count] of Object.entries(counts)) {
+    const component = items.components.find((c) => c.id === id)
+    if (!component?.icon) continue
+    for (let i = 0; i < count; i++) picked.push(component)
+  }
+  return picked
+}
 
 function needStatus(have: number, need: number): string {
   if (have >= need) return 'ok'
@@ -29,9 +41,13 @@ function ChevronUp({ className }: { className?: string }) {
 
 export default function StickyBuildBar({
   recs,
+  counts,
+  champions,
   onSelectComp,
 }: {
   recs: Recommendation[]
+  counts: Record<string, number>
+  champions: string[]
   onSelectComp: (id: string) => void
 }) {
   const [expanded, setExpanded] = useState(false)
@@ -65,6 +81,29 @@ export default function StickyBuildBar({
   const best = top[0]
   if (!best) return null
 
+  const pickedComponents = buildPickedComponents(counts)
+  const hasPicks = pickedComponents.length + champions.length > 0
+
+  function renderPicks() {
+    return (
+      <>
+        {pickedComponents.map((component, index) => (
+          <img
+            key={`${component.id}-${index}`}
+            className="sticky-bar-pick-icon"
+            src={`/items/${component.icon}`}
+            alt=""
+            title={component.name}
+            draggable={false}
+          />
+        ))}
+        {champions.map((name) => (
+          <ChampionPortrait key={name} name={name} />
+        ))}
+      </>
+    )
+  }
+
   return (
     <div className={`sticky-bar ${resultsOnScreen ? '' : 'visible'}`}>
       <div className="sticky-bar-card">
@@ -76,7 +115,8 @@ export default function StickyBuildBar({
         >
           {expanded ? (
             <>
-              <span className="sticky-bar-title">Top matches</span>
+              <span className="sticky-bar-title">Top matches for</span>
+              <span className="sticky-bar-picks-inline">{renderPicks()}</span>
               <ChevronUp className="sticky-bar-chevron open" />
             </>
           ) : (
@@ -91,6 +131,10 @@ export default function StickyBuildBar({
             </>
           )}
         </button>
+
+        {!expanded && hasPicks && (
+          <div className="sticky-bar-picks">{renderPicks()}</div>
+        )}
 
         {expanded && (
           <div className="sticky-bar-details">

@@ -72,6 +72,8 @@ function App() {
       {hasInput && (
         <StickyBuildBar
           recs={recs}
+          counts={counts}
+          champions={champions}
           onSelectComp={(id) => setFocusComp({ id, nonce: Date.now() })}
         />
       )}
