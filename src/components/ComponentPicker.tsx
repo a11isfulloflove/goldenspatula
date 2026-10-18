@@ -1,4 +1,5 @@
 import { items } from '../data'
+import SparkleMark from './SparkleMark'
 import './ComponentPicker.css'
 
 export default function ComponentPicker({
@@ -15,7 +16,9 @@ export default function ComponentPicker({
       <div className="panel-head">
         <div className="panel-head-text">
           <h2>1 · Your item components</h2>
-          <span className="panel-hint">Tap to add · − removes · 2-3 items is plenty</span>
+          <span className="panel-hint">
+            Tap to add <SparkleMark /> − removes <SparkleMark /> 2-3 items is plenty
+          </span>
         </div>
       </div>
       <div className="components">

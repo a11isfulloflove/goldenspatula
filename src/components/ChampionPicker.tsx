@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { championUniverse, roleOf } from '../data'
 import { ROLE_ICONS } from '../componentMeta'
 import ChampionPortrait from './ChampionPortrait'
+import SparkleMark from './SparkleMark'
 import './ChampionPicker.css'
 
 const ROLE_FILTERS = [
@@ -45,7 +46,9 @@ export default function ChampionPicker({
       <div className="panel-head">
         <div className="panel-head-text">
           <h2>2 · Champions you&apos;ve been offered</h2>
-          <span className="panel-hint">Pick 1-3 champions · early copies signal which line to play</span>
+          <span className="panel-hint">
+            Pick 1-3 champions <SparkleMark /> early copies signal which line to play
+          </span>
         </div>
       </div>
       <div className="champ-controls">
