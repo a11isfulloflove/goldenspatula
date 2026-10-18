@@ -10,6 +10,33 @@
   box-shadow: var(--shadow-sm);
   transition: box-shadow 0.15s, transform 0.15s;
   animation: rise 0.35s ease both;
+  scroll-margin-top: 16px;
+}
+
+.comp-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.comp-card.comp-pulse::before {
+  animation: comp-pulse 1.6s ease;
+}
+
+@keyframes comp-pulse {
+  0%,
+  55% {
+    opacity: 1;
+    box-shadow: 0 0 0 2px var(--gold-bright), var(--shadow-md);
+  }
+
+  100% {
+    opacity: 0;
+    box-shadow: 0 0 0 2px var(--gold-bright);
+  }
 }
 
 .comp-card:hover {

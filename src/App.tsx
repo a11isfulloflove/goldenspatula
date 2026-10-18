@@ -9,12 +9,15 @@ import Footer from './components/Footer'
 import ComponentPicker from './components/ComponentPicker'
 import ChampionPicker from './components/ChampionPicker'
 import ResultsPanel from './components/ResultsPanel'
+import StickyBuildBar from './components/StickyBuildBar'
+import ScrollTopButton from './components/ScrollTopButton'
 
 function App() {
   const [counts, setCounts] = useState<Record<string, number>>(() => loadPersistedInput().counts)
   const [champions, setChampions] = useState<string[]>(() => loadPersistedInput().champions)
   const [query, setQuery] = useState('')
   const [resetSignal, setResetSignal] = useState(0)
+  const [focusComp, setFocusComp] = useState<{ id: string; nonce: number } | null>(null)
 
   const totalItems = Object.values(counts).reduce((sum, n) => sum + n, 0)
   const hasInput = totalItems > 0 || champions.length > 0
@@ -62,8 +65,17 @@ function App() {
         hasInput={hasInput}
         onReset={reset}
         resetSignal={resetSignal}
+        focusComp={focusComp}
+        onFocusCompHandled={() => setFocusComp(null)}
       />
       <Footer />
+      {hasInput && (
+        <StickyBuildBar
+          recs={recs}
+          onSelectComp={(id) => setFocusComp({ id, nonce: Date.now() })}
+        />
+      )}
+      <ScrollTopButton />
     </div>
   )
 }

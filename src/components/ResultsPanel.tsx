@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { Recommendation } from '../engine/recommend'
 import CompCard from './CompCard'
 import TierList from './TierList'
@@ -23,17 +23,48 @@ export default function ResultsPanel({
   hasInput,
   onReset,
   resetSignal,
+  focusComp,
+  onFocusCompHandled,
 }: {
   recs: Recommendation[]
   hasInput: boolean
   onReset: () => void
   resetSignal: number
+  focusComp: { id: string; nonce: number } | null
+  onFocusCompHandled: () => void
 }) {
   const [viewMode, setViewMode] = useState<'ranked' | 'tiers'>('ranked')
   const [difficulty, setDifficulty] = useState<DifficultyFilter>('all')
   const [expanded, setExpanded] = useState<ExpandedState>({ id: null, epoch: 0 })
 
   const expandedId = expanded.epoch === resetSignal ? expanded.id : null
+  const focusNonce = focusComp?.nonce ?? 0
+
+  useEffect(() => {
+    if (!focusComp) return
+    if (viewMode !== 'ranked') {
+      setViewMode('ranked')
+      return
+    }
+    const target = recs.find((r) => r.comp.id === focusComp.id)
+    if (target && difficulty !== 'all' && target.comp.difficulty !== difficulty) {
+      setDifficulty('all')
+      return
+    }
+    const element = document.getElementById(`comp-${focusComp.id}`)
+    if (!element) {
+      onFocusCompHandled()
+      return
+    }
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    element.classList.add('comp-pulse')
+    const timeout = setTimeout(() => {
+      element.classList.remove('comp-pulse')
+      onFocusCompHandled()
+    }, 1700)
+    return () => clearTimeout(timeout)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [focusNonce, viewMode, difficulty])
 
   const visibleRecs = useMemo(
     () =>
@@ -42,7 +73,7 @@ export default function ResultsPanel({
   )
 
   return (
-    <section className="panel">
+    <section className="panel" id="results">
       <div className="panel-head">
         <h2>3 · Recommended comps</h2>
         <div className="head-actions">

@@ -1,0 +1,247 @@
+.sticky-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  padding: 0 12px calc(12px + env(safe-area-inset-bottom));
+  pointer-events: none;
+  transform: translateY(140%);
+  transition: transform 0.3s ease;
+}
+
+.sticky-bar.visible {
+  transform: translateY(0);
+}
+
+.sticky-bar-card {
+  pointer-events: auto;
+  width: 100%;
+  max-width: 560px;
+  background: rgba(31, 33, 38, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid var(--gold);
+  border-radius: 18px;
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.5),
+    0 0 16px rgba(212, 160, 46, 0.28);
+  overflow: hidden;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.sticky-bar-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold-bright);
+  box-shadow:
+    0 10px 32px rgba(0, 0, 0, 0.55),
+    0 0 22px rgba(212, 160, 46, 0.45);
+}
+
+.sticky-bar-summary:hover .sticky-bar-chevron:not(.open) {
+  transform: translateY(-2px);
+}
+
+.sticky-bar-summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 16px;
+}
+
+.sticky-bar-rank {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-dim);
+}
+
+.sticky-bar .tier {
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+  border-radius: 7px;
+}
+
+.sticky-bar-name {
+  flex: 1;
+  text-align: left;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-strong);
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sticky-bar-pct {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold-bright);
+}
+
+.sticky-bar-chevron {
+  width: 16px;
+  height: 16px;
+  color: var(--text-dim);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.sticky-bar-chevron.open {
+  transform: rotate(180deg);
+}
+
+.sticky-bar-title {
+  flex: 1;
+  text-align: left;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-strong);
+  font-size: 15px;
+}
+
+.sticky-bar-details {
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  animation: sticky-bar-slide 0.25s ease;
+}
+
+@keyframes sticky-bar-slide {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.sticky-bar-row {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 11px 16px;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.sticky-bar-row + .sticky-bar-row {
+  border-top: 1px solid var(--border);
+}
+
+.sticky-bar-row:hover {
+  background: var(--bg-hover);
+}
+
+.sticky-bar-row-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sticky-bar-row-rank {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-dim);
+  width: 14px;
+  flex-shrink: 0;
+}
+
+.sticky-bar-row-name {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-strong);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sticky-bar-row-pct {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-strong);
+  flex-shrink: 0;
+}
+
+.sticky-bar-row-go {
+  width: 12px;
+  height: 12px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+.sticky-bar-row-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding-left: 24px;
+}
+
+.sticky-bar-need {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-inset);
+  color: var(--text-dim);
+}
+
+.sticky-bar-need.ok {
+  color: var(--green);
+  background: var(--green-soft);
+  border-color: var(--green-border);
+}
+
+.sticky-bar-need.partial {
+  color: var(--amber);
+  background: var(--amber-soft);
+  border-color: var(--amber-border);
+}
+
+.sticky-bar-need.none {
+  color: var(--red);
+  background: var(--red-soft);
+  border-color: var(--red-border);
+}
+
+.sticky-bar-matched {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 2px;
+}
+
+.sticky-bar-matched .champ-icon {
+  width: 18px;
+  height: 18px;
+  border-color: var(--gold-border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticky-bar {
+    transition: none;
+  }
+
+  .sticky-bar-card {
+    transition: none;
+  }
+
+  .sticky-bar-card:hover {
+    transform: none;
+  }
+
+  .sticky-bar-details {
+    animation: none;
+  }
+}
