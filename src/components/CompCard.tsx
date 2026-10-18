@@ -34,6 +34,7 @@ export default function CompCard({
   const { comp } = rec
   return (
     <article
+      id={`comp-${comp.id}`}
       className={`comp-card ${rank === 0 ? 'best' : ''}`}
       style={delay ? { animationDelay: `${delay}ms` } : undefined}
     >
