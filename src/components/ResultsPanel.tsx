@@ -13,6 +13,8 @@ const DIFFICULTY_FILTERS = [
 
 type DifficultyFilter = (typeof DIFFICULTY_FILTERS)[number]['id']
 
+const TOP_COUNT = 5
+
 interface ExpandedState {
   id: string | null
   epoch: number
@@ -36,6 +38,7 @@ export default function ResultsPanel({
   const [viewMode, setViewMode] = useState<'ranked' | 'tiers'>('ranked')
   const [difficulty, setDifficulty] = useState<DifficultyFilter>('all')
   const [expanded, setExpanded] = useState<ExpandedState>({ id: null, epoch: 0 })
+  const [showAll, setShowAll] = useState(false)
 
   const expandedId = expanded.epoch === resetSignal ? expanded.id : null
   const focusNonce = focusComp?.nonce ?? 0
@@ -128,9 +131,33 @@ export default function ResultsPanel({
           </div>
         ) : (
           <div className="results">
-            {visibleRecs.map((rec, index) => (
-              <CompCard key={rec.comp.id} rec={rec} rank={index} delay={index * 60} />
+            {(showAll ? visibleRecs : visibleRecs.slice(0, TOP_COUNT)).map((rec, index) => (
+              <CompCard
+                key={rec.comp.id}
+                rec={rec}
+                rank={index}
+                delay={Math.min(index * 60, 480)}
+              />
             ))}
+            {!showAll && visibleRecs.length > TOP_COUNT && (
+              <div className="results-peek" aria-hidden="true">
+                <CompCard
+                  rec={visibleRecs[TOP_COUNT]}
+                  rank={TOP_COUNT}
+                  delay={Math.min(TOP_COUNT * 60, 480)}
+                />
+              </div>
+            )}
+            {visibleRecs.length > TOP_COUNT && (
+              <button
+                type="button"
+                className="show-all-toggle"
+                aria-expanded={showAll}
+                onClick={() => setShowAll((value) => !value)}
+              >
+                {showAll ? 'Show top 5 only' : `Show all ${visibleRecs.length} comps`}
+              </button>
+            )}
           </div>
         ))}
 

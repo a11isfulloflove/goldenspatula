@@ -69,3 +69,34 @@
   flex-direction: column;
   gap: 14px;
 }
+
+.results-peek {
+  position: relative;
+  height: 150px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.results-peek::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 35%, var(--bg-card) 90%);
+}
+
+.show-all-toggle {
+  align-self: center;
+  margin-top: 2px;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 22px;
+  border-radius: 999px;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-border);
+  color: var(--gold-bright);
+  transition: background 0.15s;
+}
+
+.show-all-toggle:hover {
+  background: rgba(212, 160, 46, 0.22);
+}
