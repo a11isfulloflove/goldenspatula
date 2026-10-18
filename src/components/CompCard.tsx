@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { TIER_CLASS } from '../constants'
 import { primaryChampionName } from '../champions'
 import type { Recommendation } from '../engine/recommend'
@@ -5,19 +6,50 @@ import ChampionPortrait from './ChampionPortrait'
 import ItemName from './ItemName'
 import './CompCard.css'
 
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+
+function useMountCountUp(target: number, delayMs: number, durationMs: number): number {
+  const [value, setValue] = useState(() => (prefersReducedMotion.matches ? target : 0))
+  const [done, setDone] = useState(prefersReducedMotion.matches)
+  const rafRef = useRef(0)
+
+  useEffect(() => {
+    if (prefersReducedMotion.matches) return
+    const start = performance.now() + delayMs
+    const tick = (now: number) => {
+      const progress = Math.min(Math.max((now - start) / durationMs, 0), 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setValue(target * eased)
+      if (progress < 1) {
+        rafRef.current = requestAnimationFrame(tick)
+      } else {
+        setDone(true)
+      }
+    }
+    rafRef.current = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(rafRef.current)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  return done ? target : value
+}
+
 function needStatusClass(have: number, need: number): string {
   if (have >= need) return 'ok'
   if (have > 0) return 'partial'
   return 'none'
 }
 
-function ScoreBar({ score }: { score: number }) {
+function ScoreBar({ score, delay }: { score: number; delay: number }) {
+  const percent = Math.round(score * 100)
+  const shown = useMountCountUp(percent, delay + 150, 600)
+  const rounded = Math.round(shown)
   return (
     <div className="score-row">
       <div className="score-bar">
-        <div className="score-fill" style={{ width: `${Math.round(score * 100)}%` }} />
+        <div className="score-fill" style={{ width: `${rounded}%` }} />
       </div>
-      <span className="score-label">{Math.round(score * 100)}% match</span>
+      <span className="score-label">{rounded}% match</span>
     </div>
   )
 }
@@ -49,7 +81,7 @@ export default function CompCard({
         </div>
       </header>
 
-      <ScoreBar score={rec.score} />
+      <ScoreBar score={rec.score} delay={delay ?? 0} />
 
       {rank === 0 && <p className="best-tag">TOP PICK FOR YOUR START</p>}
 

@@ -137,7 +137,6 @@
   height: 100%;
   border-radius: 999px;
   background: linear-gradient(90deg, #f0c04a, #4fae7e);
-  transition: width 0.35s ease;
 }
 
 .score-label {
