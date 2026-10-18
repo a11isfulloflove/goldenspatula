@@ -94,6 +94,19 @@
   height: 100%;
   background: linear-gradient(90deg, #f0c04a, #4fae7e);
   border-radius: 999px;
+  animation: tier-bar-in 0.6s ease-out both;
+}
+
+@keyframes tier-bar-in {
+  from {
+    width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tier-card-bar > span {
+    animation: none;
+  }
 }
 
 .tier-card-pct {
