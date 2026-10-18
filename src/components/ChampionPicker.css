@@ -108,6 +108,11 @@
 
 .champ-card .champ-icon {
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.45);
+  transition: transform 0.15s;
+}
+
+.champ-card:hover .champ-icon {
+  transform: scale(1.08);
 }
 
 .champ-card.active .champ-icon {
