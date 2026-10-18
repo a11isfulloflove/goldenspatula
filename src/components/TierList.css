@@ -11,6 +11,7 @@
 }
 
 .tier-medallion {
+  font-family: var(--font-display);
   width: 46px;
   border-radius: 12px;
   display: grid;
@@ -91,7 +92,7 @@
 .tier-card-bar > span {
   display: block;
   height: 100%;
-  background: linear-gradient(90deg, #f0b429, #2fae6e);
+  background: linear-gradient(90deg, #f0c04a, #4fae7e);
   border-radius: 999px;
 }
 

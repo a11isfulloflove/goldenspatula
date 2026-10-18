@@ -10,7 +10,7 @@
 
 .app-footer .disclaimer {
   font-size: 11px;
-  color: #b3bdcc;
+  color: var(--text-dim);
   max-width: 640px;
   margin: 0 auto;
   line-height: 1.45;

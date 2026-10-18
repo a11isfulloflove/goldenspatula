@@ -15,7 +15,7 @@
   align-items: center;
   gap: 5px;
   padding: 7px 10px;
-  background: var(--text-strong);
+  background: #0d0e10;
   border-radius: 10px;
   white-space: nowrap;
   opacity: 0;
@@ -32,7 +32,7 @@
   left: 50%;
   transform: translateX(-50%);
   border: 5px solid transparent;
-  border-top-color: var(--text-strong);
+  border-top-color: #0d0e10;
 }
 
 .item-chip:hover .recipe-tip,
@@ -48,13 +48,13 @@
 }
 
 .recipe-plus {
-  color: #9fb0c8;
+  color: #9a978e;
   font-size: 12px;
   font-weight: 700;
 }
 
 .recipe-text {
-  color: #d3dcec;
+  color: #c9c4b8;
   font-size: 12px;
   margin-left: 4px;
 }

@@ -1,5 +1,5 @@
 import { items } from '../data'
-import { COMPONENT_COLORS } from '../componentMeta'
+import SparkleMark from './SparkleMark'
 import './ComponentPicker.css'
 
 export default function ComponentPicker({
@@ -14,13 +14,16 @@ export default function ComponentPicker({
   return (
     <section className="panel">
       <div className="panel-head">
-        <h2>1 · Your item components</h2>
-        <span className="panel-hint">Tap an item to add · use the − button to remove</span>
+        <div className="panel-head-text">
+          <h2>1 · Your item components</h2>
+          <span className="panel-hint">
+            Tap to add <SparkleMark /> − removes <SparkleMark /> 2-3 items is plenty
+          </span>
+        </div>
       </div>
       <div className="components">
         {items.components.map((component) => {
           const count = counts[component.id] ?? 0
-          const color = COMPONENT_COLORS[component.id] ?? '#93a0b4'
           return (
             <div className="component-wrap" key={component.id}>
               <button
@@ -30,7 +33,12 @@ export default function ComponentPicker({
               >
                 <span className="tile">
                   {component.icon && (
-                    <img src={`/items/${component.icon}`} alt="" draggable={false} />
+                    <img
+                      src={`/items/${component.icon}`}
+                      alt=""
+                      draggable={false}
+                      decoding="async"
+                    />
                   )}
                 </span>
                 <span className="component-name">{component.short}</span>
@@ -46,9 +54,7 @@ export default function ComponentPicker({
                   >
                     <span className="minus-bar" aria-hidden="true" />
                   </button>
-                  <span className="tile-count" style={{ background: color }}>
-                    {count}
-                  </span>
+                  <span className="tile-count">{count}</span>
                 </div>
               )}
             </div>
