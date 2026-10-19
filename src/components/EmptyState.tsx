@@ -46,8 +46,17 @@ export default function EmptyState() {
         <span className="empty-step-num">2</span>
         <div className="empty-mock" aria-hidden="true">
           <div className="mock-champ-card">
-            <ChampionPortrait name="Azir" size="lg" />
-            <SwordsIcon className="mock-role-icon" />
+            <span className="champ-portrait-wrap">
+              <ChampionPortrait name="Azir" size="lg" />
+              <span className="champ-role-badge">
+                <SwordsIcon className="mock-role-icon" />
+              </span>
+            </span>
+            <span className="champ-cost-stars" aria-hidden="true">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <span key={star} className={`cost-star ${star <= 4 ? 'filled' : ''}`} />
+              ))}
+            </span>
             <span className="mock-champ-name">Azir</span>
           </div>
         </div>

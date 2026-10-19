@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { championUniverse, roleOf } from '../data'
+import { championCostOf, championUniverse, roleOf } from '../data'
 import { ROLE_ICONS } from '../componentMeta'
 import ChampionPortrait from './ChampionPortrait'
 import SparkleMark from './SparkleMark'
@@ -84,13 +84,29 @@ export default function ChampionPicker({
               title={role}
               onClick={() => onToggle(name)}
             >
-              <ChampionPortrait name={name} size="lg" />
-              {roleFilter === 'all' &&
-                (RoleIcon ? (
-                  <RoleIcon className="champ-role-icon" />
-                ) : (
-                  <span className="champ-role-dot" aria-hidden="true" />
+              <span className="champ-portrait-wrap">
+                <ChampionPortrait name={name} size="lg" />
+                {roleFilter === 'all' && (
+                  <span className="champ-role-badge">
+                    {RoleIcon ? (
+                      <RoleIcon className="champ-role-icon" />
+                    ) : (
+                      <span className="champ-role-dot" aria-hidden="true" />
+                    )}
+                  </span>
+                )}
+              </span>
+              <span
+                className="champ-cost-stars"
+                aria-label={`${championCostOf(name)} cost champion`}
+              >
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <span
+                    key={star}
+                    className={`cost-star ${star <= championCostOf(name) ? 'filled' : ''}`}
+                  />
                 ))}
+              </span>
               <span className="champ-card-name">{name}</span>
             </button>
           )

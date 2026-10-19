@@ -58,4 +58,5 @@ export interface SetData {
   meta: SetMeta
   comps: Comp[]
   championRoles?: Record<string, ChampionRole>
+  championCosts?: Record<string, number>
 }

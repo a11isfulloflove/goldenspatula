@@ -118,11 +118,55 @@
   box-shadow: 0 0 8px rgba(240, 192, 74, 0.55);
 }
 
+.champ-portrait-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.champ-role-badge {
+  position: absolute;
+  top: -5px;
+  right: -7px;
+  width: 17px;
+  height: 17px;
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+  background: rgba(20, 21, 24, 0.88);
+  border: 1px solid var(--border-strong);
+}
+
 .champ-role-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: #77746b;
+}
+
+.champ-cost-stars {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.cost-star {
+  width: 7px;
+  height: 7px;
+  background: var(--border-strong);
+  clip-path: polygon(
+    50% 0%,
+    67% 33%,
+    100% 50%,
+    67% 67%,
+    50% 100%,
+    33% 67%,
+    0% 50%,
+    33% 33%
+  );
+}
+
+.cost-star.filled {
+  background: var(--gold-bright);
 }
 
 .champ-role-icon {
