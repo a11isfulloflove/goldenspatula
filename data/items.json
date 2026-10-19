@@ -85,5 +85,27 @@
     "Striker's Flail": "tft_item_powergauntlet.png",
     "Void Staff": "tft_item_voidstaff.png",
     "Lich Bane": "tft_item_artifact_lichbane.png"
-  }
+  },
+  "emblemRecipes": [
+    { "name": "Fae Emblem", "component": "sword", "icon": "tft18_emblem_fae.png" },
+    { "name": "Hunter Emblem", "component": "sword", "icon": "tft18_emblem_hunter.png" },
+    { "name": "Blossom Emblem", "component": "rod", "icon": "tft18_emblem_blossom.png" },
+    { "name": "Spellweaver Emblem", "component": "rod", "icon": "tft18_emblem_spellweaver.png" },
+    { "name": "Inferno Emblem", "component": "bow", "icon": "tft18_emblem_inferno.png" },
+    { "name": "Rapidfire Emblem", "component": "bow", "icon": "tft18_emblem_rapidfire.png" },
+    { "name": "Invoker Emblem", "component": "tear", "icon": "tft18_emblem_invoker.png" },
+    { "name": "Lunar Emblem", "component": "tear", "icon": "tft18_emblem_lunar.png" },
+    { "name": "Elderwood Emblem", "component": "vest", "icon": "tft18_emblem_elderwood.png" },
+    { "name": "Vanguard Emblem", "component": "vest", "icon": "tft18_emblem_vanguard.png" },
+    { "name": "Blackthorn Emblem", "component": "belt", "icon": "tft18_emblem_blackthorn.png" },
+    { "name": "Brawler Emblem", "component": "belt", "icon": "tft18_emblem_brawler.png" },
+    { "name": "Sprykin Emblem", "component": "cloak", "icon": "tft18_emblem_sprykin.png" },
+    { "name": "Ravager Emblem", "component": "cloak", "icon": "tft18_emblem_ravager.png" },
+    { "name": "Executioner Emblem", "component": "gloves", "icon": "tft18_emblem_executioner.png" },
+    { "name": "Primal Emblem", "component": "gloves", "icon": "tft18_emblem_primal.png" },
+    { "name": "Coven Emblem", "component": null, "icon": "tft18_emblem_coven.png" },
+    { "name": "Defender Emblem", "component": null, "icon": "tft18_emblem_defender.png" },
+    { "name": "Flora Fatalis Emblem", "component": null, "icon": "tft18_emblem_florafatalis.png" },
+    { "name": "Juggernaut Emblem", "component": null, "icon": "tft18_emblem_juggernaut.png" }
+  ]
 }

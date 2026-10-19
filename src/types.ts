@@ -13,11 +13,18 @@ export interface Recipe {
   role: string
 }
 
+export interface EmblemRecipe {
+  name: string
+  component: string | null
+  icon: string
+}
+
 export interface ItemsData {
   components: ItemComponent[]
   groups: Record<string, string[]>
   recipes: Recipe[]
   itemIcons?: Record<string, string>
+  emblemRecipes?: EmblemRecipe[]
 }
 
 export type ItemNeeds = Record<string, number>
