@@ -7,6 +7,31 @@
   gap: 24px;
 }
 
+.app-columns {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.column-pickers {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1100px) {
+  .app {
+    max-width: 1360px;
+  }
+
+  .app-columns {
+    display: grid;
+    grid-template-columns: 500px minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+}
+
 .panel {
   background: var(--bg-card);
   border: 1px solid var(--border);
