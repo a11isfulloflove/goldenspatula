@@ -3,7 +3,7 @@ import sharp from 'sharp'
 
 const TARGET_SIZE = 96
 
-const directories = ['public/items', 'public/champs']
+const directories = ['public/items', 'public/champs', 'public/emblems']
 
 for (const directory of directories) {
   const files = (await readdir(directory)).filter((file) => file.endsWith('.png'))
