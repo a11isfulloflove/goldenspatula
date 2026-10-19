@@ -53,21 +53,27 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <ComponentPicker counts={counts} onAdd={addComponent} onRemove={removeComponent} />
-      <ChampionPicker
-        selected={champions}
-        onToggle={toggleChampion}
-        query={query}
-        onQueryChange={setQuery}
-      />
-      <ResultsPanel
-        recs={recs}
-        hasInput={hasInput}
-        onReset={reset}
-        resetSignal={resetSignal}
-        focusComp={focusComp}
-        onFocusCompHandled={() => setFocusComp(null)}
-      />
+      <div className="app-columns">
+        <div className="column-pickers">
+          <ComponentPicker counts={counts} onAdd={addComponent} onRemove={removeComponent} />
+          <ChampionPicker
+            selected={champions}
+            onToggle={toggleChampion}
+            query={query}
+            onQueryChange={setQuery}
+          />
+        </div>
+        <div className="column-results">
+          <ResultsPanel
+            recs={recs}
+            hasInput={hasInput}
+            onReset={reset}
+            resetSignal={resetSignal}
+            focusComp={focusComp}
+            onFocusCompHandled={() => setFocusComp(null)}
+          />
+        </div>
+      </div>
       <Footer />
       {hasInput && (
         <StickyBuildBar

@@ -126,11 +126,8 @@ export default function CompCard({
                 {carry.champion}
               </span>
               <span className="carry-items">
-                {carry.bis.map((itemName, index) => (
-                  <span className="carry-item-wrap" key={itemName}>
-                    {index > 0 && <span className="dot">·</span>}
-                    <ItemName name={itemName} />
-                  </span>
+                {carry.bis.map((itemName) => (
+                  <ItemName key={itemName} name={itemName} />
                 ))}
               </span>
               {carry.alternatives && (
