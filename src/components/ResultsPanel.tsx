@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { Recommendation } from '../engine/recommend'
 import CompCard from './CompCard'
+import EmptyState from './EmptyState'
 import TierList from './TierList'
 import './ResultsPanel.css'
 
@@ -119,12 +120,7 @@ export default function ResultsPanel({
 
       {viewMode === 'ranked' &&
         (!hasInput ? (
-          <div className="empty-state">
-            <span>
-              Pick a few components or champions from your opening shops and carousel to see
-              which comps fit your start. Or browse the tier list view.
-            </span>
-          </div>
+          <EmptyState />
         ) : visibleRecs.length === 0 ? (
           <div className="empty-state">
             <span>No comps match this difficulty filter.</span>
