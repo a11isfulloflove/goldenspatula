@@ -1,6 +1,18 @@
 import { activeSet } from '../data'
 import './Header.css'
 
+const TAGLINES = [
+  'Got weird items? Let\u2019s cook da comp!',
+  'When the shop gives you scraps, we make a feast.',
+  'You bring the ingredients, we serve the comp.',
+  'Every opening is a recipe. Let\u2019s cook yours.',
+  'From weird ingredients to five-star comps.',
+  'Bad items happen. Good chefs improvise.',
+  'You bring the weird ingredients, we cook da comp.',
+]
+
+const tagline = TAGLINES[Math.floor(Math.random() * TAGLINES.length)]
+
 export default function Header() {
   return (
       <header className="app-header">
@@ -17,7 +29,7 @@ export default function Header() {
             <span className="title-sparkle small bottom" />
           </span>
         </div>
-        <p className="tagline">Tell it what the game gave you. It tells you what to play.</p>
+        <p className="tagline">{tagline}</p>
       <div className="meta-badges">
         <span className="badge">
           Set {activeSet.meta.setNumber} · Patch {activeSet.meta.patch}
