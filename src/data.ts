@@ -11,6 +11,12 @@ const compModules = import.meta.glob<{ default: unknown }>('../data/sets/*/comps
 const championModules = import.meta.glob<{ default: unknown }>('../data/sets/*/champions.json', {
   eager: true,
 })
+const championCostModules = import.meta.glob<{ default: unknown }>(
+  '../data/sets/*/championCosts.json',
+  {
+    eager: true,
+  },
+)
 
 function setIdFromPath(path: string): string {
   const match = path.match(/\/sets\/([^/]+)\//)
@@ -37,10 +43,22 @@ export const activeSet: SetData = {
     string,
     ChampionRole
   >,
+  championCosts: pickModule(championCostModules, configJson.activeSet, {}) as Record<
+    string,
+    number
+  >,
 }
 
 export function roleOf(name: string): string {
   return activeSet.championRoles?.[name] ?? 'flex'
+}
+
+export function championCostOf(name: string): number {
+  return activeSet.championCosts?.[name] ?? 0
+}
+
+function championSortCost(name: string): number {
+  return activeSet.championCosts?.[name] ?? 99
 }
 
 export const championUniverse = Array.from(
@@ -52,4 +70,4 @@ export const championUniverse = Array.from(
       ...comp.roster,
     ]),
   ]),
-).sort()
+).sort((a, b) => championSortCost(a) - championSortCost(b) || a.localeCompare(b))
