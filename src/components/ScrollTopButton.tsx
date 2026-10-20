@@ -21,19 +21,22 @@ export default function ScrollTopButton() {
 
   useEffect(() => {
     let threshold = Number.POSITIVE_INFINITY
+    let lastMeasure = 0
 
     function measure() {
       const results = document.getElementById('results')
       if (!results) return
+      const base = results.offsetTop + 200
       const fourthCard = results.querySelectorAll('.comp-card')[3] as HTMLElement | undefined
-      if (fourthCard) {
-        threshold = fourthCard.offsetTop - window.innerHeight
-      } else {
-        threshold = results.offsetTop + results.offsetHeight * 0.5 - window.innerHeight
-      }
+      const computed = fourthCard
+        ? fourthCard.offsetTop - window.innerHeight
+        : results.offsetTop + results.offsetHeight * 0.5 - window.innerHeight
+      threshold = Math.max(computed, base)
+      lastMeasure = performance.now()
     }
 
     function update() {
+      if (performance.now() - lastMeasure > 500) measure()
       setDeepEnough(window.scrollY >= threshold)
     }
 
