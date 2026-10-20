@@ -21,7 +21,7 @@
       "id": "blossom-juggs",
       "name": "3 Blossom + 2 Juggernauts",
       "category": "flex",
-      "units": ["Karma", "Yorick", "Yunora", "Scuttlecrab"],
+      "units": ["Karma", "Yorick", "Yunara", "Scuttlecrab"],
       "itemNeeds": { "ap": 1, "tank": 1 },
       "itemHolds": [
         { "champion": "Karma", "note": "AP items" },
