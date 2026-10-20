@@ -2,15 +2,10 @@ import { TIER_CLASS } from '../constants'
 import type { Comp } from '../types'
 import type { OpenerRecommendation } from '../engine/recommend'
 import ChampionPortrait from './ChampionPortrait'
+import { needStatusClass } from '../ui-helpers'
 import './OpenerCard.css'
 
 const CATEGORY_LABEL: Record<string, string> = { flex: 'Flex', ad: 'AD', ap: 'AP' }
-
-function needStatusClass(have: number, need: number): string {
-  if (have >= need) return 'ok'
-  if (have > 0) return 'partial'
-  return 'none'
-}
 
 export default function OpenerCard({
   rec,

@@ -4,6 +4,8 @@ import { TIER_CLASS } from '../constants'
 import { items } from '../data'
 import type { ItemComponent } from '../types'
 import ChampionPortrait from './ChampionPortrait'
+import { ChevronUp } from '../ui'
+import { needStatusClass } from '../ui-helpers'
 import './StickyBuildBar.css'
 
 const TOP_COUNT = 3
@@ -16,27 +18,6 @@ function buildPickedComponents(counts: Record<string, number>): ItemComponent[] 
     for (let i = 0; i < count; i++) picked.push(component)
   }
   return picked
-}
-
-function needStatus(have: number, need: number): string {
-  if (have >= need) return 'ok'
-  if (have > 0) return 'partial'
-  return 'none'
-}
-
-function ChevronUp({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 16 16" aria-hidden="true">
-      <path
-        d="M3 10l5-5 5 5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
 }
 
 export default function StickyBuildBar({
@@ -170,7 +151,7 @@ export default function StickyBuildBar({
                   {rec.needs.map((need) => (
                     <span
                       key={need.label}
-                      className={`sticky-bar-need ${needStatus(need.have, need.need)}`}
+                      className={`sticky-bar-need ${needStatusClass(need.have, need.need)}`}
                     >
                       {need.label} {need.have}/{need.need}
                     </span>

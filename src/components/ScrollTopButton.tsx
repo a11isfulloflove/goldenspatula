@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { ChevronUp } from '../ui'
 import './ScrollTopButton.css'
 
 const desktopQuery = window.matchMedia('(min-width: 1100px)')
@@ -71,16 +72,7 @@ export default function ScrollTopButton() {
       aria-label="Scroll back to the pickers"
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
     >
-      <svg viewBox="0 0 16 16" aria-hidden="true">
-        <path
-          d="M3 10l5-5 5 5"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+      <ChevronUp />
     </button>
   )
 }
