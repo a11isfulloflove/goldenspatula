@@ -1,7 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
-import type { Recommendation } from '../engine/recommend'
+import type { OpenerRecommendation, Recommendation } from '../engine/recommend'
+import type { Comp, SpecialStart } from '../types'
+import { TIER_CLASS } from '../constants'
 import CompCard from './CompCard'
 import EmptyState from './EmptyState'
+import OpenerCard from './OpenerCard'
 import TierList from './TierList'
 import './ResultsPanel.css'
 
@@ -23,20 +26,28 @@ interface ExpandedState {
 
 export default function ResultsPanel({
   recs,
+  openerRecs,
+  specialStarts,
+  comps,
   hasInput,
   onReset,
   resetSignal,
   focusComp,
   onFocusCompHandled,
+  onSelectComp,
 }: {
   recs: Recommendation[]
+  openerRecs: OpenerRecommendation[]
+  specialStarts: SpecialStart[]
+  comps: Comp[]
   hasInput: boolean
   onReset: () => void
   resetSignal: number
   focusComp: { id: string; nonce: number } | null
   onFocusCompHandled: () => void
+  onSelectComp: (id: string) => void
 }) {
-  const [viewMode, setViewMode] = useState<'ranked' | 'tiers'>('ranked')
+  const [viewMode, setViewMode] = useState<'ranked' | 'tiers' | 'openers'>('ranked')
   const [difficulty, setDifficulty] = useState<DifficultyFilter>('all')
   const [expanded, setExpanded] = useState<ExpandedState>({ id: null, epoch: 0 })
   const [showAll, setShowAll] = useState(false)
@@ -78,7 +89,7 @@ export default function ResultsPanel({
 
   return (
     <section className="panel" id="results">
-      <div className="panel-head">
+      <div className="panel-head results-head">
         <h2>3 · Recommended comps</h2>
         <div className="head-actions">
           <div className="view-toggle">
@@ -87,7 +98,8 @@ export default function ResultsPanel({
               className={viewMode === 'ranked' ? 'active' : ''}
               onClick={() => setViewMode('ranked')}
             >
-              Your ranking
+              <span className="tab-label-full">Your ranking</span>
+              <span className="tab-label-short">Ranked</span>
             </button>
             <button
               type="button"
@@ -96,25 +108,38 @@ export default function ResultsPanel({
             >
               Tier list
             </button>
-          </div>
-          <span className="filter-label">Difficulty</span>
-          <div className="view-toggle" role="group" aria-label="Filter by difficulty">
-            {DIFFICULTY_FILTERS.map((option) => (
-              <button
-                key={option.id}
-                type="button"
-                className={difficulty === option.id ? 'active' : ''}
-                onClick={() => setDifficulty(option.id)}
-              >
-                {option.label}
-              </button>
-            ))}
-          </div>
-          {hasInput && (
-            <button type="button" className="reset" onClick={onReset}>
-              Reset
+            <button
+              type="button"
+              className={viewMode === 'openers' ? 'active' : ''}
+              onClick={() => setViewMode('openers')}
+            >
+              Openers
             </button>
-          )}
+          </div>
+          <div className="head-actions-right">
+            {viewMode === 'ranked' && (
+              <>
+                <span className="filter-label">Difficulty</span>
+                <div className="view-toggle" role="group" aria-label="Filter by difficulty">
+                  {DIFFICULTY_FILTERS.map((option) => (
+                    <button
+                      key={option.id}
+                      type="button"
+                      className={difficulty === option.id ? 'active' : ''}
+                      onClick={() => setDifficulty(option.id)}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+            {hasInput && (
+              <button type="button" className="reset" onClick={onReset}>
+                Reset
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
@@ -171,6 +196,52 @@ export default function ResultsPanel({
         <div className="empty-state">
           <span>No comps match this difficulty filter.</span>
         </div>
+      )}
+
+      {viewMode === 'openers' && (
+        <>
+          <div className="results">
+            {openerRecs.map((rec, index) => (
+              <OpenerCard
+                key={rec.opener.id}
+                rec={rec}
+                hasInput={hasInput}
+                comps={comps}
+                onSelectComp={onSelectComp}
+                delay={Math.min(index * 60, 480)}
+              />
+            ))}
+          </div>
+          {specialStarts.length > 0 && (
+            <div className="special-starts">
+              <h4>Special starts</h4>
+              {specialStarts.map((start) => (
+                <div className="special-start-row" key={start.condition}>
+                  <span className="special-start-condition">{start.condition}</span>
+                  <span className="special-start-comps">
+                    {start.compIds.map((compId) => {
+                      const comp = comps.find((entry) => entry.id === compId)
+                      if (!comp) return null
+                      return (
+                        <button
+                          key={compId}
+                          type="button"
+                          className="opener-leads-chip"
+                          onClick={() => onSelectComp(compId)}
+                        >
+                          <span className={`tier ${TIER_CLASS[comp.tier] ?? 'tier-c'}`}>
+                            {comp.tier}
+                          </span>
+                          {comp.name}
+                        </button>
+                      )
+                    })}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+        </>
       )}
     </section>
   )

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import './App.css'
 import { activeSet, items } from './data'
-import { recommend } from './engine/recommend'
+import { recommend, recommendOpeners } from './engine/recommend'
 import { MAX_PER_COMPONENT } from './constants'
 import { loadPersistedInput, savePersistedInput } from './persistence'
 import Header from './components/Header'
@@ -28,6 +28,11 @@ function App() {
 
   const recs = useMemo(
     () => recommend(activeSet.comps, items, counts, champions),
+    [counts, champions],
+  )
+
+  const openerRecs = useMemo(
+    () => recommendOpeners(activeSet.openers?.openers ?? [], items, counts, champions),
     [counts, champions],
   )
 
@@ -66,11 +71,15 @@ function App() {
         <div className="column-results">
           <ResultsPanel
             recs={recs}
+            openerRecs={openerRecs}
+            specialStarts={activeSet.openers?.specialStarts ?? []}
+            comps={activeSet.comps}
             hasInput={hasInput}
             onReset={reset}
             resetSignal={resetSignal}
             focusComp={focusComp}
             onFocusCompHandled={() => setFocusComp(null)}
+            onSelectComp={(id) => setFocusComp({ id, nonce: Date.now() })}
           />
         </div>
       </div>

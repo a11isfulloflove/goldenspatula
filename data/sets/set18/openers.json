@@ -1,0 +1,181 @@
+{
+  "openers": [
+    {
+      "id": "ravager-duo",
+      "name": "2 Ravager + Frontline",
+      "category": "flex",
+      "units": ["Akali", "Camille", "Ornn", "Yorick"],
+      "itemNeeds": { "damage": 1, "tank": 1 },
+      "itemHolds": [
+        { "champion": "Akali", "note": "any damage item, AP preferred" },
+        { "champion": "Camille", "note": "any AD item" }
+      ],
+      "leadsTo": ["solar-akali", "invoker-ahri-morgana", "draven-fast9", "dragon-fast9", "ashe-fast9", "primal-malphite", "aphelios-flex", "flora-malphite", "cassiopeia-reroll"],
+      "tips": [
+        "Akali and Camille cover nearly every offensive slam between them",
+        "Any upgraded front pair works — Ravager lifesteal drags out early fights in your favor",
+        "With enough copies and no contest, this can roll straight into Solar Akali"
+      ]
+    },
+    {
+      "id": "blossom-juggs",
+      "name": "3 Blossom + 2 Juggernauts",
+      "category": "flex",
+      "units": ["Karma", "Yorick", "Yunora", "Scuttlecrab"],
+      "itemNeeds": { "ap": 1, "tank": 1 },
+      "itemHolds": [
+        { "champion": "Karma", "note": "AP items" },
+        { "champion": "Yunora", "note": "AP or utility items" }
+      ],
+      "leadsTo": ["invoker-ahri-morgana", "solar-yunara", "primal-malphite", "aphelios-flex", "flora-malphite"],
+      "tips": [
+        "An upgraded wisp every fight makes this an economy engine even when it never reaches level 9",
+        "A solid default when you are heading to any fast-8 line",
+        "Extra Karma, Yorick or Yunora copies point toward Solar Yunara"
+      ]
+    },
+    {
+      "id": "four-ravager",
+      "name": "4 Ravager",
+      "category": "flex",
+      "units": ["Akali", "Camille", "Warwick", "Diana"],
+      "itemNeeds": { "damage": 1, "tank": 1 },
+      "itemHolds": [
+        { "champion": "Akali", "note": "AP damage items" },
+        { "champion": "Camille", "note": "AD items" },
+        { "champion": "Warwick", "note": "casting items like Shojin" }
+      ],
+      "leadsTo": ["solar-akali", "draven-fast9", "dragon-fast9", "ashe-fast9", "primal-malphite", "aphelios-flex", "flora-malphite", "adaptor-yi-reroll"],
+      "tips": [
+        "Ravager sustain keeps streaks alive through stage 2",
+        "It fades around the stage 3 carousel, so plan the exit early",
+        "A natural stepping stone into Solar Akali"
+      ]
+    },
+    {
+      "id": "riftbeast-gromp",
+      "name": "Riftbeast Gromp",
+      "category": "flex",
+      "units": ["Gromp", "Scuttlecrab", "Cinderling"],
+      "itemNeeds": { "damage": 1, "tank": 1 },
+      "itemHolds": [
+        { "champion": "Gromp", "note": "AD or AP items both work" }
+      ],
+      "leadsTo": ["riftbeast-reroll", "draven-fast9", "dragon-fast9", "ashe-fast9", "invoker-ahri-morgana", "juggernaut-flex", "primal-malphite"],
+      "tips": [
+        "Scuttlecrab matters as much as Gromp — the third Riftbeast unlocks the real value",
+        "Mark the crab or another durable unit to stall fights and scale"
+      ]
+    },
+    {
+      "id": "hunter-duo",
+      "name": "2 Hunter + Frontline",
+      "category": "ad",
+      "units": ["Caitlyn", "Cinderling", "Scuttlecrab"],
+      "itemNeeds": { "ad": 1, "tank": 1 },
+      "itemHolds": [
+        { "champion": "Caitlyn", "note": "on-hit items like Guinsoo's" },
+        { "champion": "Cinderling", "note": "AD caster items" }
+      ],
+      "leadsTo": ["caitlyn-reroll", "aphelios-flex", "draven-fast9", "ashe-fast9", "dragon-fast9", "riftbeast-reroll", "primal-malphite", "juggernaut-flex"],
+      "tips": [
+        "A Guinsoo's on Caitlyn is already half a Caitlyn reroll game",
+        "A 3 Riftbeast frontline slots in naturally here"
+      ]
+    },
+    {
+      "id": "rengar-orb",
+      "name": "Rengar Orb",
+      "category": "ad",
+      "units": ["Rengar", "Ornn", "Yorick"],
+      "itemNeeds": { "ad": 1, "tank": 1 },
+      "itemHolds": [
+        { "champion": "Rengar", "note": "anything with AD, mana or tankiness" }
+      ],
+      "leadsTo": ["adaptor-yi-reroll", "aphelios-flex", "draven-fast9", "dragon-fast9", "ashe-fast9", "primal-malphite"],
+      "tips": [
+        "A Rengar orb pays rent — tempo plus gold every round",
+        "Finding Master Yi later turns this into Adaptor reroll"
+      ]
+    },
+    {
+      "id": "elderwood-rapidfire",
+      "name": "Elderwood Rapidfires",
+      "category": "ad",
+      "units": ["Xayah", "Varus", "Ornn"],
+      "itemNeeds": { "bow": 1, "tank": 1 },
+      "itemHolds": [
+        { "champion": "Xayah", "note": "needs Guinsoo's or attack speed" },
+        { "champion": "Varus", "note": "wants mana items like Shojin" }
+      ],
+      "leadsTo": ["aphelios-flex", "draven-fast9", "ashe-fast9", "dragon-fast9", "primal-malphite"],
+      "tips": [
+        "Slower burn than other boards — frontline quality decides the streak",
+        "Skip this one without an attack-speed item for Xayah"
+      ]
+    },
+    {
+      "id": "spellweaver-duo",
+      "name": "2 Spellweaver + Frontline",
+      "category": "ap",
+      "units": ["Karma", "Veigar", "Ornn", "Yorick"],
+      "itemNeeds": { "ap": 1, "tank": 1 },
+      "itemHolds": [
+        { "champion": "Karma", "note": "AP items" }
+      ],
+      "leadsTo": ["invoker-ahri-morgana", "cassiopeia-reroll", "flora-malphite", "blossom-ahri", "invoker-nidalee"],
+      "tips": [
+        "The frontline steers the traits — Defenders lean Elderwood, Juggernauts lean Blossom",
+        "A natural Cassiopeia pair redirects this into her reroll line"
+      ]
+    },
+    {
+      "id": "three-sprykin",
+      "name": "3 Sprykin",
+      "category": "ap",
+      "units": ["Teemo", "Kobuko", "Veigar"],
+      "itemNeeds": { "ap": 1, "tank": 1 },
+      "itemHolds": [
+        { "champion": "Teemo", "note": "AP items" }
+      ],
+      "leadsTo": ["veigar-reroll", "invoker-ahri-morgana", "cassiopeia-reroll", "flora-malphite", "blossom-ahri", "invoker-nidalee"],
+      "tips": [
+        "Strong the moment Teemo shows up",
+        "Veigar copies plus a snowball point straight into Veigar reroll",
+        "Only feed the Blackthorn if Rek'Sai is your tank"
+      ]
+    },
+    {
+      "id": "khazix-orb",
+      "name": "Kha'Zix Orb",
+      "category": "ap",
+      "units": ["Kha'Zix", "Karma", "Ornn"],
+      "itemNeeds": { "ap": 1 },
+      "itemHolds": [
+        { "champion": "Kha'Zix", "note": "almost any AP item" }
+      ],
+      "leadsTo": ["khazix-reroll", "invoker-ahri-morgana", "cassiopeia-reroll", "flora-malphite", "blossom-ahri", "invoker-nidalee"],
+      "tips": [
+        "One early evolution is nearly free with a slam — it snowballs fast",
+        "His trait evolutions later patch holes in Flora or Rapidfire boards"
+      ]
+    }
+  ],
+  "specialStarts": [
+    { "condition": "Invoker Emblem", "compIds": ["invoker-ahri-morgana"] },
+    { "condition": "Executioner Emblem", "compIds": ["flora-malphite", "draven-fast9"] },
+    { "condition": "Juggernaut Emblem", "compIds": ["juggernaut-flex"] },
+    { "condition": "Defender Emblem", "compIds": ["cassiopeia-reroll"] },
+    { "condition": "Rapidfire Emblem", "compIds": ["aphelios-flex"] },
+    { "condition": "Hunter Emblem", "compIds": ["primal-malphite"] },
+    { "condition": "Brawler Emblem", "compIds": ["adaptor-yi-reroll"] },
+    { "condition": "8+ win streak", "compIds": ["dragon-fast9", "ashe-fast9", "draven-fast9"] },
+    { "condition": "Veigar 2 with a slam", "compIds": ["veigar-reroll"] },
+    { "condition": "Guinsoo's + Caitlyn", "compIds": ["caitlyn-reroll"] },
+    { "condition": "Ornn with a tank slam", "compIds": ["veigar-reroll", "solar-akali"] },
+    { "condition": "AP artifact", "compIds": ["veigar-reroll"] },
+    { "condition": "Kha'Zix orb", "compIds": ["khazix-reroll"] },
+    { "condition": "Azir orb + Rod", "compIds": ["azir-reroll"] },
+    { "condition": "Scuttlecrab + Riftbeasts", "compIds": ["riftbeast-reroll"] }
+  ]
+}

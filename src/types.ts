@@ -61,9 +61,31 @@ export interface SetMeta {
 
 export type ChampionRole = 'carry' | 'tank' | 'support' | 'flex'
 
+export interface Opener {
+  id: string
+  name: string
+  category: 'flex' | 'ad' | 'ap'
+  units: string[]
+  itemNeeds: ItemNeeds
+  itemHolds: { champion: string; note: string }[]
+  leadsTo: string[]
+  tips: string[]
+}
+
+export interface SpecialStart {
+  condition: string
+  compIds: string[]
+}
+
+export interface OpenersData {
+  openers: Opener[]
+  specialStarts: SpecialStart[]
+}
+
 export interface SetData {
   meta: SetMeta
   comps: Comp[]
   championRoles?: Record<string, ChampionRole>
   championCosts?: Record<string, number>
+  openers?: OpenersData
 }
