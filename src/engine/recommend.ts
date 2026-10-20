@@ -1,4 +1,4 @@
-import type { Comp, ItemsData } from '../types'
+import type { Comp, ItemNeeds, ItemsData, Opener } from '../types'
 
 export interface NeedStatus {
   label: string
@@ -19,6 +19,14 @@ export interface Recommendation {
   unusedCount: number
 }
 
+export interface OpenerRecommendation {
+  opener: Opener
+  score: number
+  needs: NeedStatus[]
+  matchedChampions: MatchedChampion[]
+  unusedCount: number
+}
+
 const TIER_BIAS: Record<string, number> = { S: 0.06, A: 0.03, B: 0, C: 0 }
 
 function clamp01(value: number): number {
@@ -33,14 +41,18 @@ function needLabel(key: string, items: ItemsData): string {
   return component ? component.short : key
 }
 
-function scoreComp(
-  comp: Comp,
+interface FitResult {
+  ratio: number
+  unusedCount: number
+}
+
+function computeFit(
+  itemNeeds: ItemNeeds,
   items: ItemsData,
   inventory: Record<string, number>,
-  champions: string[],
-): Recommendation {
+): FitResult {
   const slots: { sources: string[] }[] = []
-  for (const [key, count] of Object.entries(comp.itemNeeds)) {
+  for (const [key, count] of Object.entries(itemNeeds)) {
     const sources = items.groups[key] ?? [key]
     for (let i = 0; i < count; i++) slots.push({ sources })
   }
@@ -57,39 +69,53 @@ function scoreComp(
   }
 
   const needsTotal = slots.length
-  const fit = needsTotal > 0 ? matched / needsTotal : 0.5
-
-  const inventorySize = Object.values(inventory).reduce((sum, n) => sum + n, 0)
+  const ratio = needsTotal > 0 ? matched / needsTotal : 0.5
   const unusedCount = Object.values(remaining).reduce((sum, n) => sum + n, 0)
-  const wasteRatio = inventorySize > 0 ? unusedCount / inventorySize : 0
+  return { ratio, unusedCount }
+}
 
-  const matchedChampions: MatchedChampion[] = []
-  let championBonus = 0
+function collectChampionMatches(
+  early: string[],
+  holders: string[],
+  roster: string[],
+  champions: string[],
+): { matches: MatchedChampion[]; bonus: number } {
+  const matches: MatchedChampion[] = []
+  let bonus = 0
   for (const name of champions) {
-    if (comp.earlyChampions.includes(name)) {
-      matchedChampions.push({ name, role: 'early' })
-      championBonus += 0.3
-    } else if (comp.itemHolders.includes(name)) {
-      matchedChampions.push({ name, role: 'item holder' })
-      championBonus += 0.15
-    } else if (comp.roster.includes(name)) {
-      matchedChampions.push({ name, role: 'roster' })
-      championBonus += 0.08
+    if (early.includes(name)) {
+      matches.push({ name, role: 'early' })
+      bonus += 0.3
+    } else if (holders.includes(name)) {
+      matches.push({ name, role: 'item holder' })
+      bonus += 0.15
+    } else if (roster.includes(name)) {
+      matches.push({ name, role: 'roster' })
+      bonus += 0.08
     }
   }
-  championBonus = Math.min(championBonus, 0.5)
+  return { matches, bonus: Math.min(bonus, 0.5) }
+}
 
-  const needs: NeedStatus[] = Object.entries(comp.itemNeeds).map(([key, need]) => {
+function buildNeeds(
+  itemNeeds: ItemNeeds,
+  items: ItemsData,
+  inventory: Record<string, number>,
+): NeedStatus[] {
+  return Object.entries(itemNeeds).map(([key, need]) => {
     const sources = items.groups[key] ?? [key]
     const have = Math.min(need, sources.reduce((sum, id) => sum + (inventory[id] ?? 0), 0))
     return { label: needLabel(key, items), have, need }
   })
+}
 
-  const score = clamp01(
-    fit * 0.6 + championBonus + (TIER_BIAS[comp.tier] ?? 0) - wasteRatio * 0.25,
-  )
-
-  return { comp, score, needs, matchedChampions, unusedCount }
+function stripSpatula(inventory: Record<string, number>): Record<string, number> {
+  const usable: Record<string, number> = {}
+  for (const [id, count] of Object.entries(inventory)) {
+    if (id === 'spatula') continue
+    if (count > 0) usable[id] = count
+  }
+  return usable
 }
 
 export function recommend(
@@ -98,13 +124,55 @@ export function recommend(
   inventory: Record<string, number>,
   champions: string[],
 ): Recommendation[] {
-  const usableInventory: Record<string, number> = {}
-  for (const [id, count] of Object.entries(inventory)) {
-    if (id === 'spatula') continue
-    if (count > 0) usableInventory[id] = count
-  }
+  const usableInventory = stripSpatula(inventory)
 
   return comps
-    .map((comp) => scoreComp(comp, items, usableInventory, champions))
+    .map((comp) => {
+      const fit = computeFit(comp.itemNeeds, items, usableInventory)
+      const inventorySize = Object.values(usableInventory).reduce((sum, n) => sum + n, 0)
+      const wasteRatio = inventorySize > 0 ? fit.unusedCount / inventorySize : 0
+      const { matches, bonus } = collectChampionMatches(
+        comp.earlyChampions,
+        comp.itemHolders,
+        comp.roster,
+        champions,
+      )
+      const score = clamp01(
+        fit.ratio * 0.6 + bonus + (TIER_BIAS[comp.tier] ?? 0) - wasteRatio * 0.25,
+      )
+      return {
+        comp,
+        score,
+        needs: buildNeeds(comp.itemNeeds, items, usableInventory),
+        matchedChampions: matches,
+        unusedCount: fit.unusedCount,
+      }
+    })
+    .sort((a, b) => b.score - a.score)
+}
+
+export function recommendOpeners(
+  openers: Opener[],
+  items: ItemsData,
+  inventory: Record<string, number>,
+  champions: string[],
+): OpenerRecommendation[] {
+  const usableInventory = stripSpatula(inventory)
+
+  return openers
+    .map((opener) => {
+      const fit = computeFit(opener.itemNeeds, items, usableInventory)
+      const inventorySize = Object.values(usableInventory).reduce((sum, n) => sum + n, 0)
+      const wasteRatio = inventorySize > 0 ? fit.unusedCount / inventorySize : 0
+      const { matches, bonus } = collectChampionMatches(opener.units, [], [], champions)
+      const score = clamp01(fit.ratio * 0.6 + bonus - wasteRatio * 0.25)
+      return {
+        opener,
+        score,
+        needs: buildNeeds(opener.itemNeeds, items, usableInventory),
+        matchedChampions: matches,
+        unusedCount: fit.unusedCount,
+      }
+    })
     .sort((a, b) => b.score - a.score)
 }

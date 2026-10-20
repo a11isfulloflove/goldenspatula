@@ -1,4 +1,4 @@
-import type { ChampionRole, Comp, ItemsData, SetData, SetMeta } from './types'
+import type { ChampionRole, Comp, ItemsData, OpenersData, SetData, SetMeta } from './types'
 import configJson from '../data/config.json'
 import itemsJson from '../data/items.json'
 
@@ -17,6 +17,9 @@ const championCostModules = import.meta.glob<{ default: unknown }>(
     eager: true,
   },
 )
+const openersModules = import.meta.glob<{ default: unknown }>('../data/sets/*/openers.json', {
+  eager: true,
+})
 
 function setIdFromPath(path: string): string {
   const match = path.match(/\/sets\/([^/]+)\//)
@@ -47,6 +50,10 @@ export const activeSet: SetData = {
     string,
     number
   >,
+  openers: pickModule(openersModules, configJson.activeSet, {
+    openers: [],
+    specialStarts: [],
+  }) as OpenersData,
 }
 
 export function roleOf(name: string): string {
