@@ -25,7 +25,7 @@
       "itemNeeds": { "ap": 1, "tank": 1 },
       "itemHolds": [
         { "champion": "Karma", "note": "AP items" },
-        { "champion": "Yunora", "note": "AP or utility items" }
+        { "champion": "Yunara", "note": "AP or utility items" }
       ],
       "leadsTo": ["invoker-ahri-morgana", "solar-yunara", "primal-malphite", "aphelios-flex", "flora-malphite"],
       "tips": [
