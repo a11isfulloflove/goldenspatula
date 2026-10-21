@@ -41,3 +41,11 @@ export function savePersistedInput(input: PersistedInput): void {
     return
   }
 }
+
+export function clearPersistedInput(): void {
+  try {
+    localStorage.removeItem(STORAGE_KEY)
+  } catch {
+    return
+  }
+}
