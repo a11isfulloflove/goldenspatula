@@ -1,5 +1,6 @@
 import ChampionPortrait from './ChampionPortrait'
 import { SwordsIcon } from '../roleIcons'
+import { asset } from '../ui-helpers'
 import './EmptyState.css'
 
 function StepArrow() {
@@ -32,7 +33,11 @@ export default function EmptyState() {
               <span className="mock-badge">3</span>
             </div>
             <span className="mock-tile">
-              <img src="/items/tft_item_needlesslylargerod.png" alt="" draggable={false} />
+              <img
+                src={asset('items/tft_item_needlesslylargerod.png')}
+                alt=""
+                draggable={false}
+              />
             </span>
             <span className="mock-component-name">Rod</span>
           </div>

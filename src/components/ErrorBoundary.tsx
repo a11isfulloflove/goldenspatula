@@ -2,6 +2,10 @@ import { Component } from 'react'
 import type { ErrorInfo, ReactNode } from 'react'
 import { clearPersistedInput } from '../persistence'
 
+function asset(path: string): string {
+  return `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`
+}
+
 interface ErrorBoundaryProps {
   children: ReactNode
 }
@@ -46,7 +50,7 @@ export default class ErrorBoundary extends Component<
         }}
       >
         <img
-          src="/items/tft_item_spatula.png"
+          src={asset('items/tft_item_spatula.png')}
           alt=""
           width={64}
           height={64}

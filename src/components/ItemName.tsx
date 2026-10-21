@@ -1,9 +1,10 @@
 import { items } from '../data'
+import { asset } from '../ui-helpers'
 import './ItemName.css'
 
 function componentIconSrc(id: string): string | null {
   const component = items.components.find((c) => c.id === id)
-  return component?.icon ? `/items/${component.icon}` : null
+  return component?.icon ? asset(`items/${component.icon}`) : null
 }
 
 function MiniItemIcon({ id }: { id: string }) {
@@ -22,7 +23,7 @@ function ItemIcon({ name, size = 'sm' }: { name: string; size?: 'sm' | 'md' }) {
   return (
     <img
       className={`item-icon ${size}`}
-      src={`/items/${file}`}
+      src={asset(`items/${file}`)}
       alt=""
       draggable={false}
       decoding="async"
