@@ -64,7 +64,7 @@ export default class ErrorBoundary extends Component<
         </h1>
         <p style={{ margin: 0, fontSize: '15px', color: '#9a978e', maxWidth: '420px' }}>
           Something went sideways while building your page. Reloading usually fixes it — your
-          picks were reset just in case they were the culprit.
+          picks were reset, they were the culprit.
         </p>
         <button
           type="button"
