@@ -125,11 +125,11 @@ export function recommend(
   champions: string[],
 ): Recommendation[] {
   const usableInventory = stripSpatula(inventory)
+  const inventorySize = Object.values(usableInventory).reduce((sum, n) => sum + n, 0)
 
   return comps
     .map((comp) => {
       const fit = computeFit(comp.itemNeeds, items, usableInventory)
-      const inventorySize = Object.values(usableInventory).reduce((sum, n) => sum + n, 0)
       const wasteRatio = inventorySize > 0 ? fit.unusedCount / inventorySize : 0
       const { matches, bonus } = collectChampionMatches(
         comp.earlyChampions,
@@ -158,11 +158,11 @@ export function recommendOpeners(
   champions: string[],
 ): OpenerRecommendation[] {
   const usableInventory = stripSpatula(inventory)
+  const inventorySize = Object.values(usableInventory).reduce((sum, n) => sum + n, 0)
 
   return openers
     .map((opener) => {
       const fit = computeFit(opener.itemNeeds, items, usableInventory)
-      const inventorySize = Object.values(usableInventory).reduce((sum, n) => sum + n, 0)
       const wasteRatio = inventorySize > 0 ? fit.unusedCount / inventorySize : 0
       const { matches, bonus } = collectChampionMatches(opener.units, [], [], champions)
       const score = clamp01(fit.ratio * 0.6 + bonus - wasteRatio * 0.25)
