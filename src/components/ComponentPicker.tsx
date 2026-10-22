@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { items } from '../data'
 import SparkleMark from './SparkleMark'
+import { asset } from '../ui-helpers'
 import './ComponentPicker.css'
 
 function SpatulaTip({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -25,18 +26,18 @@ function SpatulaTip({ open, onClose }: { open: boolean; onClose: () => void }) {
       {craftable.map((group) => (
         <span className="spatula-tip-row" key={group.component.id}>
           <span className="mini-icon">
-            <img src="/items/tft_item_spatula.png" alt="" draggable={false} />
+            <img src={asset('items/tft_item_spatula.png')} alt="" draggable={false} />
           </span>
           <span className="spatula-plus">+</span>
           <span className="mini-icon">
-            <img src={`/items/${group.component.icon}`} alt="" draggable={false} />
+            <img src={asset(`items/${group.component.icon}`)} alt="" draggable={false} />
           </span>
           <span className="spatula-arrow">&#8594;</span>
           {group.emblems.map((emblem) => (
             <span key={emblem.name} className="spatula-emblem">
               <img
                 className="spatula-emblem-icon"
-                src={`/emblems/${emblem.icon}`}
+                src={asset(`emblems/${emblem.icon}`)}
                 alt=""
                 draggable={false}
               />
@@ -103,7 +104,7 @@ export default function ComponentPicker({
                 <span className="tile">
                   {component.icon && (
                     <img
-                      src={`/items/${component.icon}`}
+                      src={asset(`items/${component.icon}`)}
                       alt=""
                       draggable={false}
                       decoding="async"

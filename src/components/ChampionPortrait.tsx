@@ -1,4 +1,5 @@
 import { championSlug } from '../champions'
+import { asset } from '../ui-helpers'
 import './ChampionPortrait.css'
 
 export default function ChampionPortrait({
@@ -11,7 +12,7 @@ export default function ChampionPortrait({
   return (
     <img
       className={`champ-icon ${size}`}
-      src={`/champs/${championSlug(name)}.png`}
+      src={asset(`champs/${championSlug(name)}.png`)}
       alt=""
       loading="lazy"
       decoding="async"

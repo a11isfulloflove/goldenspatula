@@ -5,7 +5,7 @@ import { items } from '../data'
 import type { ItemComponent } from '../types'
 import ChampionPortrait from './ChampionPortrait'
 import { ChevronUp } from '../ui'
-import { needStatusClass } from '../ui-helpers'
+import { needStatusClass, asset } from '../ui-helpers'
 import './StickyBuildBar.css'
 
 const TOP_COUNT = 3
@@ -72,7 +72,7 @@ export default function StickyBuildBar({
           <img
             key={`${component.id}-${index}`}
             className="sticky-bar-pick-icon"
-            src={`/items/${component.icon}`}
+            src={asset(`items/${component.icon}`)}
             alt=""
             title={component.name}
             draggable={false}
