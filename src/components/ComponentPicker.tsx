@@ -115,19 +115,17 @@ export default function ComponentPicker({
                 {component.id !== 'spatula' && (
                   <span className="component-stat">{component.stat}</span>
                 )}
+                {count > 1 && <span className="tile-copies">×{count}</span>}
               </button>
                 {count > 0 && (
-                  <div className="tile-controls">
-                    <button
-                      type="button"
-                      className="tile-minus"
-                      onClick={() => onRemove(component.id)}
-                      aria-label={`Remove one ${component.name}`}
-                    >
-                      <span className="minus-bar" aria-hidden="true" />
-                    </button>
-                    <span className="tile-count">{count}</span>
-                  </div>
+                  <button
+                    type="button"
+                    className="tile-remove"
+                    onClick={() => onRemove(component.id)}
+                    aria-label={`Remove one ${component.name}`}
+                  >
+                    −
+                  </button>
                 )}
                 {component.id === 'spatula' && (
                   <>
