@@ -94,7 +94,9 @@ export default function CompCard({
           {rec.matchedChampions.map((c) => (
             <span key={c.name} className="champ-match">
               <ChampionPortrait name={c.name} />
-              {c.name} <em>({c.role})</em>
+              {c.name}
+              {c.copies > 1 && <strong className="champ-match-copies">×{c.copies}</strong>}{' '}
+              <em>({c.role})</em>
             </span>
           ))}
         </div>

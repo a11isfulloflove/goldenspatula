@@ -49,7 +49,9 @@ Each comp declares `itemNeeds`, e.g. `{ "rod": 3, "tank": 1 }`. Keys are either 
 ids (`sword`, `rod`, `bow`, ...) or groups defined in `items.json` (`tank` = vest/belt/cloak,
 `damage`, `mana`). Your selected components greedily fill those slots; matched champions
 (`earlyChampions` > `itemHolders` > `roster`) add bonuses, unused components add a small
-penalty. See `src/engine/recommend.ts`.
+penalty. Champion picks count **copies**: each copy scales that champion's bonus
+(×1.25 at 3 copies — a 2-star — up to ×1.5 at 6+), so a stack of one unit reads as a
+reroll signal. See `src/engine/recommend.ts`.
 
 ## Updating content
 

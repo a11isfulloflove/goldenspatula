@@ -28,7 +28,7 @@ export default function StickyBuildBar({
 }: {
   recs: Recommendation[]
   counts: Record<string, number>
-  champions: string[]
+  champions: Record<string, number>
   onSelectComp: (id: string) => void
 }) {
   const [expanded, setExpanded] = useState(false)
@@ -63,7 +63,8 @@ export default function StickyBuildBar({
   if (!best) return null
 
   const pickedComponents = buildPickedComponents(counts)
-  const hasPicks = pickedComponents.length + champions.length > 0
+  const pickedChampions = Object.entries(champions)
+  const hasPicks = pickedComponents.length + pickedChampions.length > 0
 
   function renderPicks() {
     return (
@@ -78,8 +79,11 @@ export default function StickyBuildBar({
             draggable={false}
           />
         ))}
-        {champions.map((name) => (
-          <ChampionPortrait key={name} name={name} />
+        {pickedChampions.map(([name, copies]) => (
+          <span key={name} className="sticky-bar-pick-champ" title={`${name} ×${copies}`}>
+            <ChampionPortrait name={name} />
+            {copies > 1 && <span className="sticky-bar-copies">×{copies}</span>}
+          </span>
         ))}
       </>
     )

@@ -219,6 +219,16 @@
   font-weight: 500;
 }
 
+.champ-match-copies {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: #141518;
+  background: var(--gold-bright);
+  border-radius: 999px;
+  padding: 0 5px;
+  line-height: 15px;
+}
+
 .comp-section h4 {
   font-size: 12px;
   text-transform: uppercase;

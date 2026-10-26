@@ -121,6 +121,25 @@
   border-color: var(--border-strong);
 }
 
+.sticky-bar-pick-champ {
+  position: relative;
+  display: inline-flex;
+}
+
+.sticky-bar-copies {
+  position: absolute;
+  top: -7px;
+  right: -8px;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: #141518;
+  background: var(--gold-bright);
+  border-radius: 999px;
+  padding: 0 4px;
+  line-height: 13px;
+}
+
 .sticky-bar-chevron.open {
   transform: rotate(180deg);
 }
