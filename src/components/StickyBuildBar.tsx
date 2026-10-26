@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { Recommendation } from '../engine/recommend'
+import type { Augment } from '../types'
 import { TIER_CLASS } from '../constants'
 import { items } from '../data'
 import type { ItemComponent } from '../types'
@@ -24,11 +25,13 @@ export default function StickyBuildBar({
   recs,
   counts,
   champions,
+  augments,
   onSelectComp,
 }: {
   recs: Recommendation[]
   counts: Record<string, number>
   champions: Record<string, number>
+  augments: Augment[]
   onSelectComp: (id: string) => void
 }) {
   const [expanded, setExpanded] = useState(false)
@@ -64,7 +67,7 @@ export default function StickyBuildBar({
 
   const pickedComponents = buildPickedComponents(counts)
   const pickedChampions = Object.entries(champions)
-  const hasPicks = pickedComponents.length + pickedChampions.length > 0
+  const hasPicks = pickedComponents.length + pickedChampions.length + augments.length > 0
 
   function renderPicks() {
     return (
@@ -84,6 +87,20 @@ export default function StickyBuildBar({
             <ChampionPortrait name={name} />
             {copies > 1 && <span className="sticky-bar-copies">×{copies}</span>}
           </span>
+        ))}
+        {augments.map((augment) => (
+          <img
+            key={augment.id}
+            className="sticky-bar-pick-augment"
+            src={
+              augment.icon
+                ? asset(`emblems/${augment.icon}`)
+                : asset('items/tft_item_spatula.png')
+            }
+            alt=""
+            title={augment.name}
+            draggable={false}
+          />
         ))}
       </>
     )

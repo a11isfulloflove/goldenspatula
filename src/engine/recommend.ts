@@ -1,4 +1,4 @@
-import type { Comp, ItemNeeds, ItemsData, Opener } from '../types'
+import type { Augment, Comp, ItemNeeds, ItemsData, Opener } from '../types'
 
 export interface NeedStatus {
   label: string
@@ -12,11 +12,17 @@ export interface MatchedChampion {
   copies: number
 }
 
+export interface MatchedAugment {
+  name: string
+  icon?: string
+}
+
 export interface Recommendation {
   comp: Comp
   score: number
   needs: NeedStatus[]
   matchedChampions: MatchedChampion[]
+  matchedAugments: MatchedAugment[]
   unusedCount: number
 }
 
@@ -104,6 +110,28 @@ function collectChampionMatches(
   return { matches, bonus: Math.min(bonus, 0.6) }
 }
 
+const AUGMENT_BONUS = 0.25
+const AUGMENT_BONUS_CAP = 0.5
+
+function collectAugmentMatches(
+  comp: Comp,
+  augments: Augment[],
+): { matches: MatchedAugment[]; bonus: number } {
+  const matches: MatchedAugment[] = []
+  let bonus = 0
+  for (const augment of augments) {
+    const matchesTrait = augment.trait !== undefined && comp.traits.includes(augment.trait)
+    const matchesChampion =
+      augment.champion !== undefined &&
+      [...comp.earlyChampions, ...comp.itemHolders, ...comp.roster].includes(augment.champion)
+    if (matchesTrait || matchesChampion) {
+      matches.push({ name: augment.name, icon: augment.icon })
+      bonus += AUGMENT_BONUS
+    }
+  }
+  return { matches, bonus: Math.min(bonus, AUGMENT_BONUS_CAP) }
+}
+
 function buildNeeds(
   itemNeeds: ItemNeeds,
   items: ItemsData,
@@ -130,6 +158,7 @@ export function recommend(
   items: ItemsData,
   inventory: Record<string, number>,
   championCounts: Record<string, number>,
+  augments: Augment[] = [],
 ): Recommendation[] {
   const usableInventory = stripSpatula(inventory)
   const inventorySize = Object.values(usableInventory).reduce((sum, n) => sum + n, 0)
@@ -144,14 +173,20 @@ export function recommend(
         comp.roster,
         championCounts,
       )
+      const { matches: augmentMatches, bonus: augmentBonus } = collectAugmentMatches(comp, augments)
       const score = clamp01(
-        fit.ratio * 0.6 + bonus + (TIER_BIAS[comp.tier] ?? 0) - wasteRatio * 0.25,
+        fit.ratio * 0.6 +
+          bonus +
+          augmentBonus +
+          (TIER_BIAS[comp.tier] ?? 0) -
+          wasteRatio * 0.25,
       )
       return {
         comp,
         score,
         needs: buildNeeds(comp.itemNeeds, items, usableInventory),
         matchedChampions: matches,
+        matchedAugments: augmentMatches,
         unusedCount: fit.unusedCount,
       }
     })

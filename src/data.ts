@@ -1,4 +1,12 @@
-import type { ChampionRole, Comp, ItemsData, OpenersData, SetData, SetMeta } from './types'
+import type {
+  Augment,
+  ChampionRole,
+  Comp,
+  ItemsData,
+  OpenersData,
+  SetData,
+  SetMeta,
+} from './types'
 import configJson from '../data/config.json'
 import itemsJson from '../data/items.json'
 
@@ -18,6 +26,9 @@ const championCostModules = import.meta.glob<{ default: unknown }>(
   },
 )
 const openersModules = import.meta.glob<{ default: unknown }>('../data/sets/*/openers.json', {
+  eager: true,
+})
+const augmentModules = import.meta.glob<{ default: unknown }>('../data/sets/*/augments.json', {
   eager: true,
 })
 
@@ -54,6 +65,7 @@ export const activeSet: SetData = {
     openers: [],
     specialStarts: [],
   }) as OpenersData,
+  augments: pickModule(augmentModules, configJson.activeSet, []) as Augment[],
 }
 
 export function roleOf(name: string): string {

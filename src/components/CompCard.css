@@ -229,6 +229,51 @@
   line-height: 15px;
 }
 
+.augment-matches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.augment-match {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-strong);
+  padding: 3px 11px;
+  border-radius: 999px;
+  background: var(--bg-inset);
+  border: 1px solid var(--border-strong);
+}
+
+.augment-match em {
+  color: var(--text-dim);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.augment-match img,
+.augment-match-initial {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  border-radius: 4px;
+  border: 1px solid var(--border-strong);
+  box-sizing: border-box;
+  background: var(--bg-inset);
+}
+
+.augment-match-initial {
+  display: grid;
+  place-items: center;
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+}
+
 .comp-section h4 {
   font-size: 12px;
   text-transform: uppercase;

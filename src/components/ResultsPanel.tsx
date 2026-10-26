@@ -70,7 +70,7 @@ export default function ResultsPanel({
   return (
     <section className="panel" id="results">
       <div className="panel-head results-head">
-        <h2>3 · Recommended comps</h2>
+        <h2>4 · Recommended comps</h2>
         <div className="head-actions">
           <div className="view-toggle">
             <button

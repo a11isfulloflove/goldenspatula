@@ -1,7 +1,11 @@
-import { readFileSync, readdirSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
 
 function load(path) {
   return JSON.parse(readFileSync(path, 'utf8'))
+}
+
+function exists(path) {
+  return existsSync(path)
 }
 
 function slug(name) {
@@ -31,6 +35,9 @@ const roles = load(`data/sets/${setId}/champions.json`)
 const costs = load(`data/sets/${setId}/championCosts.json`)
 const comps = load(`data/sets/${setId}/comps.json`)
 const openers = load(`data/sets/${setId}/openers.json`)
+const augments = exists(`data/sets/${setId}/augments.json`)
+  ? load(`data/sets/${setId}/augments.json`)
+  : []
 
 const champFiles = new Set(readdirSync('public/champs'))
 const itemFiles = new Set(readdirSync('public/items'))
@@ -40,6 +47,7 @@ const roster = new Set(Object.keys(roles))
 const componentIds = new Set(items.components.map((c) => c.id))
 const needKeys = new Set([...componentIds, ...Object.keys(items.groups)])
 const compIds = new Set(comps.map((comp) => comp.id))
+const compTraits = new Set(comps.flatMap((comp) => comp.traits))
 const tiers = new Set(['S', 'A', 'B', 'C'])
 const validRoles = new Set(['carry', 'tank', 'support', 'flex'])
 
@@ -142,11 +150,32 @@ console.log(`\nValidating ${setId} data...\n`)
   report('emblem recipes: refs', items.emblemRecipes.length, `${items.emblemRecipes.length} emblems`, fails)
 }
 
+{
+  const fails = []
+  for (const augment of augments) {
+    if (augment.trait === undefined && augment.champion === undefined) {
+      fails.push(`${augment.id}: needs a trait or champion ref`)
+    }
+    if (augment.trait !== undefined && !compTraits.has(augment.trait)) {
+      fails.push(`${augment.id}: trait "${augment.trait}" not on any comp`)
+    }
+    if (augment.champion !== undefined && !roster.has(augment.champion)) {
+      fails.push(`${augment.id}: champion "${augment.champion}" not in roster`)
+    }
+    if (augment.icon !== undefined && !emblemFiles.has(augment.icon)) {
+      fails.push(`${augment.id}: missing file public/emblems/${augment.icon}`)
+    }
+  }
+  if (new Set(augments.map((a) => a.id)).size !== augments.length) {
+    fails.push('duplicate augment ids')
+  }
+  report('augments: refs', augments.length === 0, `${augments.length} augments`, fails)
+}
+
 console.log()
 if (warnings.length === 0) {
   console.log('All checks passed. Data is clean.\n')
 } else {
   console.log(`${warnings.length} warning${warnings.length > 1 ? 's' : ''}:\n`)
   for (const warning of warnings) console.log(warning)
-  console.log()
 }
