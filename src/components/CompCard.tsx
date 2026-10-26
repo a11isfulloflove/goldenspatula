@@ -70,9 +70,7 @@ export default function CompCard({
         <span className={`tier ${TIER_CLASS[comp.tier] ?? 'tier-c'}`}>{comp.tier}</span>
         <div className="comp-title">
           <h3>{comp.name}</h3>
-          <span className="comp-sub">
-            {comp.playstyle} · {comp.difficulty}
-          </span>
+          <span className="comp-sub">{comp.playstyle}</span>
         </div>
       </header>
 

@@ -9,7 +9,6 @@ gave you at the start, and it ranks the comps that best fit your opening.
 - Comps are ranked by how well your components fill their item needs, with bonuses for
   early champions and meta strength (tier)
 - Tier-list view for browsing the whole meta, with inline comp details
-- Difficulty filter (Easy / Medium / Hard) — beginners can stick to forgiving comps
 - Item recipe tooltips: hover an item to see which components build it
 - Official Riot item art, used under Riot's Fan Content Policy
 
