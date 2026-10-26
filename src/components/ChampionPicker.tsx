@@ -47,7 +47,7 @@ export default function ChampionPicker({
     <section className="panel">
       <div className="panel-head">
         <div className="panel-head-text">
-          <h2>2 · Champions you&apos;ve been offered</h2>
+          <h2>3 · Champions you&apos;ve been offered</h2>
           <span className="panel-hint">
             Tap once per copy <SparkleMark /> stacked duplicates signal a reroll start
           </span>

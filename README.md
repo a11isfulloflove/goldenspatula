@@ -6,6 +6,8 @@ gave you at the start, and it ranks the comps that best fit your opening.
 ## Features
 
 - Pick up to 5 item components and any champions you've been offered
+- Champion picks count copies — a stack of one unit signals a reroll start
+- Pick up to 3 augments (crests, trait augments) and see comps that want them
 - Comps are ranked by how well your components fill their item needs, with bonuses for
   early champions and meta strength (tier)
 - Tier-list view for browsing the whole meta, with inline comp details
@@ -40,6 +42,7 @@ data/
   sets/
     set18/meta.json    set number + patch
     set18/comps.json   all comps for this set
+    set18/augments.json comp-defining augments (trait crests, champion augments)
 public/items/        item icon PNGs (Riot assets via CommunityDragon)
 ```
 
@@ -51,7 +54,8 @@ ids (`sword`, `rod`, `bow`, ...) or groups defined in `items.json` (`tank` = ves
 (`earlyChampions` > `itemHolders` > `roster`) add bonuses, unused components add a small
 penalty. Champion picks count **copies**: each copy scales that champion's bonus
 (×1.25 at 3 copies — a 2-star — up to ×1.5 at 6+), so a stack of one unit reads as a
-reroll signal. See `src/engine/recommend.ts`.
+reroll signal. Picked **augments** add a bonus to comps sharing their trait
+(+0.25 each, capped at +0.5). See `src/engine/recommend.ts`.
 
 ## Updating content
 

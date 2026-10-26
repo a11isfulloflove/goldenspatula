@@ -58,6 +58,14 @@ export interface SetMeta {
   patch: string
 }
 
+export interface Augment {
+  id: string
+  name: string
+  trait?: string
+  champion?: string
+  icon?: string
+}
+
 export type ChampionRole = 'carry' | 'tank' | 'support' | 'flex'
 
 export interface Opener {
@@ -87,4 +95,5 @@ export interface SetData {
   championRoles?: Record<string, ChampionRole>
   championCosts?: Record<string, number>
   openers?: OpenersData
+  augments?: Augment[]
 }

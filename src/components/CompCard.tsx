@@ -4,7 +4,7 @@ import { primaryChampionName } from '../champions'
 import type { Recommendation } from '../engine/recommend'
 import ChampionPortrait from './ChampionPortrait'
 import ItemName from './ItemName'
-import { needStatusClass } from '../ui-helpers'
+import { needStatusClass, asset } from '../ui-helpers'
 import './CompCard.css'
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -97,6 +97,23 @@ export default function CompCard({
               {c.name}
               {c.copies > 1 && <strong className="champ-match-copies">×{c.copies}</strong>}{' '}
               <em>({c.role})</em>
+            </span>
+          ))}
+        </div>
+      )}
+
+      {rec.matchedAugments.length > 0 && (
+        <div className="augment-matches">
+          {rec.matchedAugments.map((augment) => (
+            <span key={augment.name} className="augment-match">
+              {augment.icon ? (
+                <img src={asset(`emblems/${augment.icon}`)} alt="" draggable={false} />
+              ) : (
+                <span className="augment-match-initial" aria-hidden="true">
+                  {augment.name.charAt(0)}
+                </span>
+              )}
+              {augment.name} <em>(augment)</em>
             </span>
           ))}
         </div>
