@@ -9,6 +9,7 @@ export interface NeedStatus {
 export interface MatchedChampion {
   name: string
   role: string
+  copies: number
 }
 
 export interface Recommendation {
@@ -74,27 +75,33 @@ function computeFit(
   return { ratio, unusedCount }
 }
 
+const COPY_BONUS_STEPS = [1, 1.1, 1.25, 1.3, 1.4, 1.5]
+
+function copyMultiplier(copies: number): number {
+  return COPY_BONUS_STEPS[Math.min(copies, COPY_BONUS_STEPS.length) - 1]
+}
+
 function collectChampionMatches(
   early: string[],
   holders: string[],
   roster: string[],
-  champions: string[],
+  championCounts: Record<string, number>,
 ): { matches: MatchedChampion[]; bonus: number } {
   const matches: MatchedChampion[] = []
   let bonus = 0
-  for (const name of champions) {
+  for (const [name, copies] of Object.entries(championCounts)) {
     if (early.includes(name)) {
-      matches.push({ name, role: 'early' })
-      bonus += 0.3
+      matches.push({ name, role: 'early', copies })
+      bonus += 0.3 * copyMultiplier(copies)
     } else if (holders.includes(name)) {
-      matches.push({ name, role: 'item holder' })
-      bonus += 0.15
+      matches.push({ name, role: 'item holder', copies })
+      bonus += 0.15 * copyMultiplier(copies)
     } else if (roster.includes(name)) {
-      matches.push({ name, role: 'roster' })
-      bonus += 0.08
+      matches.push({ name, role: 'roster', copies })
+      bonus += 0.08 * copyMultiplier(copies)
     }
   }
-  return { matches, bonus: Math.min(bonus, 0.5) }
+  return { matches, bonus: Math.min(bonus, 0.6) }
 }
 
 function buildNeeds(
@@ -122,7 +129,7 @@ export function recommend(
   comps: Comp[],
   items: ItemsData,
   inventory: Record<string, number>,
-  champions: string[],
+  championCounts: Record<string, number>,
 ): Recommendation[] {
   const usableInventory = stripSpatula(inventory)
   const inventorySize = Object.values(usableInventory).reduce((sum, n) => sum + n, 0)
@@ -135,7 +142,7 @@ export function recommend(
         comp.earlyChampions,
         comp.itemHolders,
         comp.roster,
-        champions,
+        championCounts,
       )
       const score = clamp01(
         fit.ratio * 0.6 + bonus + (TIER_BIAS[comp.tier] ?? 0) - wasteRatio * 0.25,
@@ -155,7 +162,7 @@ export function recommendOpeners(
   openers: Opener[],
   items: ItemsData,
   inventory: Record<string, number>,
-  champions: string[],
+  championCounts: Record<string, number>,
 ): OpenerRecommendation[] {
   const usableInventory = stripSpatula(inventory)
   const inventorySize = Object.values(usableInventory).reduce((sum, n) => sum + n, 0)
@@ -164,7 +171,7 @@ export function recommendOpeners(
     .map((opener) => {
       const fit = computeFit(opener.itemNeeds, items, usableInventory)
       const wasteRatio = inventorySize > 0 ? fit.unusedCount / inventorySize : 0
-      const { matches, bonus } = collectChampionMatches(opener.units, [], [], champions)
+      const { matches, bonus } = collectChampionMatches(opener.units, [], [], championCounts)
       const score = clamp01(fit.ratio * 0.6 + bonus - wasteRatio * 0.25)
       return {
         opener,

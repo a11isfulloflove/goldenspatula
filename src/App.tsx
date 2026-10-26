@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import './App.css'
 import { activeSet, items } from './data'
 import { recommend, recommendOpeners } from './engine/recommend'
-import { MAX_PER_COMPONENT } from './constants'
+import { MAX_CHAMPION_COPIES, MAX_PER_COMPONENT } from './constants'
 import { loadPersistedInput, savePersistedInput } from './persistence'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -14,26 +14,29 @@ import ScrollTopButton from './components/ScrollTopButton'
 
 function App() {
   const [counts, setCounts] = useState<Record<string, number>>(() => loadPersistedInput().counts)
-  const [champions, setChampions] = useState<string[]>(() => loadPersistedInput().champions)
+  const [championCounts, setChampionCounts] = useState<Record<string, number>>(
+    () => loadPersistedInput().championCounts,
+  )
   const [query, setQuery] = useState('')
   const [resetSignal, setResetSignal] = useState(0)
   const [focusComp, setFocusComp] = useState<{ id: string; nonce: number } | null>(null)
 
   const totalItems = Object.values(counts).reduce((sum, n) => sum + n, 0)
-  const hasInput = totalItems > 0 || champions.length > 0
+  const totalChampionCopies = Object.values(championCounts).reduce((sum, n) => sum + n, 0)
+  const hasInput = totalItems > 0 || totalChampionCopies > 0
 
   useEffect(() => {
-    savePersistedInput({ counts, champions })
-  }, [counts, champions])
+    savePersistedInput({ counts, championCounts })
+  }, [counts, championCounts])
 
   const recs = useMemo(
-    () => recommend(activeSet.comps, items, counts, champions),
-    [counts, champions],
+    () => recommend(activeSet.comps, items, counts, championCounts),
+    [counts, championCounts],
   )
 
   const openerRecs = useMemo(
-    () => recommendOpeners(activeSet.openers?.openers ?? [], items, counts, champions),
-    [counts, champions],
+    () => recommendOpeners(activeSet.openers?.openers ?? [], items, counts, championCounts),
+    [counts, championCounts],
   )
 
   function addComponent(id: string) {
@@ -44,13 +47,24 @@ function App() {
     setCounts((c) => ({ ...c, [id]: Math.max((c[id] ?? 0) - 1, 0) }))
   }
 
-  function toggleChampion(name: string) {
-    setChampions((cs) => (cs.includes(name) ? cs.filter((c) => c !== name) : [...cs, name]))
+  function addChampionCopy(name: string) {
+    setChampionCounts((cc) => ({
+      ...cc,
+      [name]: Math.min((cc[name] ?? 0) + 1, MAX_CHAMPION_COPIES),
+    }))
+  }
+
+  function removeChampionCopy(name: string) {
+    setChampionCounts((cc) => {
+      const next = { ...cc, [name]: Math.max((cc[name] ?? 0) - 1, 0) }
+      if (next[name] === 0) delete next[name]
+      return next
+    })
   }
 
   function reset() {
     setCounts({})
-    setChampions([])
+    setChampionCounts({})
     setQuery('')
     setResetSignal((n) => n + 1)
   }
@@ -62,8 +76,9 @@ function App() {
         <div className="column-pickers">
           <ComponentPicker counts={counts} onAdd={addComponent} onRemove={removeComponent} />
           <ChampionPicker
-            selected={champions}
-            onToggle={toggleChampion}
+            counts={championCounts}
+            onAdd={addChampionCopy}
+            onRemove={removeChampionCopy}
             query={query}
             onQueryChange={setQuery}
           />
@@ -88,7 +103,7 @@ function App() {
         <StickyBuildBar
           recs={recs}
           counts={counts}
-          champions={champions}
+          champions={championCounts}
           onSelectComp={(id) => setFocusComp({ id, nonce: Date.now() })}
         />
       )}

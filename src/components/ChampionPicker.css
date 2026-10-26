@@ -59,6 +59,17 @@
   gap: 10px;
 }
 
+.champ-cell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.champ-cell .champ-card {
+  width: 100%;
+  flex: 1;
+}
+
 .champ-card {
   position: relative;
   overflow: hidden;
@@ -175,16 +186,58 @@
   flex-shrink: 0;
 }
 
-.champ-card.role-carry .champ-role-icon {
+.champ-cell.role-carry .champ-role-icon {
   color: #e06c6c;
 }
 
-.champ-card.role-tank .champ-role-icon {
+.champ-cell.role-tank .champ-role-icon {
   color: #6ea8f0;
 }
 
-.champ-card.role-support .champ-role-icon {
+.champ-cell.role-support .champ-role-icon {
   color: #5bbd84;
+}
+
+.champ-copies {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: #141518;
+  background: var(--gold-bright);
+  border-radius: 999px;
+  padding: 1px 6px;
+  line-height: 1.3;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.champ-remove {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #23252b;
+  border: 1px solid var(--border-strong);
+  color: var(--text-dim);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  z-index: 2;
+  padding: 0;
+  transition: color 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.champ-remove:hover {
+  color: var(--red);
+  border-color: var(--red);
+  transform: scale(1.1);
 }
 
 .champ-card-name {
