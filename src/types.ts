@@ -43,7 +43,6 @@ export interface Comp {
   name: string
   tier: Tier
   playstyle: string
-  difficulty: 'easy' | 'medium' | 'hard'
   traits: string[]
   conditions: string[]
   itemNeeds: ItemNeeds

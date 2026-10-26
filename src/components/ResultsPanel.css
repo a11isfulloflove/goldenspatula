@@ -82,15 +82,6 @@
   box-shadow: var(--shadow-sm);
 }
 
-.filter-label {
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-  color: var(--text-dim);
-  margin-left: 4px;
-}
-
 .reset {
   font-size: 13px;
   font-weight: 600;

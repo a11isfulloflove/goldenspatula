@@ -4,7 +4,6 @@
     "name": "Azir Rammus reroll",
     "tier": "S",
     "playstyle": "3-cost reroll (lose streak OK)",
-    "difficulty": "medium",
     "traits": [
       "Executioner"
     ],
@@ -70,7 +69,6 @@
     "name": "Kha'Zix reroll",
     "tier": "S",
     "playstyle": "3-cost reroll (high tempo)",
-    "difficulty": "hard",
     "traits": [
       "Ravager",
       "Executioner",
@@ -145,7 +143,6 @@
     "name": "Draven fast 9",
     "tier": "S",
     "playstyle": "fast 9 (economy)",
-    "difficulty": "hard",
     "traits": [],
     "conditions": [
       "Guinsoo's Draven (required)",
@@ -221,7 +218,6 @@
     "name": "Riftbeast reroll",
     "tier": "A",
     "playstyle": "3-cost reroll",
-    "difficulty": "easy",
     "traits": [
       "Riftbeast",
       "Brawler"
@@ -295,7 +291,6 @@
     "name": "Aphelios flex",
     "tier": "A",
     "playstyle": "fast 8 (flex)",
-    "difficulty": "medium",
     "traits": [
       "Vanguard",
       "Rapidfire"
@@ -391,7 +386,6 @@
     "name": "Defender Cassiopeia",
     "tier": "A",
     "playstyle": "3-cost reroll",
-    "difficulty": "medium",
     "traits": [
       "Defender",
       "Vanguard"
@@ -470,7 +464,6 @@
     "name": "Invoker Ahri Morgana",
     "tier": "A",
     "playstyle": "fast 8/9",
-    "difficulty": "hard",
     "traits": [
       "Invoker"
     ],
@@ -546,7 +539,6 @@
     "name": "Elderwood Executioners",
     "tier": "A",
     "playstyle": "tempo into fast 9",
-    "difficulty": "medium",
     "traits": [
       "Elderwood",
       "Executioner"
@@ -624,7 +616,6 @@
     "name": "Veigar reroll",
     "tier": "A",
     "playstyle": "1-cost reroll",
-    "difficulty": "medium",
     "traits": [
       "Spellweaver",
       "Flora Fatalis"
@@ -697,7 +688,6 @@
     "name": "Dragon fast 9",
     "tier": "B",
     "playstyle": "fast 9 (high risk)",
-    "difficulty": "hard",
     "traits": [
       "Riftbeast"
     ],
@@ -784,7 +774,6 @@
     "name": "Solar Kayle",
     "tier": "B",
     "playstyle": "1-cost reroll",
-    "difficulty": "medium",
     "traits": [
       "Solar",
       "Rapidfire",
@@ -865,7 +854,6 @@
     "name": "Flora Malphite",
     "tier": "B",
     "playstyle": "fast 8/9 (flex)",
-    "difficulty": "medium",
     "traits": [
       "Flora Fatalis",
       "Executioner"
@@ -944,7 +932,6 @@
     "name": "Juggernaut flex",
     "tier": "B",
     "playstyle": "tempo into fast 9",
-    "difficulty": "easy",
     "traits": [
       "Juggernaut",
       "Brawler"
@@ -1028,7 +1015,6 @@
     "name": "Ashe fast 9",
     "tier": "B",
     "playstyle": "fast 9 (economy)",
-    "difficulty": "hard",
     "traits": [
       "Blossom",
       "Juggernaut"
@@ -1115,7 +1101,6 @@
     "name": "Solar Akali",
     "tier": "B",
     "playstyle": "1-cost reroll",
-    "difficulty": "hard",
     "traits": [
       "Solar",
       "Ravager"
@@ -1176,7 +1161,6 @@
     "name": "Caitlyn reroll",
     "tier": "B",
     "playstyle": "2-cost reroll",
-    "difficulty": "easy",
     "traits": [
       "Hunter",
       "Juggernaut"
@@ -1255,7 +1239,6 @@
     "name": "Blossom Ahri",
     "tier": "B",
     "playstyle": "fast 8/9",
-    "difficulty": "medium",
     "traits": [
       "Blossom",
       "Spellweaver"
@@ -1337,7 +1320,6 @@
     "name": "Invoker Nidalee",
     "tier": "B",
     "playstyle": "fast 8/9",
-    "difficulty": "medium",
     "traits": [
       "Invoker",
       "Primal"
@@ -1410,7 +1392,6 @@
     "name": "Adaptor Master Yi",
     "tier": "B",
     "playstyle": "3-cost reroll",
-    "difficulty": "medium",
     "traits": [
       "Adaptor",
       "Primal",
@@ -1497,7 +1478,6 @@
     "name": "Tristana Rengar",
     "tier": "B",
     "playstyle": "3-cost reroll (needs emblem)",
-    "difficulty": "medium",
     "traits": [
       "Hunter",
       "Sprykin",
@@ -1573,7 +1553,6 @@
     "name": "Primal Malphite",
     "tier": "C",
     "playstyle": "level 8 tempo",
-    "difficulty": "medium",
     "traits": [
       "Primal",
       "Flora Fatalis",
@@ -1663,7 +1642,6 @@
     "name": "Solar Yunara",
     "tier": "C",
     "playstyle": "2-cost reroll (expensive)",
-    "difficulty": "hard",
     "traits": [
       "Solar",
       "Blossom"
