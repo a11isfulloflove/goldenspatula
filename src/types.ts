@@ -17,6 +17,7 @@ export interface EmblemRecipe {
   name: string
   component: string | null
   icon: string
+  source?: string
 }
 
 export interface ItemsData {
