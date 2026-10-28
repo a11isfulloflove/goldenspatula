@@ -147,7 +147,7 @@ function buildNeeds(
 function stripSpatula(inventory: Record<string, number>): Record<string, number> {
   const usable: Record<string, number> = {}
   for (const [id, count] of Object.entries(inventory)) {
-    if (id === 'spatula') continue
+    if (id === 'spatula' || id === 'fryingpan') continue
     if (count > 0) usable[id] = count
   }
   return usable

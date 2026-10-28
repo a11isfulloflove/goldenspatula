@@ -8,6 +8,7 @@ gave you at the start, and it ranks the comps that best fit your opening.
 - Pick up to 5 item components and any champions you've been offered
 - Champion picks count copies — a stack of one unit signals a reroll start
 - Pick up to 3 augments (crests, trait augments) and see comps that want them
+- Crafted an emblem? Tap it in the items panel — spatula emblems boost their trait too
 - Comps are ranked by how well your components fill their item needs, with bonuses for
   early champions and meta strength (tier)
 - Tier-list view for browsing the whole meta, with inline comp details

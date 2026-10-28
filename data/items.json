@@ -1,54 +1,359 @@
 {
   "components": [
-    { "id": "sword", "name": "B.F. Sword", "short": "Sword", "stat": "Attack Damage", "category": "ad", "icon": "tft_item_bfsword.png" },
-    { "id": "rod", "name": "Needlessly Large Rod", "short": "Rod", "stat": "Ability Power", "category": "ap", "icon": "tft_item_needlesslylargerod.png" },
-    { "id": "bow", "name": "Recurve Bow", "short": "Bow", "stat": "Attack Speed", "category": "as", "icon": "tft_item_recurvebow.png" },
-    { "id": "tear", "name": "Tear of the Goddess", "short": "Tear", "stat": "Starting Mana", "category": "mana", "icon": "tft_item_tearofthegoddess.png" },
-    { "id": "vest", "name": "Chain Vest", "short": "Vest", "stat": "Armor", "category": "tank", "icon": "tft_item_chainvest.png" },
-    { "id": "belt", "name": "Giant's Belt", "short": "Belt", "stat": "Health", "category": "tank", "icon": "tft_item_giantsbelt.png" },
-    { "id": "cloak", "name": "Negatron Cloak", "short": "Cloak", "stat": "Magic Resist", "category": "tank", "icon": "tft_item_negatroncloak.png" },
-    { "id": "gloves", "name": "Sparring Gloves", "short": "Gloves", "stat": "Crit / Dodge", "category": "crit", "icon": "tft_item_sparringgloves.png" },
-    { "id": "spatula", "name": "Spatula", "short": "Spatula", "stat": "Trait Emblem", "category": "flex", "icon": "tft_item_spatula.png" }
+    {
+      "id": "sword",
+      "name": "B.F. Sword",
+      "short": "Sword",
+      "stat": "Attack Damage",
+      "category": "ad",
+      "icon": "tft_item_bfsword.png"
+    },
+    {
+      "id": "rod",
+      "name": "Needlessly Large Rod",
+      "short": "Rod",
+      "stat": "Ability Power",
+      "category": "ap",
+      "icon": "tft_item_needlesslylargerod.png"
+    },
+    {
+      "id": "bow",
+      "name": "Recurve Bow",
+      "short": "Bow",
+      "stat": "Attack Speed",
+      "category": "as",
+      "icon": "tft_item_recurvebow.png"
+    },
+    {
+      "id": "tear",
+      "name": "Tear of the Goddess",
+      "short": "Tear",
+      "stat": "Starting Mana",
+      "category": "mana",
+      "icon": "tft_item_tearofthegoddess.png"
+    },
+    {
+      "id": "vest",
+      "name": "Chain Vest",
+      "short": "Vest",
+      "stat": "Armor",
+      "category": "tank",
+      "icon": "tft_item_chainvest.png"
+    },
+    {
+      "id": "belt",
+      "name": "Giant's Belt",
+      "short": "Belt",
+      "stat": "Health",
+      "category": "tank",
+      "icon": "tft_item_giantsbelt.png"
+    },
+    {
+      "id": "cloak",
+      "name": "Negatron Cloak",
+      "short": "Cloak",
+      "stat": "Magic Resist",
+      "category": "tank",
+      "icon": "tft_item_negatroncloak.png"
+    },
+    {
+      "id": "gloves",
+      "name": "Sparring Gloves",
+      "short": "Gloves",
+      "stat": "Crit / Dodge",
+      "category": "crit",
+      "icon": "tft_item_sparringgloves.png"
+    },
+    {
+      "id": "spatula",
+      "name": "Spatula",
+      "short": "Spatula",
+      "stat": "Trait Emblem",
+      "category": "flex",
+      "icon": "tft_item_spatula.png"
+    },
+    {
+      "id": "fryingpan",
+      "name": "Frying Pan",
+      "short": "Pan",
+      "stat": "Trait Emblem",
+      "category": "flex",
+      "icon": "tft_item_fryingpan.png"
+    }
   ],
   "groups": {
-    "tank": ["vest", "belt", "cloak"],
-    "damage": ["sword", "rod", "bow", "gloves"],
-    "ap": ["rod"],
-    "ad": ["sword", "bow", "gloves"],
-    "mana": ["tear"]
+    "tank": [
+      "vest",
+      "belt",
+      "cloak"
+    ],
+    "damage": [
+      "sword",
+      "rod",
+      "bow",
+      "gloves"
+    ],
+    "ap": [
+      "rod"
+    ],
+    "ad": [
+      "sword",
+      "bow",
+      "gloves"
+    ],
+    "mana": [
+      "tear"
+    ]
   },
   "recipes": [
-    { "name": "Rabadon's Deathcap", "components": ["rod", "rod"], "role": "ap" },
-    { "name": "Hextech Gunblade", "components": ["sword", "rod"], "role": "ap" },
-    { "name": "Guinsoo's Rageblade", "components": ["bow", "rod"], "role": "as" },
-    { "name": "Archangel's Staff", "components": ["rod", "tear"], "role": "ap" },
-    { "name": "Crownguard", "components": ["rod", "vest"], "role": "tank" },
-    { "name": "Jeweled Gauntlet", "components": ["rod", "gloves"], "role": "ap" },
-    { "name": "Morellonomicon", "components": ["rod", "belt"], "role": "ap" },
-    { "name": "Ionic Spark", "components": ["rod", "cloak"], "role": "tank" },
-    { "name": "Deathblade", "components": ["sword", "sword"], "role": "ad" },
-    { "name": "Giant Slayer", "components": ["sword", "bow"], "role": "ad" },
-    { "name": "Hand of Justice", "components": ["gloves", "belt"], "role": "ad" },
-    { "name": "Edge of Night", "components": ["sword", "vest"], "role": "survival" },
-    { "name": "Sterak's Gage", "components": ["sword", "belt"], "role": "survival" },
-    { "name": "Bloodthirster", "components": ["sword", "cloak"], "role": "survival" },
-    { "name": "Spear of Shojin", "components": ["sword", "tear"], "role": "mana" },
-    { "name": "Infinity Edge", "components": ["sword", "gloves"], "role": "ad" },
-    { "name": "Last Whisper", "components": ["bow", "gloves"], "role": "ad" },
-    { "name": "Red Buff", "components": ["bow", "belt"], "role": "ad" },
-    { "name": "Statikk Shiv", "components": ["bow", "tear"], "role": "as" },
-    { "name": "Blue Buff", "components": ["tear", "tear"], "role": "mana" },
-    { "name": "Warmog's Armor", "components": ["belt", "belt"], "role": "tank" },
-    { "name": "Sunfire Cape", "components": ["belt", "vest"], "role": "tank" },
-    { "name": "Spirit Visage", "components": ["belt", "cloak"], "role": "tank" },
-    { "name": "Bramblevest", "components": ["vest", "vest"], "role": "tank" },
-    { "name": "Gargoyle Stoneplate", "components": ["vest", "cloak"], "role": "tank" },
-    { "name": "Protector's Vow", "components": ["tear", "belt"], "role": "mana" },
-    { "name": "Adaptive Helm", "components": ["tear", "cloak"], "role": "mana" },
-    { "name": "Quicksilver", "components": ["cloak", "gloves"], "role": "survival" },
-    { "name": "Steadfast Heart", "components": ["vest", "gloves"], "role": "tank" },
-    { "name": "Titan's Resolve", "components": ["bow", "vest"], "role": "survival" },
-    { "name": "Runaan's Hurricane", "components": ["bow", "cloak"], "role": "ad" }
+    {
+      "name": "Rabadon's Deathcap",
+      "components": [
+        "rod",
+        "rod"
+      ],
+      "role": "ap"
+    },
+    {
+      "name": "Hextech Gunblade",
+      "components": [
+        "sword",
+        "rod"
+      ],
+      "role": "ap"
+    },
+    {
+      "name": "Guinsoo's Rageblade",
+      "components": [
+        "bow",
+        "rod"
+      ],
+      "role": "as"
+    },
+    {
+      "name": "Archangel's Staff",
+      "components": [
+        "rod",
+        "tear"
+      ],
+      "role": "ap"
+    },
+    {
+      "name": "Crownguard",
+      "components": [
+        "rod",
+        "vest"
+      ],
+      "role": "tank"
+    },
+    {
+      "name": "Jeweled Gauntlet",
+      "components": [
+        "rod",
+        "gloves"
+      ],
+      "role": "ap"
+    },
+    {
+      "name": "Morellonomicon",
+      "components": [
+        "rod",
+        "belt"
+      ],
+      "role": "ap"
+    },
+    {
+      "name": "Ionic Spark",
+      "components": [
+        "rod",
+        "cloak"
+      ],
+      "role": "tank"
+    },
+    {
+      "name": "Deathblade",
+      "components": [
+        "sword",
+        "sword"
+      ],
+      "role": "ad"
+    },
+    {
+      "name": "Giant Slayer",
+      "components": [
+        "sword",
+        "bow"
+      ],
+      "role": "ad"
+    },
+    {
+      "name": "Hand of Justice",
+      "components": [
+        "gloves",
+        "belt"
+      ],
+      "role": "ad"
+    },
+    {
+      "name": "Edge of Night",
+      "components": [
+        "sword",
+        "vest"
+      ],
+      "role": "survival"
+    },
+    {
+      "name": "Sterak's Gage",
+      "components": [
+        "sword",
+        "belt"
+      ],
+      "role": "survival"
+    },
+    {
+      "name": "Bloodthirster",
+      "components": [
+        "sword",
+        "cloak"
+      ],
+      "role": "survival"
+    },
+    {
+      "name": "Spear of Shojin",
+      "components": [
+        "sword",
+        "tear"
+      ],
+      "role": "mana"
+    },
+    {
+      "name": "Infinity Edge",
+      "components": [
+        "sword",
+        "gloves"
+      ],
+      "role": "ad"
+    },
+    {
+      "name": "Last Whisper",
+      "components": [
+        "bow",
+        "gloves"
+      ],
+      "role": "ad"
+    },
+    {
+      "name": "Red Buff",
+      "components": [
+        "bow",
+        "belt"
+      ],
+      "role": "ad"
+    },
+    {
+      "name": "Statikk Shiv",
+      "components": [
+        "bow",
+        "tear"
+      ],
+      "role": "as"
+    },
+    {
+      "name": "Blue Buff",
+      "components": [
+        "tear",
+        "tear"
+      ],
+      "role": "mana"
+    },
+    {
+      "name": "Warmog's Armor",
+      "components": [
+        "belt",
+        "belt"
+      ],
+      "role": "tank"
+    },
+    {
+      "name": "Sunfire Cape",
+      "components": [
+        "belt",
+        "vest"
+      ],
+      "role": "tank"
+    },
+    {
+      "name": "Spirit Visage",
+      "components": [
+        "belt",
+        "cloak"
+      ],
+      "role": "tank"
+    },
+    {
+      "name": "Bramblevest",
+      "components": [
+        "vest",
+        "vest"
+      ],
+      "role": "tank"
+    },
+    {
+      "name": "Gargoyle Stoneplate",
+      "components": [
+        "vest",
+        "cloak"
+      ],
+      "role": "tank"
+    },
+    {
+      "name": "Protector's Vow",
+      "components": [
+        "tear",
+        "belt"
+      ],
+      "role": "mana"
+    },
+    {
+      "name": "Adaptive Helm",
+      "components": [
+        "tear",
+        "cloak"
+      ],
+      "role": "mana"
+    },
+    {
+      "name": "Quicksilver",
+      "components": [
+        "cloak",
+        "gloves"
+      ],
+      "role": "survival"
+    },
+    {
+      "name": "Steadfast Heart",
+      "components": [
+        "vest",
+        "gloves"
+      ],
+      "role": "tank"
+    },
+    {
+      "name": "Titan's Resolve",
+      "components": [
+        "bow",
+        "vest"
+      ],
+      "role": "survival"
+    },
+    {
+      "name": "Runaan's Hurricane",
+      "components": [
+        "bow",
+        "cloak"
+      ],
+      "role": "ad"
+    }
   ],
   "itemIcons": {
     "Rabadon's Deathcap": "tft_item_rabadonsdeathcap.png",
@@ -87,25 +392,113 @@
     "Lich Bane": "tft_item_artifact_lichbane.png"
   },
   "emblemRecipes": [
-    { "name": "Fae Emblem", "component": "sword", "icon": "tft18_emblem_fae.png" },
-    { "name": "Hunter Emblem", "component": "sword", "icon": "tft18_emblem_hunter.png" },
-    { "name": "Blossom Emblem", "component": "rod", "icon": "tft18_emblem_blossom.png" },
-    { "name": "Spellweaver Emblem", "component": "rod", "icon": "tft18_emblem_spellweaver.png" },
-    { "name": "Inferno Emblem", "component": "bow", "icon": "tft18_emblem_inferno.png" },
-    { "name": "Rapidfire Emblem", "component": "bow", "icon": "tft18_emblem_rapidfire.png" },
-    { "name": "Invoker Emblem", "component": "tear", "icon": "tft18_emblem_invoker.png" },
-    { "name": "Lunar Emblem", "component": "tear", "icon": "tft18_emblem_lunar.png" },
-    { "name": "Elderwood Emblem", "component": "vest", "icon": "tft18_emblem_elderwood.png" },
-    { "name": "Vanguard Emblem", "component": "vest", "icon": "tft18_emblem_vanguard.png" },
-    { "name": "Blackthorn Emblem", "component": "belt", "icon": "tft18_emblem_blackthorn.png" },
-    { "name": "Brawler Emblem", "component": "belt", "icon": "tft18_emblem_brawler.png" },
-    { "name": "Sprykin Emblem", "component": "cloak", "icon": "tft18_emblem_sprykin.png" },
-    { "name": "Ravager Emblem", "component": "cloak", "icon": "tft18_emblem_ravager.png" },
-    { "name": "Executioner Emblem", "component": "gloves", "icon": "tft18_emblem_executioner.png" },
-    { "name": "Primal Emblem", "component": "gloves", "icon": "tft18_emblem_primal.png" },
-    { "name": "Coven Emblem", "component": null, "icon": "tft18_emblem_coven.png" },
-    { "name": "Defender Emblem", "component": null, "icon": "tft18_emblem_defender.png" },
-    { "name": "Flora Fatalis Emblem", "component": null, "icon": "tft18_emblem_florafatalis.png" },
-    { "name": "Juggernaut Emblem", "component": null, "icon": "tft18_emblem_juggernaut.png" }
+    {
+      "name": "Fae Emblem",
+      "component": "sword",
+      "icon": "tft18_emblem_fae.png"
+    },
+    {
+      "name": "Hunter Emblem",
+      "component": "sword",
+      "icon": "tft18_emblem_hunter.png",
+      "source": "fryingPan"
+    },
+    {
+      "name": "Blossom Emblem",
+      "component": "rod",
+      "icon": "tft18_emblem_blossom.png"
+    },
+    {
+      "name": "Spellweaver Emblem",
+      "component": "rod",
+      "icon": "tft18_emblem_spellweaver.png",
+      "source": "fryingPan"
+    },
+    {
+      "name": "Inferno Emblem",
+      "component": "bow",
+      "icon": "tft18_emblem_inferno.png"
+    },
+    {
+      "name": "Rapidfire Emblem",
+      "component": "bow",
+      "icon": "tft18_emblem_rapidfire.png",
+      "source": "fryingPan"
+    },
+    {
+      "name": "Invoker Emblem",
+      "component": "tear",
+      "icon": "tft18_emblem_invoker.png",
+      "source": "fryingPan"
+    },
+    {
+      "name": "Lunar Emblem",
+      "component": "tear",
+      "icon": "tft18_emblem_lunar.png"
+    },
+    {
+      "name": "Elderwood Emblem",
+      "component": "vest",
+      "icon": "tft18_emblem_elderwood.png"
+    },
+    {
+      "name": "Vanguard Emblem",
+      "component": "vest",
+      "icon": "tft18_emblem_vanguard.png",
+      "source": "fryingPan"
+    },
+    {
+      "name": "Blackthorn Emblem",
+      "component": "belt",
+      "icon": "tft18_emblem_blackthorn.png"
+    },
+    {
+      "name": "Brawler Emblem",
+      "component": "belt",
+      "icon": "tft18_emblem_brawler.png",
+      "source": "fryingPan"
+    },
+    {
+      "name": "Sprykin Emblem",
+      "component": "cloak",
+      "icon": "tft18_emblem_sprykin.png"
+    },
+    {
+      "name": "Ravager Emblem",
+      "component": "cloak",
+      "icon": "tft18_emblem_ravager.png",
+      "source": "fryingPan"
+    },
+    {
+      "name": "Executioner Emblem",
+      "component": "gloves",
+      "icon": "tft18_emblem_executioner.png",
+      "source": "fryingPan"
+    },
+    {
+      "name": "Primal Emblem",
+      "component": "gloves",
+      "icon": "tft18_emblem_primal.png"
+    },
+    {
+      "name": "Coven Emblem",
+      "component": null,
+      "icon": "tft18_emblem_coven.png"
+    },
+    {
+      "name": "Defender Emblem",
+      "component": null,
+      "icon": "tft18_emblem_defender.png"
+    },
+    {
+      "name": "Flora Fatalis Emblem",
+      "component": null,
+      "icon": "tft18_emblem_florafatalis.png"
+    },
+    {
+      "name": "Juggernaut Emblem",
+      "component": null,
+      "icon": "tft18_emblem_juggernaut.png"
+    }
   ]
 }
