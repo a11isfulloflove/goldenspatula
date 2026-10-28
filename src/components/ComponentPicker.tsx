@@ -4,8 +4,23 @@ import SparkleMark from './SparkleMark'
 import { asset } from '../ui-helpers'
 import './ComponentPicker.css'
 
-function SpatulaTip({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const recipes = items.emblemRecipes ?? []
+function SpatulaTip({
+  open,
+  onClose,
+  panOnly,
+  crafted,
+  onToggleEmblem,
+}: {
+  open: boolean
+  onClose: () => void
+  panOnly: boolean
+  crafted: string[]
+  onToggleEmblem: (name: string) => void
+}) {
+  const toolIcon = panOnly ? 'tft_item_fryingpan.png' : 'tft_item_spatula.png'
+  const recipes = (items.emblemRecipes ?? []).filter((recipe) =>
+    panOnly ? recipe.source === 'fryingPan' : recipe.source !== 'fryingPan',
+  )
   const craftable = items.components
     .map((component) => ({
       component,
@@ -22,33 +37,46 @@ function SpatulaTip({ open, onClose }: { open: boolean; onClose: () => void }) {
       <button type="button" className="spatula-close" aria-label="Close" onClick={onClose}>
         &#10005;
       </button>
-      <span className="spatula-tip-title">Emblem recipes</span>
+      <span className="spatula-tip-title">
+        {panOnly ? 'Frying Pan' : 'Spatula'} — tap an emblem to craft it
+      </span>
       {craftable.map((group) => (
         <span className="spatula-tip-row" key={group.component.id}>
           <span className="mini-icon">
-            <img src={asset('items/tft_item_spatula.png')} alt="" draggable={false} />
+            <img src={asset(`items/${toolIcon}`)} alt="" draggable={false} />
           </span>
           <span className="spatula-plus">+</span>
           <span className="mini-icon">
             <img src={asset(`items/${group.component.icon}`)} alt="" draggable={false} />
           </span>
           <span className="spatula-arrow">&#8594;</span>
-          {group.emblems.map((emblem) => (
-            <span key={emblem.name} className="spatula-emblem">
-              <img
-                className="spatula-emblem-icon"
-                src={asset(`emblems/${emblem.icon}`)}
-                alt=""
-                draggable={false}
-              />
-              {emblem.name.replace(' Emblem', '')}
-            </span>
-          ))}
+          {group.emblems.map((emblem) => {
+            const isCrafted = crafted.includes(emblem.name)
+            return (
+              <button
+                key={emblem.name}
+                type="button"
+                className={`spatula-emblem emblem-btn ${isCrafted ? 'crafted' : ''}`}
+                aria-pressed={isCrafted}
+                title={`${emblem.name} — tap to ${isCrafted ? 'un-craft' : 'craft'}`}
+                onClick={() => onToggleEmblem(emblem.name)}
+              >
+                <img
+                  className="spatula-emblem-icon"
+                  src={asset(`emblems/${emblem.icon}`)}
+                  alt=""
+                  draggable={false}
+                />
+                {emblem.name.replace(' Emblem', '')}
+                {isCrafted && <strong className="emblem-check">&#10003;</strong>}
+              </button>
+            )
+          })}
         </span>
       ))}
-      <span className="spatula-tip-note">
-        {augmentOnly} emblems come from augments only
-      </span>
+      {augmentOnly && (
+        <span className="spatula-tip-note">{augmentOnly} emblems come from augments only</span>
+      )}
     </span>
   )
 }
@@ -57,25 +85,34 @@ export default function ComponentPicker({
   counts,
   onAdd,
   onRemove,
+  emblems,
+  onToggleEmblem,
 }: {
   counts: Record<string, number>
   onAdd: (id: string) => void
   onRemove: (id: string) => void
+  emblems: string[]
+  onToggleEmblem: (name: string) => void
 }) {
-  const [spatulaTipOpen, setSpatulaTipOpen] = useState(false)
-  const spatulaWrapRef = useRef<HTMLDivElement | null>(null)
+  const [openTip, setOpenTip] = useState<string | null>(null)
+  const tipWrapRef = useRef<HTMLDivElement | null>(null)
+  const emblemSource = (name: string) =>
+    (items.emblemRecipes ?? []).find((recipe) => recipe.name === name)?.source
+  const craftedEmblems = (items.emblemRecipes ?? []).filter((recipe) =>
+    emblems.includes(recipe.name),
+  )
 
   useEffect(() => {
-    if (!spatulaTipOpen) return
+    if (!openTip) return
     function handleDocumentClick(event: MouseEvent) {
-      const wrap = spatulaWrapRef.current
+      const wrap = tipWrapRef.current
       if (wrap && !wrap.contains(event.target as Node)) {
-        setSpatulaTipOpen(false)
+        setOpenTip(null)
       }
     }
     document.addEventListener('click', handleDocumentClick)
     return () => document.removeEventListener('click', handleDocumentClick)
-  }, [spatulaTipOpen])
+  }, [openTip])
 
   return (
     <section className="panel">
@@ -83,23 +120,37 @@ export default function ComponentPicker({
         <div className="panel-head-text">
           <h2>1 · Your item components</h2>
           <span className="panel-hint">
-            Tap to add <SparkleMark /> − removes <SparkleMark /> 2-3 items is plenty
+            Tap to add <SparkleMark /> − removes <SparkleMark /> tap a spatula tool to craft
+            emblems
           </span>
         </div>
       </div>
       <div className="components">
         {items.components.map((component) => {
           const count = counts[component.id] ?? 0
+          const isTool = component.id === 'spatula' || component.id === 'fryingpan'
+          const pool = isTool
+            ? emblems.filter(
+                (name) => emblemSource(name) === (component.id === 'fryingpan' ? 'fryingPan' : undefined),
+              ).length > 0
+            : false
           return (
               <div
                 className="component-wrap"
                 key={component.id}
-                ref={component.id === 'spatula' ? spatulaWrapRef : undefined}
+                ref={openTip === component.id ? tipWrapRef : undefined}
               >
               <button
                 type="button"
-                className={`component ${count > 0 ? 'active' : ''}`}
-                onClick={() => onAdd(component.id)}
+                className={`component ${!isTool && count > 0 ? 'active' : ''} ${isTool && pool ? 'active' : ''}`}
+                aria-expanded={isTool ? openTip === component.id : undefined}
+                onClick={() =>
+                  isTool
+                    ? setOpenTip((current) =>
+                        current === component.id ? null : component.id,
+                      )
+                    : onAdd(component.id)
+                }
               >
                 <span className="tile">
                   {component.icon && (
@@ -112,12 +163,10 @@ export default function ComponentPicker({
                   )}
                 </span>
                 <span className="component-name">{component.short}</span>
-                {component.id !== 'spatula' && (
-                  <span className="component-stat">{component.stat}</span>
-                )}
+                {!isTool && <span className="component-stat">{component.stat}</span>}
                 {count > 1 && <span className="tile-copies">×{count}</span>}
               </button>
-                {count > 0 && (
+                {!isTool && count > 0 && (
                   <button
                     type="button"
                     className="tile-remove"
@@ -127,27 +176,41 @@ export default function ComponentPicker({
                     −
                   </button>
                 )}
-                {component.id === 'spatula' && (
-                  <>
-                    <button
-                      type="button"
-                      className="tile-info"
-                      aria-label="Emblem recipes"
-                      aria-expanded={spatulaTipOpen}
-                      onClick={() => setSpatulaTipOpen((value) => !value)}
-                    >
-                      ?
-                    </button>
-                    <SpatulaTip
-                      open={spatulaTipOpen}
-                      onClose={() => setSpatulaTipOpen(false)}
-                    />
-                  </>
+                {isTool && (
+                  <SpatulaTip
+                    open={openTip === component.id}
+                    onClose={() => setOpenTip(null)}
+                    panOnly={component.id === 'fryingpan'}
+                    crafted={emblems}
+                    onToggleEmblem={onToggleEmblem}
+                  />
                 )}
               </div>
           )
         })}
       </div>
+      {craftedEmblems.length > 0 && (
+        <div className="crafted-strip">
+          <span className="crafted-strip-label">Crafted:</span>
+          {craftedEmblems.map((emblem) => (
+            <button
+              key={emblem.name}
+              type="button"
+              className="crafted-chip"
+              title={`${emblem.name} — tap to un-craft`}
+              aria-label={`Un-craft ${emblem.name}`}
+              onClick={() => onToggleEmblem(emblem.name)}
+            >
+              <img
+                src={asset(`emblems/${emblem.icon}`)}
+                alt=""
+                draggable={false}
+                decoding="async"
+              />
+            </button>
+          ))}
+        </div>
+      )}
     </section>
   )
 }

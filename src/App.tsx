@@ -19,26 +19,48 @@ function App() {
     () => loadPersistedInput().championCounts,
   )
   const [augments, setAugments] = useState<string[]>(() => loadPersistedInput().augments)
+  const [emblems, setEmblems] = useState<string[]>(() => loadPersistedInput().emblems)
   const [query, setQuery] = useState('')
   const [resetSignal, setResetSignal] = useState(0)
   const [focusComp, setFocusComp] = useState<{ id: string; nonce: number } | null>(null)
 
   const totalItems = Object.values(counts).reduce((sum, n) => sum + n, 0)
   const totalChampionCopies = Object.values(championCounts).reduce((sum, n) => sum + n, 0)
-  const hasInput = totalItems > 0 || totalChampionCopies > 0 || augments.length > 0
+  const hasInput =
+    totalItems > 0 || totalChampionCopies > 0 || augments.length > 0 || emblems.length > 0
 
   useEffect(() => {
-    savePersistedInput({ counts, championCounts, augments })
-  }, [counts, championCounts, augments])
+    savePersistedInput({ counts, championCounts, augments, emblems })
+  }, [counts, championCounts, augments, emblems])
 
   const augmentDefs = useMemo(
     () => (activeSet.augments ?? []).filter((augment) => augments.includes(augment.id)),
     [augments],
   )
 
+  const emblemDefs = useMemo(
+    () =>
+      (items.emblemRecipes ?? [])
+        .filter((emblem) => emblems.includes(emblem.name))
+        .map((emblem) => ({
+          id: emblem.name,
+          name: emblem.name,
+          trait: emblem.name.replace(' Emblem', ''),
+          icon: emblem.icon,
+        })),
+    [emblems],
+  )
+
   const recs = useMemo(
-    () => recommend(activeSet.comps, items, counts, championCounts, augmentDefs),
-    [counts, championCounts, augmentDefs],
+    () =>
+      recommend(
+        activeSet.comps,
+        items,
+        counts,
+        championCounts,
+        [...augmentDefs, ...emblemDefs],
+      ),
+    [counts, championCounts, augmentDefs, emblemDefs],
   )
 
   const openerRecs = useMemo(
@@ -75,10 +97,15 @@ function App() {
     )
   }
 
+  function toggleEmblem(name: string) {
+    setEmblems((e) => (e.includes(name) ? e.filter((entry) => entry !== name) : [...e, name]))
+  }
+
   function reset() {
     setCounts({})
     setChampionCounts({})
     setAugments([])
+    setEmblems([])
     setQuery('')
     setResetSignal((n) => n + 1)
   }
@@ -88,7 +115,13 @@ function App() {
       <Header />
       <div className="app-columns">
         <div className="column-pickers">
-          <ComponentPicker counts={counts} onAdd={addComponent} onRemove={removeComponent} />
+          <ComponentPicker
+            counts={counts}
+            onAdd={addComponent}
+            onRemove={removeComponent}
+            emblems={emblems}
+            onToggleEmblem={toggleEmblem}
+          />
           <AugmentPicker selected={augments} onToggle={toggleAugment} />
           <ChampionPicker
             counts={championCounts}
@@ -120,6 +153,7 @@ function App() {
           counts={counts}
           champions={championCounts}
           augments={augmentDefs}
+          emblems={emblemDefs}
           onSelectComp={(id) => setFocusComp({ id, nonce: Date.now() })}
         />
       )}

@@ -26,12 +26,14 @@ export default function StickyBuildBar({
   counts,
   champions,
   augments,
+  emblems,
   onSelectComp,
 }: {
   recs: Recommendation[]
   counts: Record<string, number>
   champions: Record<string, number>
   augments: Augment[]
+  emblems: Augment[]
   onSelectComp: (id: string) => void
 }) {
   const [expanded, setExpanded] = useState(false)
@@ -67,7 +69,8 @@ export default function StickyBuildBar({
 
   const pickedComponents = buildPickedComponents(counts)
   const pickedChampions = Object.entries(champions)
-  const hasPicks = pickedComponents.length + pickedChampions.length + augments.length > 0
+  const hasPicks =
+    pickedComponents.length + pickedChampions.length + augments.length + emblems.length > 0
 
   function renderPicks() {
     return (
@@ -99,6 +102,16 @@ export default function StickyBuildBar({
             }
             alt=""
             title={augment.name}
+            draggable={false}
+          />
+        ))}
+        {emblems.map((emblem) => (
+          <img
+            key={emblem.id}
+            className="sticky-bar-pick-augment"
+            src={asset(`emblems/${emblem.icon ?? 'tft18_emblem_fae.png'}`)}
+            alt=""
+            title={emblem.name}
             draggable={false}
           />
         ))}

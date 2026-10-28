@@ -7,12 +7,13 @@ export interface PersistedInput {
   counts: Record<string, number>
   championCounts: Record<string, number>
   augments: string[]
+  emblems: string[]
 }
 
 export function loadPersistedInput(): PersistedInput {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
-    if (!raw) return { counts: {}, championCounts: {}, augments: [] }
+    if (!raw) return { counts: {}, championCounts: {}, augments: [], emblems: [] }
     const parsed = JSON.parse(raw) as Partial<
       PersistedInput & { champions: unknown }
     >
@@ -52,9 +53,19 @@ export function loadPersistedInput(): PersistedInput {
           .filter((id) => validAugmentIds.has(id))
           .slice(0, MAX_AUGMENTS)
       : []
-    return { counts, championCounts, augments }
+    const validEmblemNames = new Set(
+      (items.emblemRecipes ?? []).map((emblem) => emblem.name),
+    )
+    const emblems = Array.isArray(parsed.emblems)
+      ? [
+          ...new Set(
+            parsed.emblems.filter((name): name is string => typeof name === 'string'),
+          ),
+        ].filter((name) => validEmblemNames.has(name))
+      : []
+    return { counts, championCounts, augments, emblems }
   } catch {
-    return { counts: {}, championCounts: {}, augments: [] }
+    return { counts: {}, championCounts: {}, augments: [], emblems: [] }
   }
 }
 
