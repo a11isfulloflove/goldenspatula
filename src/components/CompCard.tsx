@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { TIER_CLASS } from '../constants'
 import { primaryChampionName } from '../champions'
+import { items } from '../data'
 import type { Recommendation } from '../engine/recommend'
 import ChampionPortrait from './ChampionPortrait'
 import ItemName from './ItemName'
@@ -116,6 +117,20 @@ export default function CompCard({
               {augment.name} <em>(augment)</em>
             </span>
           ))}
+        </div>
+      )}
+
+      {rec.matchedCrafted.length > 0 && (
+        <div className="crafted-matches">
+          {rec.matchedCrafted.map((name) => {
+            const icon = items.itemIcons?.[name]
+            return (
+              <span key={name} className="crafted-match">
+                {icon && <img src={asset(`items/${icon}`)} alt="" draggable={false} />}
+                {name} <em>(crafted)</em>
+              </span>
+            )
+          })}
         </div>
       )}
 

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import './App.css'
 import { activeSet, items } from './data'
 import { recommend, recommendOpeners } from './engine/recommend'
-import { MAX_AUGMENTS, MAX_CHAMPION_COPIES, MAX_PER_COMPONENT } from './constants'
+import { MAX_AUGMENTS, MAX_CHAMPION_COPIES, MAX_CRAFTED_ITEMS, MAX_PER_COMPONENT } from './constants'
 import { loadPersistedInput, savePersistedInput } from './persistence'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -20,6 +20,7 @@ function App() {
   )
   const [augments, setAugments] = useState<string[]>(() => loadPersistedInput().augments)
   const [emblems, setEmblems] = useState<string[]>(() => loadPersistedInput().emblems)
+  const [crafted, setCrafted] = useState<string[]>(() => loadPersistedInput().crafted)
   const [query, setQuery] = useState('')
   const [resetSignal, setResetSignal] = useState(0)
   const [focusComp, setFocusComp] = useState<{ id: string; nonce: number } | null>(null)
@@ -27,11 +28,15 @@ function App() {
   const totalItems = Object.values(counts).reduce((sum, n) => sum + n, 0)
   const totalChampionCopies = Object.values(championCounts).reduce((sum, n) => sum + n, 0)
   const hasInput =
-    totalItems > 0 || totalChampionCopies > 0 || augments.length > 0 || emblems.length > 0
+    totalItems > 0 ||
+    totalChampionCopies > 0 ||
+    augments.length > 0 ||
+    emblems.length > 0 ||
+    crafted.length > 0
 
   useEffect(() => {
-    savePersistedInput({ counts, championCounts, augments, emblems })
-  }, [counts, championCounts, augments, emblems])
+    savePersistedInput({ counts, championCounts, augments, emblems, crafted })
+  }, [counts, championCounts, augments, emblems, crafted])
 
   const augmentDefs = useMemo(
     () => (activeSet.augments ?? []).filter((augment) => augments.includes(augment.id)),
@@ -59,13 +64,15 @@ function App() {
         counts,
         championCounts,
         [...augmentDefs, ...emblemDefs],
+        crafted,
       ),
-    [counts, championCounts, augmentDefs, emblemDefs],
+    [counts, championCounts, augmentDefs, emblemDefs, crafted],
   )
 
   const openerRecs = useMemo(
-    () => recommendOpeners(activeSet.openers?.openers ?? [], items, counts, championCounts),
-    [counts, championCounts],
+    () =>
+      recommendOpeners(activeSet.openers?.openers ?? [], items, counts, championCounts, crafted),
+    [counts, championCounts, crafted],
   )
 
   function addComponent(id: string) {
@@ -101,11 +108,20 @@ function App() {
     setEmblems((e) => (e.includes(name) ? e.filter((entry) => entry !== name) : [...e, name]))
   }
 
+  function toggleCrafted(name: string) {
+    setCrafted((c) =>
+      c.includes(name)
+        ? c.filter((entry) => entry !== name)
+        : [...c, name].slice(0, MAX_CRAFTED_ITEMS),
+    )
+  }
+
   function reset() {
     setCounts({})
     setChampionCounts({})
     setAugments([])
     setEmblems([])
+    setCrafted([])
     setQuery('')
     setResetSignal((n) => n + 1)
   }
@@ -121,6 +137,8 @@ function App() {
             onRemove={removeComponent}
             emblems={emblems}
             onToggleEmblem={toggleEmblem}
+            crafted={crafted}
+            onToggleCrafted={toggleCrafted}
           />
           <AugmentPicker selected={augments} onToggle={toggleAugment} />
           <ChampionPicker
@@ -154,6 +172,7 @@ function App() {
           champions={championCounts}
           augments={augmentDefs}
           emblems={emblemDefs}
+          crafted={crafted}
           onSelectComp={(id) => setFocusComp({ id, nonce: Date.now() })}
         />
       )}

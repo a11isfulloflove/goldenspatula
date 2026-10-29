@@ -1,5 +1,5 @@
 import { activeSet, championUniverse, items } from './data'
-import { MAX_AUGMENTS, MAX_CHAMPION_COPIES, MAX_PER_COMPONENT } from './constants'
+import { MAX_AUGMENTS, MAX_CHAMPION_COPIES, MAX_CRAFTED_ITEMS, MAX_PER_COMPONENT } from './constants'
 
 const STORAGE_KEY = 'golden-spatula-input-v1'
 
@@ -8,12 +8,13 @@ export interface PersistedInput {
   championCounts: Record<string, number>
   augments: string[]
   emblems: string[]
+  crafted: string[]
 }
 
 export function loadPersistedInput(): PersistedInput {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
-    if (!raw) return { counts: {}, championCounts: {}, augments: [], emblems: [] }
+    if (!raw) return { counts: {}, championCounts: {}, augments: [], emblems: [], crafted: [] }
     const parsed = JSON.parse(raw) as Partial<
       PersistedInput & { champions: unknown }
     >
@@ -63,9 +64,19 @@ export function loadPersistedInput(): PersistedInput {
           ),
         ].filter((name) => validEmblemNames.has(name))
       : []
-    return { counts, championCounts, augments, emblems }
+    const validRecipeNames = new Set(items.recipes.map((recipe) => recipe.name))
+    const crafted = Array.isArray(parsed.crafted)
+      ? [
+          ...new Set(
+            parsed.crafted.filter((name): name is string => typeof name === 'string'),
+          ),
+        ]
+          .filter((name) => validRecipeNames.has(name))
+          .slice(0, MAX_CRAFTED_ITEMS)
+      : []
+    return { counts, championCounts, augments, emblems, crafted }
   } catch {
-    return { counts: {}, championCounts: {}, augments: [], emblems: [] }
+    return { counts: {}, championCounts: {}, augments: [], emblems: [], crafted: [] }
   }
 }
 

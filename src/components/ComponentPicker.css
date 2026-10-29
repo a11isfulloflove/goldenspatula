@@ -4,6 +4,73 @@
   gap: 12px;
 }
 
+.crafted-items-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.crafted-items-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-dim);
+}
+
+.crafted-filter {
+  max-width: 240px;
+}
+
+.crafted-item-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.crafted-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px 5px 6px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  transition: transform 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.crafted-item img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-sizing: border-box;
+  background: var(--bg-inset);
+}
+
+.crafted-item-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-strong);
+  white-space: nowrap;
+}
+
+.crafted-item:hover:not(.disabled) {
+  transform: translateY(-1px);
+  border-color: var(--border-strong);
+}
+
+.crafted-item.active {
+  border-color: var(--gold-border);
+  background: var(--gold-soft);
+}
+
+.crafted-item.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 .emblem-btn {
   background: transparent;
   border: 1px solid transparent;

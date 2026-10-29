@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { items } from '../data'
+import { MAX_CRAFTED_ITEMS } from '../constants'
 import SparkleMark from './SparkleMark'
 import { asset } from '../ui-helpers'
 import './ComponentPicker.css'
@@ -87,19 +88,30 @@ export default function ComponentPicker({
   onRemove,
   emblems,
   onToggleEmblem,
+  crafted,
+  onToggleCrafted,
 }: {
   counts: Record<string, number>
   onAdd: (id: string) => void
   onRemove: (id: string) => void
   emblems: string[]
   onToggleEmblem: (name: string) => void
+  crafted: string[]
+  onToggleCrafted: (name: string) => void
 }) {
   const [openTip, setOpenTip] = useState<string | null>(null)
+  const [craftQuery, setCraftQuery] = useState('')
   const tipWrapRef = useRef<HTMLDivElement | null>(null)
   const emblemSource = (name: string) =>
     (items.emblemRecipes ?? []).find((recipe) => recipe.name === name)?.source
   const craftedEmblems = (items.emblemRecipes ?? []).filter((recipe) =>
     emblems.includes(recipe.name),
+  )
+  const atCraftLimit = crafted.length >= MAX_CRAFTED_ITEMS
+  const normalizedCraftQuery = craftQuery.trim().toLowerCase()
+  const visibleRecipes = items.recipes.filter(
+    (recipe) =>
+      !normalizedCraftQuery || recipe.name.toLowerCase().includes(normalizedCraftQuery),
   )
 
   useEffect(() => {
@@ -188,6 +200,47 @@ export default function ComponentPicker({
               </div>
           )
         })}
+      </div>
+      <div className="crafted-items-row">
+        <span className="crafted-items-label">
+          Completed items — crafting locks the components into one path
+        </span>
+        <div className="champ-controls">
+          <input
+            className="champ-filter crafted-filter"
+            type="search"
+            placeholder="Filter completed items..."
+            value={craftQuery}
+            onChange={(e) => setCraftQuery(e.target.value)}
+          />
+        </div>
+        <div className="crafted-item-cards">
+          {visibleRecipes.map((recipe) => {
+            const isCrafted = crafted.includes(recipe.name)
+            const disabled = !isCrafted && atCraftLimit
+            const icon = items.itemIcons?.[recipe.name]
+            return (
+              <button
+                key={recipe.name}
+                type="button"
+                className={`crafted-item ${isCrafted ? 'active' : ''} ${disabled ? 'disabled' : ''}`}
+                aria-pressed={isCrafted}
+                title={`${recipe.name} (${recipe.components.join(' + ')}) — tap to ${
+                  isCrafted ? 'un-craft' : 'mark as crafted'
+                }`}
+                onClick={() => !disabled && onToggleCrafted(recipe.name)}
+              >
+                {icon && (
+                  <img src={asset(`items/${icon}`)} alt="" draggable={false} decoding="async" />
+                )}
+                <span className="crafted-item-name">{recipe.name}</span>
+              </button>
+            )
+          })}
+          {visibleRecipes.length === 0 && (
+            <span className="champ-empty">No matches</span>
+          )}
+        </div>
       </div>
       {craftedEmblems.length > 0 && (
         <div className="crafted-strip">

@@ -9,6 +9,7 @@ gave you at the start, and it ranks the comps that best fit your opening.
 - Champion picks count copies — a stack of one unit signals a reroll start
 - Pick up to 3 augments (crests, trait augments) and see comps that want them
 - Crafted an emblem? Tap it in the items panel — spatula emblems boost their trait too
+- Mark completed items — crafting locks their components into one path and boosts comps that want them
 - Comps are ranked by how well your components fill their item needs, with bonuses for
   early champions and meta strength (tier)
 - Tier-list view for browsing the whole meta, with inline comp details
@@ -56,7 +57,9 @@ ids (`sword`, `rod`, `bow`, ...) or groups defined in `items.json` (`tank` = ves
 penalty. Champion picks count **copies**: each copy scales that champion's bonus
 (×1.25 at 3 copies — a 2-star — up to ×1.5 at 6+), so a stack of one unit reads as a
 reroll signal. Picked **augments** add a bonus to comps sharing their trait
-(+0.25 each, capped at +0.5). See `src/engine/recommend.ts`.
+(+0.25 each, capped at +0.5). **Completed items** lock their recipe components —
+locked components no longer fill other comps' needs — and comps whose carries want
+that exact item get +0.2 (capped at +0.4). See `src/engine/recommend.ts`.
 
 ## Updating content
 
