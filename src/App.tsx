@@ -180,6 +180,11 @@ function App() {
           emblems={emblemDefs}
           crafted={crafted}
           onSelectComp={(id) => setFocusComp({ id, nonce: Date.now() })}
+          onRemoveComponent={removeComponent}
+          onRemoveChampion={removeChampionCopy}
+          onRemoveAugment={toggleAugment}
+          onRemoveEmblem={toggleEmblem}
+          onRemoveCrafted={toggleCrafted}
         />
       )}
       <ScrollTopButton />

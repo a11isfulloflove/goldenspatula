@@ -114,11 +114,46 @@
   background: var(--bg-inset);
 }
 
-.sticky-bar-picks .champ-icon,
-.sticky-bar-picks-inline .champ-icon {
+.sticky-bar-picks .champ-icon {
   width: 18px;
   height: 18px;
   border-color: var(--border-strong);
+}
+
+.sticky-bar-remove {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.sticky-bar-remove::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+}
+
+.sticky-bar-remove:hover,
+.sticky-bar-remove:focus-visible {
+  border-color: var(--red-border);
+  background: var(--red-soft);
+}
+
+.sticky-bar-remove:focus-visible {
+  outline: none;
+}
+
+.sticky-bar-hint {
+  flex-basis: 100%;
+  margin: 2px 0 0;
+  font-size: 11px;
+  color: var(--text-dim);
 }
 
 .sticky-bar-pick-champ {
@@ -150,11 +185,6 @@
   background: var(--bg-inset);
 }
 
-.sticky-bar-picks-inline .sticky-bar-pick-augment {
-  width: 22px;
-  height: 22px;
-}
-
 .sticky-bar-chevron.open {
   transform: rotate(180deg);
 }
@@ -166,22 +196,6 @@
   color: var(--text-strong);
   font-size: 17px;
   flex: 0 0 auto;
-}
-
-.sticky-bar-picks-inline {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 5px;
-  flex: 1;
-  min-width: 0;
-  margin-left: 6px;
-}
-
-.sticky-bar-picks-inline .sticky-bar-pick-icon,
-.sticky-bar-picks-inline .champ-icon {
-  width: 22px;
-  height: 22px;
 }
 
 .sticky-bar-details {
