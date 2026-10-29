@@ -3,6 +3,7 @@ import { championCostOf, championUniverse, roleOf } from '../data'
 import { ROLE_ICONS } from '../componentMeta'
 import ChampionPortrait from './ChampionPortrait'
 import SparkleMark from './SparkleMark'
+import { ChevronUp } from '../ui'
 import './ChampionPicker.css'
 
 const ROLE_FILTERS = [
@@ -27,14 +28,18 @@ export default function ChampionPicker({
   onRemove,
   query,
   onQueryChange,
+  startExpanded,
 }: {
   counts: Record<string, number>
   onAdd: (name: string) => void
   onRemove: (name: string) => void
   query: string
   onQueryChange: (query: string) => void
+  startExpanded: boolean
 }) {
   const [roleFilter, setRoleFilter] = useState<RoleFilter>('all')
+  const [expanded, setExpanded] = useState(startExpanded)
+  const pickedChampions = Object.entries(counts)
 
   const normalizedQuery = query.trim().toLowerCase()
   const visibleChampions = championUniverse.filter((name) => {
@@ -45,14 +50,35 @@ export default function ChampionPicker({
 
   return (
     <section className="panel">
-      <div className="panel-head">
+      <button
+        type="button"
+        className="panel-head panel-toggle"
+        aria-expanded={expanded}
+        onClick={() => setExpanded((value) => !value)}
+      >
         <div className="panel-head-text">
           <h2>3 · Champions you&apos;ve been offered</h2>
-          <span className="panel-hint">
-            Tap once per copy <SparkleMark /> stacked duplicates signal a reroll start
-          </span>
+          {expanded ? (
+            <span className="panel-hint">
+              Tap once per copy <SparkleMark /> stacked duplicates signal a reroll start
+            </span>
+          ) : pickedChampions.length > 0 ? (
+            <span className="panel-summary">
+              {pickedChampions.map(([name, copies]) => (
+                <span key={name} className="panel-summary-champ" title={`${name} ×${copies}`}>
+                  <ChampionPortrait name={name} />
+                  {copies > 1 && <span className="panel-summary-copies">×{copies}</span>}
+                </span>
+              ))}
+            </span>
+          ) : (
+            <span className="panel-summary-empty">tap to add</span>
+          )}
         </div>
-      </div>
+        <ChevronUp className={`panel-chevron ${expanded ? 'open' : ''}`} />
+      </button>
+      {expanded && (
+        <>
       <div className="champ-controls">
         <input
           className="champ-filter"
@@ -132,6 +158,8 @@ export default function ChampionPicker({
         })}
         {visibleChampions.length === 0 && <span className="champ-empty">No matches</span>}
       </div>
+        </>
+      )}
     </section>
   )
 }
