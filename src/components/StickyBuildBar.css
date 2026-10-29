@@ -16,6 +16,10 @@
   transform: translateY(0);
 }
 
+.sticky-bar-spacer {
+  width: 100%;
+}
+
 .sticky-bar-card {
   pointer-events: auto;
   width: 100%;

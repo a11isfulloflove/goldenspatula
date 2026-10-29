@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { Recommendation } from '../engine/recommend'
 import type { Augment } from '../types'
 import { TIER_CLASS } from '../constants'
 import { items } from '../data'
 import type { ItemComponent } from '../types'
+import { useOnScreenChange } from '../useOnScreenChange'
 import ChampionPortrait from './ChampionPortrait'
 import { ChevronUp } from '../ui'
 import { needStatusClass, asset } from '../ui-helpers'
@@ -49,19 +50,12 @@ export default function StickyBuildBar({
   onRemoveCrafted: (name: string) => void
 }) {
   const [expanded, setExpanded] = useState(false)
+  const [barHeight, setBarHeight] = useState(0)
+  const barRef = useRef<HTMLDivElement | null>(null)
 
-  useEffect(() => {
-    const results = document.getElementById('results')
-    if (!results) return
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) setExpanded(false)
-      },
-      { threshold: 0 },
-    )
-    observer.observe(results)
-    return () => observer.disconnect()
-  }, [])
+  useOnScreenChange('results', (onScreen) => {
+    if (onScreen) setExpanded(false)
+  })
 
   useEffect(() => {
     if (!expanded) return
@@ -74,12 +68,28 @@ export default function StickyBuildBar({
 
   const top = recs.slice(0, TOP_COUNT)
   const best = top[0]
-  if (!best) return null
 
   const pickedComponents = buildPickedComponents(counts)
   const pickedChampions = Object.entries(champions)
   const hasPicks =
-    pickedComponents.length + pickedChampions.length + augments.length + emblems.length + crafted.length > 0
+    pickedComponents.length +
+      pickedChampions.length +
+      augments.length +
+      emblems.length +
+      crafted.length >
+    0
+
+  useEffect(() => {
+    const bar = barRef.current
+    if (!bar) return
+    const sync = () => setBarHeight(bar.offsetHeight)
+    sync()
+    const observer = new ResizeObserver(sync)
+    observer.observe(bar)
+    return () => observer.disconnect()
+  }, [])
+
+  if (!best) return null
 
   function renderPicks() {
     return (
@@ -179,7 +189,8 @@ export default function StickyBuildBar({
   }
 
   return (
-    <div className={`sticky-bar ${hasPicks ? 'visible' : ''}`}>
+    <>
+      <div ref={barRef} className={`sticky-bar ${hasPicks ? 'visible' : ''}`}>
       <div className="sticky-bar-card">
         <button
           type="button"
@@ -264,6 +275,12 @@ export default function StickyBuildBar({
           </div>
         )}
       </div>
-    </div>
+      </div>
+      <div
+        aria-hidden="true"
+        className="sticky-bar-spacer"
+        style={{ height: hasPicks ? barHeight : 0 }}
+      />
+    </>
   )
 }

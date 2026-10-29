@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ChevronUp } from '../ui'
+import { useOnScreenChange } from '../useOnScreenChange'
 import './ScrollTopButton.css'
 
 const desktopQuery = window.matchMedia('(min-width: 1100px)')
@@ -9,16 +10,7 @@ export default function ScrollTopButton() {
   const [deepEnough, setDeepEnough] = useState(false)
   const [isDesktop, setIsDesktop] = useState(desktopQuery.matches)
 
-  useEffect(() => {
-    const results = document.getElementById('results')
-    if (!results) return
-    const observer = new IntersectionObserver(
-      (entries) => setResultsOnScreen(entries[0].isIntersecting),
-      { threshold: 0 },
-    )
-    observer.observe(results)
-    return () => observer.disconnect()
-  }, [])
+  useOnScreenChange('results', setResultsOnScreen)
 
   useEffect(() => {
     let threshold = Number.POSITIVE_INFINITY
