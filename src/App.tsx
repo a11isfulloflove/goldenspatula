@@ -130,7 +130,7 @@ function App() {
     <div className="app">
       <Header />
       <div className="app-columns">
-        <div className="column-pickers">
+        <div className="column-pickers" key={resetSignal}>
           <ComponentPicker
             counts={counts}
             onAdd={addComponent}
@@ -139,14 +139,20 @@ function App() {
             onToggleEmblem={toggleEmblem}
             crafted={crafted}
             onToggleCrafted={toggleCrafted}
+            startExpanded={!hasInput}
           />
-          <AugmentPicker selected={augments} onToggle={toggleAugment} />
+          <AugmentPicker
+            selected={augments}
+            onToggle={toggleAugment}
+            startExpanded={!hasInput}
+          />
           <ChampionPicker
             counts={championCounts}
             onAdd={addChampionCopy}
             onRemove={removeChampionCopy}
             query={query}
             onQueryChange={setQuery}
+            startExpanded={!hasInput}
           />
         </div>
         <div className="column-results">

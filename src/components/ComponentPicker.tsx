@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { items } from '../data'
 import { MAX_CRAFTED_ITEMS } from '../constants'
 import SparkleMark from './SparkleMark'
+import { ChevronUp } from '../ui'
 import { asset } from '../ui-helpers'
 import './ComponentPicker.css'
 
@@ -90,6 +91,7 @@ export default function ComponentPicker({
   onToggleEmblem,
   crafted,
   onToggleCrafted,
+  startExpanded,
 }: {
   counts: Record<string, number>
   onAdd: (id: string) => void
@@ -98,9 +100,11 @@ export default function ComponentPicker({
   onToggleEmblem: (name: string) => void
   crafted: string[]
   onToggleCrafted: (name: string) => void
+  startExpanded: boolean
 }) {
   const [openTip, setOpenTip] = useState<string | null>(null)
   const [craftQuery, setCraftQuery] = useState('')
+  const [expanded, setExpanded] = useState(startExpanded)
   const tipWrapRef = useRef<HTMLDivElement | null>(null)
   const emblemSource = (name: string) =>
     (items.emblemRecipes ?? []).find((recipe) => recipe.name === name)?.source
@@ -113,6 +117,50 @@ export default function ComponentPicker({
     (recipe) =>
       !normalizedCraftQuery || recipe.name.toLowerCase().includes(normalizedCraftQuery),
   )
+
+  const summary: ReactNode[] = []
+  for (const [id, count] of Object.entries(counts)) {
+    const component = items.components.find((c) => c.id === id)
+    if (!component?.icon) continue
+    for (let i = 0; i < count; i++)
+      summary.push(
+        <img
+          key={`s-${id}-${i}`}
+          src={asset(`items/${component.icon}`)}
+          alt=""
+          title={component.name}
+          draggable={false}
+        />,
+      )
+  }
+  for (const name of crafted) {
+    const icon = items.itemIcons?.[name]
+    if (icon)
+      summary.push(
+        <img
+          key={`s-${name}`}
+          src={asset(`items/${icon}`)}
+          alt=""
+          title={`${name} (crafted)`}
+          draggable={false}
+        />,
+      )
+  }
+  for (const name of emblems) {
+    const emblem = items.emblemRecipes?.find((r) => r.name === name)
+    if (emblem)
+      summary.push(
+        <img
+          key={`s-${name}`}
+          src={asset(`emblems/${emblem.icon}`)}
+          alt=""
+          title={name}
+          draggable={false}
+        />,
+      )
+  }
+  const summaryVisible = summary.slice(0, 12)
+  const summaryHidden = summary.length - summaryVisible.length
 
   useEffect(() => {
     if (!openTip) return
@@ -128,15 +176,32 @@ export default function ComponentPicker({
 
   return (
     <section className="panel">
-      <div className="panel-head">
+      <button
+        type="button"
+        className="panel-head panel-toggle"
+        aria-expanded={expanded}
+        onClick={() => setExpanded((value) => !value)}
+      >
         <div className="panel-head-text">
           <h2>1 · Your item components</h2>
-          <span className="panel-hint">
-            Tap to add <SparkleMark /> − removes <SparkleMark /> tap a spatula tool to craft
-            emblems
-          </span>
+          {expanded ? (
+            <span className="panel-hint">
+              Tap to add <SparkleMark /> − removes <SparkleMark /> tap a spatula tool to craft
+              emblems
+            </span>
+          ) : summary.length > 0 ? (
+            <span className="panel-summary">
+              {summaryVisible}
+              {summaryHidden > 0 && <span className="panel-summary-more">+{summaryHidden}</span>}
+            </span>
+          ) : (
+            <span className="panel-summary-empty">tap to add</span>
+          )}
         </div>
-      </div>
+        <ChevronUp className={`panel-chevron ${expanded ? 'open' : ''}`} />
+      </button>
+      {expanded && (
+        <>
       <div className="components">
         {items.components.map((component) => {
           const count = counts[component.id] ?? 0
@@ -263,6 +328,8 @@ export default function ComponentPicker({
             </button>
           ))}
         </div>
+      )}
+        </>
       )}
     </section>
   )
