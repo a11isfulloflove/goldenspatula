@@ -16,6 +16,10 @@
   transform: translateY(0);
 }
 
+.sticky-bar-spacer {
+  width: 100%;
+}
+
 .sticky-bar-card {
   pointer-events: auto;
   width: 100%;
@@ -114,11 +118,75 @@
   background: var(--bg-inset);
 }
 
-.sticky-bar-picks .champ-icon,
-.sticky-bar-picks-inline .champ-icon {
+.sticky-bar-picks .champ-icon {
   width: 18px;
   height: 18px;
   border-color: var(--border-strong);
+}
+
+.sticky-bar-remove {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.sticky-bar-remove::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+}
+
+.sticky-bar-remove:hover,
+.sticky-bar-remove:focus-visible {
+  border-color: var(--red-border);
+  background: var(--red-soft);
+}
+
+.sticky-bar-remove:focus-visible {
+  outline: none;
+}
+
+.sticky-bar-hint {
+  flex-basis: 100%;
+  margin: 2px 0 0;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.sticky-bar-pick-champ {
+  position: relative;
+  display: inline-flex;
+}
+
+.sticky-bar-copies {
+  position: absolute;
+  top: -7px;
+  right: -8px;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: #141518;
+  background: var(--gold-bright);
+  border-radius: 999px;
+  padding: 0 4px;
+  line-height: 13px;
+}
+
+.sticky-bar-pick-augment {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  border-radius: 4px;
+  border: 1px solid var(--gold-border);
+  box-sizing: border-box;
+  background: var(--bg-inset);
 }
 
 .sticky-bar-chevron.open {
@@ -132,22 +200,6 @@
   color: var(--text-strong);
   font-size: 17px;
   flex: 0 0 auto;
-}
-
-.sticky-bar-picks-inline {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 5px;
-  flex: 1;
-  min-width: 0;
-  margin-left: 6px;
-}
-
-.sticky-bar-picks-inline .sticky-bar-pick-icon,
-.sticky-bar-picks-inline .champ-icon {
-  width: 22px;
-  height: 22px;
 }
 
 .sticky-bar-details {

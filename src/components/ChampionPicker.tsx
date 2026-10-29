@@ -3,6 +3,7 @@ import { championCostOf, championUniverse, roleOf } from '../data'
 import { ROLE_ICONS } from '../componentMeta'
 import ChampionPortrait from './ChampionPortrait'
 import SparkleMark from './SparkleMark'
+import { ChevronUp } from '../ui'
 import './ChampionPicker.css'
 
 const ROLE_FILTERS = [
@@ -22,17 +23,23 @@ const ROLE_CLASS: Record<string, string> = {
 }
 
 export default function ChampionPicker({
-  selected,
-  onToggle,
+  counts,
+  onAdd,
+  onRemove,
   query,
   onQueryChange,
+  startExpanded,
 }: {
-  selected: string[]
-  onToggle: (name: string) => void
+  counts: Record<string, number>
+  onAdd: (name: string) => void
+  onRemove: (name: string) => void
   query: string
   onQueryChange: (query: string) => void
+  startExpanded: boolean
 }) {
   const [roleFilter, setRoleFilter] = useState<RoleFilter>('all')
+  const [expanded, setExpanded] = useState(startExpanded)
+  const pickedChampions = Object.entries(counts)
 
   const normalizedQuery = query.trim().toLowerCase()
   const visibleChampions = championUniverse.filter((name) => {
@@ -43,14 +50,35 @@ export default function ChampionPicker({
 
   return (
     <section className="panel">
-      <div className="panel-head">
+      <button
+        type="button"
+        className="panel-head panel-toggle"
+        aria-expanded={expanded}
+        onClick={() => setExpanded((value) => !value)}
+      >
         <div className="panel-head-text">
-          <h2>2 · Champions you&apos;ve been offered</h2>
-          <span className="panel-hint">
-            Pick 1-3 champions <SparkleMark /> early copies signal which line to play
-          </span>
+          <h2>3 · Champions you&apos;ve been offered</h2>
+          {expanded ? (
+            <span className="panel-hint">
+              Tap once per copy <SparkleMark /> stacked duplicates signal a reroll start
+            </span>
+          ) : pickedChampions.length > 0 ? (
+            <span className="panel-summary">
+              {pickedChampions.map(([name, copies]) => (
+                <span key={name} className="panel-summary-champ" title={`${name} ×${copies}`}>
+                  <ChampionPortrait name={name} />
+                  {copies > 1 && <span className="panel-summary-copies">×{copies}</span>}
+                </span>
+              ))}
+            </span>
+          ) : (
+            <span className="panel-summary-empty">tap to add</span>
+          )}
         </div>
-      </div>
+        <ChevronUp className={`panel-chevron ${expanded ? 'open' : ''}`} />
+      </button>
+      {expanded && (
+        <>
       <div className="champ-controls">
         <input
           className="champ-filter"
@@ -76,43 +104,62 @@ export default function ChampionPicker({
         {visibleChampions.map((name) => {
           const role = roleOf(name)
           const RoleIcon = ROLE_ICONS[role]
+          const copies = counts[name] ?? 0
           return (
-            <button
-              key={name}
-              type="button"
-              className={`champ-card ${selected.includes(name) ? 'active' : ''} ${ROLE_CLASS[role]}`}
-              title={role}
-              onClick={() => onToggle(name)}
-            >
-              <span className="champ-portrait-wrap">
-                <ChampionPortrait name={name} size="lg" />
-                {roleFilter === 'all' && (
-                  <span className="champ-role-badge">
-                    {RoleIcon ? (
-                      <RoleIcon className="champ-role-icon" />
-                    ) : (
-                      <span className="champ-role-dot" aria-hidden="true" />
-                    )}
-                  </span>
-                )}
-              </span>
-              <span
-                className="champ-cost-stars"
-                aria-label={`${championCostOf(name)} cost champion`}
+            <div key={name} className={`champ-cell ${ROLE_CLASS[role]}`}>
+              <button
+                type="button"
+                className={`champ-card ${copies > 0 ? 'active' : ''}`}
+                title={
+                  copies > 0
+                    ? `${name} ×${copies} — tap to add a copy`
+                    : `${role} — tap to add a copy`
+                }
+                onClick={() => onAdd(name)}
               >
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span
-                    key={star}
-                    className={`cost-star ${star <= championCostOf(name) ? 'filled' : ''}`}
-                  />
-                ))}
-              </span>
-              <span className="champ-card-name">{name}</span>
-            </button>
+                <span className="champ-portrait-wrap">
+                  <ChampionPortrait name={name} size="lg" />
+                  {roleFilter === 'all' && (
+                    <span className="champ-role-badge">
+                      {RoleIcon ? (
+                        <RoleIcon className="champ-role-icon" />
+                      ) : (
+                        <span className="champ-role-dot" aria-hidden="true" />
+                      )}
+                    </span>
+                  )}
+                </span>
+                <span
+                  className="champ-cost-stars"
+                  aria-label={`${championCostOf(name)} cost champion`}
+                >
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span
+                      key={star}
+                      className={`cost-star ${star <= championCostOf(name) ? 'filled' : ''}`}
+                    />
+                  ))}
+                </span>
+                <span className="champ-card-name">{name}</span>
+                {copies > 1 && <span className="champ-copies">×{copies}</span>}
+              </button>
+              {copies > 0 && (
+                <button
+                  type="button"
+                  className="champ-remove"
+                  aria-label={`Remove a copy of ${name}`}
+                  onClick={() => onRemove(name)}
+                >
+                  −
+                </button>
+              )}
+            </div>
           )
         })}
         {visibleChampions.length === 0 && <span className="champ-empty">No matches</span>}
       </div>
+        </>
+      )}
     </section>
   )
 }

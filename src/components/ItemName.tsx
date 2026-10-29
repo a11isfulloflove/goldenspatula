@@ -49,7 +49,7 @@ export default function ItemName({ name }: { name: string }) {
       {label}
       <span className="recipe-tip" role="tooltip">
         {recipe.components.map((id, index) => (
-          <span className="recipe-part" key={id}>
+          <span className="recipe-part" key={`${id}-${index}`}>
             {index > 0 && <span className="recipe-plus">+</span>}
             <MiniItemIcon id={id} />
           </span>

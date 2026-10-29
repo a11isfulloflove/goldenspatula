@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { Recommendation } from '../engine/recommend'
+import type { Augment } from '../types'
 import { TIER_CLASS } from '../constants'
 import { items } from '../data'
 import type { ItemComponent } from '../types'
+import { useOnScreenChange } from '../useOnScreenChange'
 import ChampionPortrait from './ChampionPortrait'
 import { ChevronUp } from '../ui'
 import { needStatusClass, asset } from '../ui-helpers'
@@ -24,30 +26,36 @@ export default function StickyBuildBar({
   recs,
   counts,
   champions,
+  augments,
+  emblems,
+  crafted,
   onSelectComp,
+  onRemoveComponent,
+  onRemoveChampion,
+  onRemoveAugment,
+  onRemoveEmblem,
+  onRemoveCrafted,
 }: {
   recs: Recommendation[]
   counts: Record<string, number>
-  champions: string[]
+  champions: Record<string, number>
+  augments: Augment[]
+  emblems: Augment[]
+  crafted: string[]
   onSelectComp: (id: string) => void
+  onRemoveComponent: (id: string) => void
+  onRemoveChampion: (name: string) => void
+  onRemoveAugment: (id: string) => void
+  onRemoveEmblem: (name: string) => void
+  onRemoveCrafted: (name: string) => void
 }) {
   const [expanded, setExpanded] = useState(false)
-  const [resultsOnScreen, setResultsOnScreen] = useState(false)
+  const [barHeight, setBarHeight] = useState(0)
+  const barRef = useRef<HTMLDivElement | null>(null)
 
-  useEffect(() => {
-    const results = document.getElementById('results')
-    if (!results) return
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0]
-        setResultsOnScreen(entry.isIntersecting)
-        if (entry.isIntersecting) setExpanded(false)
-      },
-      { threshold: 0 },
-    )
-    observer.observe(results)
-    return () => observer.disconnect()
-  }, [])
+  useOnScreenChange('results', (onScreen) => {
+    if (onScreen) setExpanded(false)
+  })
 
   useEffect(() => {
     if (!expanded) return
@@ -60,33 +68,129 @@ export default function StickyBuildBar({
 
   const top = recs.slice(0, TOP_COUNT)
   const best = top[0]
-  if (!best) return null
 
   const pickedComponents = buildPickedComponents(counts)
-  const hasPicks = pickedComponents.length + champions.length > 0
+  const pickedChampions = Object.entries(champions)
+  const hasPicks =
+    pickedComponents.length +
+      pickedChampions.length +
+      augments.length +
+      emblems.length +
+      crafted.length >
+    0
+
+  useEffect(() => {
+    const bar = barRef.current
+    if (!bar) return
+    const sync = () => setBarHeight(bar.offsetHeight)
+    sync()
+    const observer = new ResizeObserver(sync)
+    observer.observe(bar)
+    return () => observer.disconnect()
+  }, [])
+
+  if (!best) return null
 
   function renderPicks() {
     return (
       <>
         {pickedComponents.map((component, index) => (
-          <img
+          <button
             key={`${component.id}-${index}`}
-            className="sticky-bar-pick-icon"
-            src={asset(`items/${component.icon}`)}
-            alt=""
-            title={component.name}
-            draggable={false}
-          />
+            type="button"
+            className="sticky-bar-remove"
+            onClick={() => onRemoveComponent(component.id)}
+            title={`Remove one ${component.name}`}
+            aria-label={`Remove one ${component.name}`}
+          >
+            <img
+              className="sticky-bar-pick-icon"
+              src={asset(`items/${component.icon}`)}
+              alt=""
+              draggable={false}
+            />
+          </button>
         ))}
-        {champions.map((name) => (
-          <ChampionPortrait key={name} name={name} />
+        {pickedChampions.map(([name, copies]) => (
+          <button
+            key={name}
+            type="button"
+            className="sticky-bar-remove"
+            onClick={() => onRemoveChampion(name)}
+            title={`Remove one copy of ${name} (${copies} left)`}
+            aria-label={`Remove one copy of ${name}`}
+          >
+            <span className="sticky-bar-pick-champ">
+              <ChampionPortrait name={name} />
+              {copies > 1 && <span className="sticky-bar-copies">×{copies}</span>}
+            </span>
+          </button>
         ))}
+        {augments.map((augment) => (
+          <button
+            key={augment.id}
+            type="button"
+            className="sticky-bar-remove"
+            onClick={() => onRemoveAugment(augment.id)}
+            title={`Remove ${augment.name}`}
+            aria-label={`Remove ${augment.name}`}
+          >
+            <img
+              className="sticky-bar-pick-augment"
+              src={
+                augment.icon
+                  ? asset(`emblems/${augment.icon}`)
+                  : asset('items/tft_item_spatula.png')
+              }
+              alt=""
+              draggable={false}
+            />
+          </button>
+        ))}
+        {emblems.map((emblem) => (
+          <button
+            key={emblem.id}
+            type="button"
+            className="sticky-bar-remove"
+            onClick={() => onRemoveEmblem(emblem.id)}
+            title={`Un-craft ${emblem.name}`}
+            aria-label={`Un-craft ${emblem.name}`}
+          >
+            <img
+              className="sticky-bar-pick-augment"
+              src={asset(`emblems/${emblem.icon ?? 'tft18_emblem_fae.png'}`)}
+              alt=""
+              draggable={false}
+            />
+          </button>
+        ))}
+        {crafted.map((name) => {
+          const icon = items.itemIcons?.[name]
+          return (
+            <button
+              key={name}
+              type="button"
+              className="sticky-bar-remove"
+              onClick={() => onRemoveCrafted(name)}
+              title={`Un-craft ${name}`}
+              aria-label={`Un-craft ${name}`}
+            >
+              <img
+                className="sticky-bar-pick-icon"
+                src={icon ? asset(`items/${icon}`) : asset('items/tft_item_spatula.png')}
+                alt=""
+                draggable={false}
+              />
+            </button>
+          )
+        })}
       </>
     )
   }
 
   return (
-    <div className={`sticky-bar ${resultsOnScreen ? '' : 'visible'}`}>
+    <>
+      <div ref={barRef} className={`sticky-bar ${hasPicks ? 'visible' : ''}`}>
       <div className="sticky-bar-card">
         <button
           type="button"
@@ -96,8 +200,7 @@ export default function StickyBuildBar({
         >
           {expanded ? (
             <>
-              <span className="sticky-bar-title">Top matches for</span>
-              <span className="sticky-bar-picks-inline">{renderPicks()}</span>
+              <span className="sticky-bar-title">Top matches for your picks</span>
               <ChevronUp className="sticky-bar-chevron open" />
             </>
           ) : (
@@ -113,8 +216,11 @@ export default function StickyBuildBar({
           )}
         </button>
 
-        {!expanded && hasPicks && (
-          <div className="sticky-bar-picks">{renderPicks()}</div>
+        {hasPicks && (
+          <div className="sticky-bar-picks">
+            {renderPicks()}
+            <p className="sticky-bar-hint">Tap a pick to mark it as sold</p>
+          </div>
         )}
 
         {expanded && (
@@ -169,6 +275,12 @@ export default function StickyBuildBar({
           </div>
         )}
       </div>
-    </div>
+      </div>
+      <div
+        aria-hidden="true"
+        className="sticky-bar-spacer"
+        style={{ height: hasPicks ? barHeight : 0 }}
+      />
+    </>
   )
 }

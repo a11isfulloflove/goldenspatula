@@ -1,4 +1,4 @@
-import type { Comp, ItemNeeds, ItemsData, Opener } from '../types'
+import type { Augment, Comp, ItemNeeds, ItemsData, Opener } from '../types'
 
 export interface NeedStatus {
   label: string
@@ -9,6 +9,12 @@ export interface NeedStatus {
 export interface MatchedChampion {
   name: string
   role: string
+  copies: number
+}
+
+export interface MatchedAugment {
+  name: string
+  icon?: string
 }
 
 export interface Recommendation {
@@ -16,6 +22,8 @@ export interface Recommendation {
   score: number
   needs: NeedStatus[]
   matchedChampions: MatchedChampion[]
+  matchedAugments: MatchedAugment[]
+  matchedCrafted: string[]
   unusedCount: number
 }
 
@@ -74,27 +82,55 @@ function computeFit(
   return { ratio, unusedCount }
 }
 
+const COPY_BONUS_STEPS = [1, 1.1, 1.25, 1.3, 1.4, 1.5]
+
+function copyMultiplier(copies: number): number {
+  return COPY_BONUS_STEPS[Math.min(copies, COPY_BONUS_STEPS.length) - 1]
+}
+
 function collectChampionMatches(
   early: string[],
   holders: string[],
   roster: string[],
-  champions: string[],
+  championCounts: Record<string, number>,
 ): { matches: MatchedChampion[]; bonus: number } {
   const matches: MatchedChampion[] = []
   let bonus = 0
-  for (const name of champions) {
+  for (const [name, copies] of Object.entries(championCounts)) {
     if (early.includes(name)) {
-      matches.push({ name, role: 'early' })
-      bonus += 0.3
+      matches.push({ name, role: 'early', copies })
+      bonus += 0.3 * copyMultiplier(copies)
     } else if (holders.includes(name)) {
-      matches.push({ name, role: 'item holder' })
-      bonus += 0.15
+      matches.push({ name, role: 'item holder', copies })
+      bonus += 0.15 * copyMultiplier(copies)
     } else if (roster.includes(name)) {
-      matches.push({ name, role: 'roster' })
-      bonus += 0.08
+      matches.push({ name, role: 'roster', copies })
+      bonus += 0.08 * copyMultiplier(copies)
     }
   }
-  return { matches, bonus: Math.min(bonus, 0.5) }
+  return { matches, bonus: Math.min(bonus, 0.6) }
+}
+
+const AUGMENT_BONUS = 0.25
+const AUGMENT_BONUS_CAP = 0.5
+
+function collectAugmentMatches(
+  comp: Comp,
+  augments: Augment[],
+): { matches: MatchedAugment[]; bonus: number } {
+  const matches: MatchedAugment[] = []
+  let bonus = 0
+  for (const augment of augments) {
+    const matchesTrait = augment.trait !== undefined && comp.traits.includes(augment.trait)
+    const matchesChampion =
+      augment.champion !== undefined &&
+      [...comp.earlyChampions, ...comp.itemHolders, ...comp.roster].includes(augment.champion)
+    if (matchesTrait || matchesChampion) {
+      matches.push({ name: augment.name, icon: augment.icon })
+      bonus += AUGMENT_BONUS
+    }
+  }
+  return { matches, bonus: Math.min(bonus, AUGMENT_BONUS_CAP) }
 }
 
 function buildNeeds(
@@ -112,39 +148,95 @@ function buildNeeds(
 function stripSpatula(inventory: Record<string, number>): Record<string, number> {
   const usable: Record<string, number> = {}
   for (const [id, count] of Object.entries(inventory)) {
-    if (id === 'spatula') continue
+    if (id === 'spatula' || id === 'fryingpan') continue
     if (count > 0) usable[id] = count
   }
   return usable
+}
+
+function lockCraftedComponents(
+  craftedItems: string[],
+  items: ItemsData,
+): Record<string, number> {
+  const locked: Record<string, number> = {}
+  for (const name of craftedItems) {
+    const recipe = items.recipes.find((r) => r.name === name)
+    if (!recipe) continue
+    for (const id of recipe.components) locked[id] = (locked[id] ?? 0) + 1
+  }
+  return locked
+}
+
+function applyLocks(
+  inventory: Record<string, number>,
+  locked: Record<string, number>,
+): Record<string, number> {
+  const available: Record<string, number> = {}
+  for (const [id, count] of Object.entries(inventory)) {
+    const free = count - (locked[id] ?? 0)
+    if (free > 0) available[id] = free
+  }
+  return available
+}
+
+const CRAFTED_BONUS = 0.2
+const CRAFTED_BONUS_CAP = 0.4
+
+function collectCraftedMatches(
+  comp: Comp,
+  craftedItems: string[],
+): { matches: string[]; bonus: number } {
+  const wanted = new Set<string>()
+  for (const carry of comp.carryItems) {
+    for (const name of [...carry.bis, ...(carry.alternatives ?? [])]) wanted.add(name)
+  }
+  const matches = craftedItems.filter((name) => wanted.has(name))
+  return { matches, bonus: Math.min(matches.length * CRAFTED_BONUS, CRAFTED_BONUS_CAP) }
 }
 
 export function recommend(
   comps: Comp[],
   items: ItemsData,
   inventory: Record<string, number>,
-  champions: string[],
+  championCounts: Record<string, number>,
+  augments: Augment[] = [],
+  craftedItems: string[] = [],
 ): Recommendation[] {
   const usableInventory = stripSpatula(inventory)
+  const locked = lockCraftedComponents(craftedItems, items)
+  const freeInventory = applyLocks(usableInventory, locked)
   const inventorySize = Object.values(usableInventory).reduce((sum, n) => sum + n, 0)
 
   return comps
     .map((comp) => {
-      const fit = computeFit(comp.itemNeeds, items, usableInventory)
+      const fit = computeFit(comp.itemNeeds, items, freeInventory)
       const wasteRatio = inventorySize > 0 ? fit.unusedCount / inventorySize : 0
       const { matches, bonus } = collectChampionMatches(
         comp.earlyChampions,
         comp.itemHolders,
         comp.roster,
-        champions,
+        championCounts,
+      )
+      const { matches: augmentMatches, bonus: augmentBonus } = collectAugmentMatches(comp, augments)
+      const { matches: craftedMatches, bonus: craftedBonus } = collectCraftedMatches(
+        comp,
+        craftedItems,
       )
       const score = clamp01(
-        fit.ratio * 0.6 + bonus + (TIER_BIAS[comp.tier] ?? 0) - wasteRatio * 0.25,
+        fit.ratio * 0.6 +
+          bonus +
+          augmentBonus +
+          craftedBonus +
+          (TIER_BIAS[comp.tier] ?? 0) -
+          wasteRatio * 0.25,
       )
       return {
         comp,
         score,
-        needs: buildNeeds(comp.itemNeeds, items, usableInventory),
+        needs: buildNeeds(comp.itemNeeds, items, freeInventory),
         matchedChampions: matches,
+        matchedAugments: augmentMatches,
+        matchedCrafted: craftedMatches,
         unusedCount: fit.unusedCount,
       }
     })
@@ -155,21 +247,24 @@ export function recommendOpeners(
   openers: Opener[],
   items: ItemsData,
   inventory: Record<string, number>,
-  champions: string[],
+  championCounts: Record<string, number>,
+  craftedItems: string[] = [],
 ): OpenerRecommendation[] {
   const usableInventory = stripSpatula(inventory)
+  const locked = lockCraftedComponents(craftedItems, items)
+  const freeInventory = applyLocks(usableInventory, locked)
   const inventorySize = Object.values(usableInventory).reduce((sum, n) => sum + n, 0)
 
   return openers
     .map((opener) => {
-      const fit = computeFit(opener.itemNeeds, items, usableInventory)
+      const fit = computeFit(opener.itemNeeds, items, freeInventory)
       const wasteRatio = inventorySize > 0 ? fit.unusedCount / inventorySize : 0
-      const { matches, bonus } = collectChampionMatches(opener.units, [], [], champions)
+      const { matches, bonus } = collectChampionMatches(opener.units, [], [], championCounts)
       const score = clamp01(fit.ratio * 0.6 + bonus - wasteRatio * 0.25)
       return {
         opener,
         score,
-        needs: buildNeeds(opener.itemNeeds, items, usableInventory),
+        needs: buildNeeds(opener.itemNeeds, items, freeInventory),
         matchedChampions: matches,
         unusedCount: fit.unusedCount,
       }

@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { TIER_CLASS } from '../constants'
 import { primaryChampionName } from '../champions'
+import { items } from '../data'
 import type { Recommendation } from '../engine/recommend'
 import ChampionPortrait from './ChampionPortrait'
 import ItemName from './ItemName'
-import { needStatusClass } from '../ui-helpers'
+import { needStatusClass, asset } from '../ui-helpers'
 import './CompCard.css'
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -70,9 +71,7 @@ export default function CompCard({
         <span className={`tier ${TIER_CLASS[comp.tier] ?? 'tier-c'}`}>{comp.tier}</span>
         <div className="comp-title">
           <h3>{comp.name}</h3>
-          <span className="comp-sub">
-            {comp.playstyle} · {comp.difficulty}
-          </span>
+          <span className="comp-sub">{comp.playstyle}</span>
         </div>
       </header>
 
@@ -96,9 +95,42 @@ export default function CompCard({
           {rec.matchedChampions.map((c) => (
             <span key={c.name} className="champ-match">
               <ChampionPortrait name={c.name} />
-              {c.name} <em>({c.role})</em>
+              {c.name}
+              {c.copies > 1 && <strong className="champ-match-copies">×{c.copies}</strong>}{' '}
+              <em>({c.role})</em>
             </span>
           ))}
+        </div>
+      )}
+
+      {rec.matchedAugments.length > 0 && (
+        <div className="augment-matches">
+          {rec.matchedAugments.map((augment) => (
+            <span key={augment.name} className="augment-match">
+              {augment.icon ? (
+                <img src={asset(`emblems/${augment.icon}`)} alt="" draggable={false} />
+              ) : (
+                <span className="augment-match-initial" aria-hidden="true">
+                  {augment.name.charAt(0)}
+                </span>
+              )}
+              {augment.name} <em>(augment)</em>
+            </span>
+          ))}
+        </div>
+      )}
+
+      {rec.matchedCrafted.length > 0 && (
+        <div className="crafted-matches">
+          {rec.matchedCrafted.map((name) => {
+            const icon = items.itemIcons?.[name]
+            return (
+              <span key={name} className="crafted-match">
+                {icon && <img src={asset(`items/${icon}`)} alt="" draggable={false} />}
+                {name} <em>(crafted)</em>
+              </span>
+            )
+          })}
         </div>
       )}
 

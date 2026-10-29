@@ -6,10 +6,13 @@ gave you at the start, and it ranks the comps that best fit your opening.
 ## Features
 
 - Pick up to 5 item components and any champions you've been offered
+- Champion picks count copies — a stack of one unit signals a reroll start
+- Pick up to 3 augments (crests, trait augments) and see comps that want them
+- Crafted an emblem? Tap it in the items panel — spatula emblems boost their trait too
+- Mark completed items — crafting locks their components into one path and boosts comps that want them
 - Comps are ranked by how well your components fill their item needs, with bonuses for
   early champions and meta strength (tier)
 - Tier-list view for browsing the whole meta, with inline comp details
-- Difficulty filter (Easy / Medium / Hard) — beginners can stick to forgiving comps
 - Item recipe tooltips: hover an item to see which components build it
 - Official Riot item art, used under Riot's Fan Content Policy
 
@@ -41,6 +44,7 @@ data/
   sets/
     set18/meta.json    set number + patch
     set18/comps.json   all comps for this set
+    set18/augments.json comp-defining augments (trait crests, champion augments)
 public/items/        item icon PNGs (Riot assets via CommunityDragon)
 ```
 
@@ -50,7 +54,12 @@ Each comp declares `itemNeeds`, e.g. `{ "rod": 3, "tank": 1 }`. Keys are either 
 ids (`sword`, `rod`, `bow`, ...) or groups defined in `items.json` (`tank` = vest/belt/cloak,
 `damage`, `mana`). Your selected components greedily fill those slots; matched champions
 (`earlyChampions` > `itemHolders` > `roster`) add bonuses, unused components add a small
-penalty. See `src/engine/recommend.ts`.
+penalty. Champion picks count **copies**: each copy scales that champion's bonus
+(×1.25 at 3 copies — a 2-star — up to ×1.5 at 6+), so a stack of one unit reads as a
+reroll signal. Picked **augments** add a bonus to comps sharing their trait
+(+0.25 each, capped at +0.5). **Completed items** lock their recipe components —
+locked components no longer fill other comps' needs — and comps whose carries want
+that exact item get +0.2 (capped at +0.4). See `src/engine/recommend.ts`.
 
 ## Updating content
 

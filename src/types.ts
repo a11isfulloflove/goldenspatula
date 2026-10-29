@@ -17,6 +17,7 @@ export interface EmblemRecipe {
   name: string
   component: string | null
   icon: string
+  source?: string
 }
 
 export interface ItemsData {
@@ -43,7 +44,6 @@ export interface Comp {
   name: string
   tier: Tier
   playstyle: string
-  difficulty: 'easy' | 'medium' | 'hard'
   traits: string[]
   conditions: string[]
   itemNeeds: ItemNeeds
@@ -57,6 +57,14 @@ export interface Comp {
 export interface SetMeta {
   setNumber: number
   patch: string
+}
+
+export interface Augment {
+  id: string
+  name: string
+  trait?: string
+  champion?: string
+  icon?: string
 }
 
 export type ChampionRole = 'carry' | 'tank' | 'support' | 'flex'
@@ -88,4 +96,5 @@ export interface SetData {
   championRoles?: Record<string, ChampionRole>
   championCosts?: Record<string, number>
   openers?: OpenersData
+  augments?: Augment[]
 }

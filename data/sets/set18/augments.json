@@ -1,0 +1,128 @@
+[
+  {
+    "id": "adaptor-crest",
+    "name": "Adaptor Crest",
+    "trait": "Adaptor",
+    "icon": "tft18_emblem_adaptor.png"
+  },
+  {
+    "id": "blossom-crest",
+    "name": "Blossom Crest",
+    "trait": "Blossom",
+    "icon": "tft18_emblem_blossom.png"
+  },
+  {
+    "id": "brawler-crest",
+    "name": "Brawler Crest",
+    "trait": "Brawler",
+    "icon": "tft18_emblem_brawler.png"
+  },
+  {
+    "id": "defender-crest",
+    "name": "Defender Crest",
+    "trait": "Defender",
+    "icon": "tft18_emblem_defender.png"
+  },
+  {
+    "id": "eclipse-crest",
+    "name": "Eclipse Crest",
+    "trait": "Eclipse",
+    "icon": "tft18_emblem_eclipse.png"
+  },
+  {
+    "id": "elderwood-crest",
+    "name": "Elderwood Crest",
+    "trait": "Elderwood",
+    "icon": "tft18_emblem_elderwood.png"
+  },
+  {
+    "id": "executioner-crest",
+    "name": "Executioner Crest",
+    "trait": "Executioner",
+    "icon": "tft18_emblem_executioner.png"
+  },
+  {
+    "id": "fae-crest",
+    "name": "Fae Crest",
+    "trait": "Fae",
+    "icon": "tft18_emblem_fae.png"
+  },
+  {
+    "id": "flora-fatalis-crest",
+    "name": "Flora Fatalis Crest",
+    "trait": "Flora Fatalis",
+    "icon": "tft18_emblem_florafatalis.png"
+  },
+  {
+    "id": "hunter-crest",
+    "name": "Hunter Crest",
+    "trait": "Hunter",
+    "icon": "tft18_emblem_hunter.png"
+  },
+  {
+    "id": "invoker-crest",
+    "name": "Invoker Crest",
+    "trait": "Invoker",
+    "icon": "tft18_emblem_invoker.png"
+  },
+  {
+    "id": "juggernaut-crest",
+    "name": "Juggernaut Crest",
+    "trait": "Juggernaut",
+    "icon": "tft18_emblem_juggernaut.png"
+  },
+  {
+    "id": "primal-crest",
+    "name": "Primal Crest",
+    "trait": "Primal",
+    "icon": "tft18_emblem_primal.png"
+  },
+  {
+    "id": "rapidfire-crest",
+    "name": "Rapidfire Crest",
+    "trait": "Rapidfire",
+    "icon": "tft18_emblem_rapidfire.png"
+  },
+  {
+    "id": "ravager-crest",
+    "name": "Ravager Crest",
+    "trait": "Ravager",
+    "icon": "tft18_emblem_ravager.png"
+  },
+  {
+    "id": "riftbeast-crest",
+    "name": "Riftbeast Crest",
+    "trait": "Riftbeast",
+    "icon": "tft18_emblem_riftbeast.png"
+  },
+  {
+    "id": "sentinel-crest",
+    "name": "Sentinel Crest",
+    "trait": "Sentinel",
+    "icon": "tft18_emblem_sentinel.png"
+  },
+  {
+    "id": "solar-crest",
+    "name": "Solar Crest",
+    "trait": "Solar",
+    "icon": "tft18_emblem_solar.png"
+  },
+  {
+    "id": "spellweaver-crest",
+    "name": "Spellweaver Crest",
+    "trait": "Spellweaver",
+    "icon": "tft18_emblem_spellweaver.png"
+  },
+  {
+    "id": "sprykin-crest",
+    "name": "Sprykin Crest",
+    "trait": "Sprykin",
+    "icon": "tft18_emblem_sprykin.png"
+  },
+  {
+    "id": "vanguard-crest",
+    "name": "Vanguard Crest",
+    "trait": "Vanguard",
+    "icon": "tft18_emblem_vanguard.png"
+  }
+]
