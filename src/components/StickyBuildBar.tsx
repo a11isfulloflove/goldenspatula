@@ -27,6 +27,7 @@ export default function StickyBuildBar({
   champions,
   augments,
   emblems,
+  crafted,
   onSelectComp,
 }: {
   recs: Recommendation[]
@@ -34,6 +35,7 @@ export default function StickyBuildBar({
   champions: Record<string, number>
   augments: Augment[]
   emblems: Augment[]
+  crafted: string[]
   onSelectComp: (id: string) => void
 }) {
   const [expanded, setExpanded] = useState(false)
@@ -70,7 +72,7 @@ export default function StickyBuildBar({
   const pickedComponents = buildPickedComponents(counts)
   const pickedChampions = Object.entries(champions)
   const hasPicks =
-    pickedComponents.length + pickedChampions.length + augments.length + emblems.length > 0
+    pickedComponents.length + pickedChampions.length + augments.length + emblems.length + crafted.length > 0
 
   function renderPicks() {
     return (
@@ -115,6 +117,19 @@ export default function StickyBuildBar({
             draggable={false}
           />
         ))}
+        {crafted.map((name) => {
+          const icon = items.itemIcons?.[name]
+          return (
+            <img
+              key={name}
+              className="sticky-bar-pick-icon"
+              src={icon ? asset(`items/${icon}`) : asset('items/tft_item_spatula.png')}
+              alt=""
+              title={`${name} (crafted)`}
+              draggable={false}
+            />
+          )
+        })}
       </>
     )
   }
