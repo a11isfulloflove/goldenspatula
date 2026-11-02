@@ -6,15 +6,6 @@ import SparkleMark from './SparkleMark'
 import { ChevronUp } from '../ui'
 import './ChampionPicker.css'
 
-const ROLE_FILTERS = [
-  { id: 'all', label: 'All' },
-  { id: 'carry', label: 'Carries' },
-  { id: 'tank', label: 'Tanks' },
-  { id: 'support', label: 'Supports' },
-] as const
-
-export type RoleFilter = (typeof ROLE_FILTERS)[number]['id']
-
 const SORT_ORDERS = [
   { id: 'cost-asc', label: '1★–5★' },
   { id: 'cost-desc', label: '5★–1★' },
@@ -45,18 +36,15 @@ export default function ChampionPicker({
   onQueryChange: (query: string) => void
   startExpanded: boolean
 }) {
-  const [roleFilter, setRoleFilter] = useState<RoleFilter>('all')
   const [sortOrder, setSortOrder] = useState<SortOrder>('cost-asc')
   const [expanded, setExpanded] = useState(startExpanded)
   const pickedChampions = Object.entries(counts)
 
   const normalizedQuery = query.trim().toLowerCase()
   const sortedChampions = championUniverse
-    .filter((name) => {
-      if (normalizedQuery && !name.toLowerCase().includes(normalizedQuery)) return false
-      if (roleFilter !== 'all' && roleOf(name) !== roleFilter) return false
-      return true
-    })
+    .filter(
+      (name) => !normalizedQuery || name.toLowerCase().includes(normalizedQuery),
+    )
     .sort((a, b) => {
       if (sortOrder === 'name') return a.localeCompare(b)
       const diff = championCostOf(a) - championCostOf(b) || a.localeCompare(b)
@@ -102,18 +90,6 @@ export default function ChampionPicker({
           value={query}
           onChange={(e) => onQueryChange(e.target.value)}
         />
-        <div className="role-filter" role="group" aria-label="Filter champions by role">
-          {ROLE_FILTERS.map((option) => (
-            <button
-              key={option.id}
-              type="button"
-              className={roleFilter === option.id ? 'active' : ''}
-              onClick={() => setRoleFilter(option.id)}
-            >
-              {option.label}
-            </button>
-          ))}
-        </div>
         <div className="role-filter" role="group" aria-label="Sort champions">
           {SORT_ORDERS.map((option) => (
             <button
@@ -146,15 +122,13 @@ export default function ChampionPicker({
               >
                 <span className="champ-portrait-wrap">
                   <ChampionPortrait name={name} size="lg" />
-                  {roleFilter === 'all' && (
-                    <span className="champ-role-badge">
-                      {RoleIcon ? (
-                        <RoleIcon className="champ-role-icon" />
-                      ) : (
-                        <span className="champ-role-dot" aria-hidden="true" />
-                      )}
-                    </span>
-                  )}
+                  <span className="champ-role-badge">
+                    {RoleIcon ? (
+                      <RoleIcon className="champ-role-icon" />
+                    ) : (
+                      <span className="champ-role-dot" aria-hidden="true" />
+                    )}
+                  </span>
                 </span>
                 <span
                   className="champ-cost-stars"
