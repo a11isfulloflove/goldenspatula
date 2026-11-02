@@ -25,12 +25,12 @@
 }
 
 .champ-controls .champ-filter {
-  flex: 1;
-  min-width: 180px;
+  flex: 1 1 100%;
 }
 
 .role-filter {
   display: flex;
+  flex: 1 1 100%;
   background: var(--bg-inset);
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -39,6 +39,9 @@
 }
 
 .role-filter button {
+  flex: 1;
+  text-align: center;
+  white-space: nowrap;
   font-size: 13px;
   font-weight: 600;
   padding: 5px 12px;
