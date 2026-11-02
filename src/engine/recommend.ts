@@ -15,6 +15,7 @@ export interface MatchedChampion {
 export interface MatchedAugment {
   name: string
   icon?: string
+  tier?: string
 }
 
 export interface Recommendation {
@@ -111,7 +112,7 @@ function collectChampionMatches(
   return { matches, bonus: Math.min(bonus, 0.6) }
 }
 
-const AUGMENT_BONUS = 0.25
+const AUGMENT_TIER_BONUS: Record<string, number> = { silver: 0.2, gold: 0.25, prismatic: 0.3 }
 const AUGMENT_BONUS_CAP = 0.5
 
 function collectAugmentMatches(
@@ -121,13 +122,14 @@ function collectAugmentMatches(
   const matches: MatchedAugment[] = []
   let bonus = 0
   for (const augment of augments) {
+    if (augment.category !== undefined && augment.category !== 'build') continue
     const matchesTrait = augment.trait !== undefined && comp.traits.includes(augment.trait)
     const matchesChampion =
       augment.champion !== undefined &&
       [...comp.earlyChampions, ...comp.itemHolders, ...comp.roster].includes(augment.champion)
     if (matchesTrait || matchesChampion) {
-      matches.push({ name: augment.name, icon: augment.icon })
-      bonus += AUGMENT_BONUS
+      matches.push({ name: augment.name, icon: augment.icon, tier: augment.tier })
+      bonus += AUGMENT_TIER_BONUS[augment.tier] ?? 0.25
     }
   }
   return { matches, bonus: Math.min(bonus, AUGMENT_BONUS_CAP) }

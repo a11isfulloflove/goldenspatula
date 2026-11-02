@@ -6,6 +6,7 @@ import { items } from '../data'
 import type { ItemComponent } from '../types'
 import { useOnScreenChange } from '../useOnScreenChange'
 import ChampionPortrait from './ChampionPortrait'
+import AugmentIcon from './AugmentIcon'
 import { ChevronUp } from '../ui'
 import { needStatusClass, asset } from '../ui-helpers'
 import './StickyBuildBar.css'
@@ -135,15 +136,12 @@ export default function StickyBuildBar({
             title={`Remove ${augment.name}`}
             aria-label={`Remove ${augment.name}`}
           >
-            <img
-              className="sticky-bar-pick-augment"
-              src={
-                augment.icon
-                  ? asset(`emblems/${augment.icon}`)
-                  : asset('items/tft_item_spatula.png')
-              }
-              alt=""
-              draggable={false}
+            <AugmentIcon
+              icon={augment.icon}
+              tier={augment.tier}
+              size={22}
+              fallbackChar={augment.name.charAt(0)}
+              title={augment.name}
             />
           </button>
         ))}

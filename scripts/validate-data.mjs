@@ -152,9 +152,11 @@ console.log(`\nValidating ${setId} data...\n`)
 
 {
   const fails = []
+  const tiers = new Set(['silver', 'gold', 'prismatic'])
+  const categories = new Set(['build', 'economy', 'reroll', 'xp', 'neutral'])
   for (const augment of augments) {
     if (augment.trait === undefined && augment.champion === undefined) {
-      fails.push(`${augment.id}: needs a trait or champion ref`)
+      if (augment.category === 'build') fails.push(`${augment.id}: build augment needs a trait or champion ref`)
     }
     if (augment.trait !== undefined && !compTraits.has(augment.trait)) {
       fails.push(`${augment.id}: trait "${augment.trait}" not on any comp`)
@@ -162,8 +164,18 @@ console.log(`\nValidating ${setId} data...\n`)
     if (augment.champion !== undefined && !roster.has(augment.champion)) {
       fails.push(`${augment.id}: champion "${augment.champion}" not in roster`)
     }
-    if (augment.icon !== undefined && !emblemFiles.has(augment.icon)) {
-      fails.push(`${augment.id}: missing file public/emblems/${augment.icon}`)
+    if (!tiers.has(augment.tier)) fails.push(`${augment.id}: tier "${augment.tier}"`)
+    if (!categories.has(augment.category)) {
+      fails.push(`${augment.id}: category "${augment.category}"`)
+    }
+    if (augment.icon !== undefined) {
+      if (augment.icon.includes('/')) {
+        if (!existsSync(`public/${augment.icon}`)) {
+          fails.push(`${augment.id}: missing file public/${augment.icon}`)
+        }
+      } else if (!emblemFiles.has(augment.icon)) {
+        fails.push(`${augment.id}: missing file public/emblems/${augment.icon}`)
+      }
     }
   }
   if (new Set(augments.map((a) => a.id)).size !== augments.length) {

@@ -2,9 +2,18 @@ import { useState } from 'react'
 import { activeSet } from '../data'
 import { MAX_AUGMENTS } from '../constants'
 import SparkleMark from './SparkleMark'
+import AugmentIcon from './AugmentIcon'
 import { ChevronUp } from '../ui'
-import { asset } from '../ui-helpers'
 import './AugmentPicker.css'
+
+const TIER_FILTERS = [
+  { id: 'all', label: 'All' },
+  { id: 'silver', label: 'Silver' },
+  { id: 'gold', label: 'Gold' },
+  { id: 'prismatic', label: 'Prismatic' },
+] as const
+
+type TierFilter = (typeof TIER_FILTERS)[number]['id']
 
 export default function AugmentPicker({
   selected,
@@ -16,17 +25,23 @@ export default function AugmentPicker({
   startExpanded: boolean
 }) {
   const [query, setQuery] = useState('')
+  const [tierFilter, setTierFilter] = useState<TierFilter>('all')
   const [expanded, setExpanded] = useState(startExpanded)
   const augments = activeSet.augments ?? []
   const atLimit = selected.length >= MAX_AUGMENTS
 
   const normalizedQuery = query.trim().toLowerCase()
-  const visibleAugments = augments.filter(
-    (augment) =>
-      !normalizedQuery ||
-      augment.name.toLowerCase().includes(normalizedQuery) ||
-      (augment.trait ?? '').toLowerCase().includes(normalizedQuery),
-  )
+  const visibleAugments = augments.filter((augment) => {
+    if (tierFilter !== 'all' && augment.tier !== tierFilter) return false
+    if (
+      normalizedQuery &&
+      !augment.name.toLowerCase().includes(normalizedQuery) &&
+      (augment.trait ?? '').toLowerCase().includes(normalizedQuery) === false
+    ) {
+      return false
+    }
+    return true
+  })
 
   function toggle(id: string) {
     if (!selected.includes(id) && atLimit) return
@@ -54,16 +69,13 @@ export default function AugmentPicker({
                 const augment = augments.find((a) => a.id === id)
                 if (!augment) return null
                 return (
-                  <img
+                  <AugmentIcon
                     key={id}
-                    src={
-                      augment.icon
-                        ? asset(`emblems/${augment.icon}`)
-                        : asset('items/tft_item_spatula.png')
-                    }
-                    alt=""
+                    icon={augment.icon}
+                    tier={augment.tier}
+                    size={20}
+                    fallbackChar={augment.name.charAt(0)}
                     title={augment.name}
-                    draggable={false}
                   />
                 )
               })}
@@ -85,6 +97,18 @@ export default function AugmentPicker({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
+            <div className="role-filter" role="group" aria-label="Filter augments by tier">
+              {TIER_FILTERS.map((option) => (
+                <button
+                  key={option.id}
+                  type="button"
+                  className={tierFilter === option.id ? 'active' : ''}
+                  onClick={() => setTierFilter(option.id)}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
           </div>
           <div className="augment-cards">
             {visibleAugments.map((augment) => {
@@ -94,24 +118,17 @@ export default function AugmentPicker({
                 <button
                   key={augment.id}
                   type="button"
-                  className={`augment-card ${isSelected ? 'active' : ''} ${disabled ? 'disabled' : ''}`}
+                  className={`augment-card tier-${augment.tier} ${isSelected ? 'active' : ''} ${disabled ? 'disabled' : ''}`}
                   aria-pressed={isSelected}
+                  title={`${augment.name} (${augment.tier})${augment.description ? ` — ${augment.description}` : ''}`}
                   onClick={() => toggle(augment.id)}
                 >
-                  <span className="augment-icon">
-                    {augment.icon ? (
-                      <img
-                        src={asset(`emblems/${augment.icon}`)}
-                        alt=""
-                        draggable={false}
-                        decoding="async"
-                      />
-                    ) : (
-                      <span className="augment-initial" aria-hidden="true">
-                        {augment.trait?.charAt(0) ?? 'A'}
-                      </span>
-                    )}
-                  </span>
+                  <AugmentIcon
+                    icon={augment.icon}
+                    tier={augment.tier}
+                    size={26}
+                    fallbackChar={augment.trait?.charAt(0) ?? augment.name.charAt(0)}
+                  />
                   <span className="augment-name">{augment.name}</span>
                 </button>
               )

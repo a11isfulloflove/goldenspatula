@@ -146,6 +146,31 @@
   color: var(--text-dim);
 }
 
+.panel-summary-initial {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+  border: 1px solid var(--border-strong);
+  box-sizing: border-box;
+  background: var(--bg-inset);
+  color: var(--text-strong);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.panel-summary-initial.tier-gold {
+  color: var(--gold-bright);
+  border-color: var(--gold-border);
+}
+
+.panel-summary-initial.tier-prismatic {
+  color: #c48ae8;
+  border-color: #8d5ab0;
+}
+
 .sparkle-mark {
   display: inline-block;
   width: 9px;
