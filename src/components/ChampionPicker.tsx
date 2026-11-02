@@ -15,6 +15,14 @@ const ROLE_FILTERS = [
 
 export type RoleFilter = (typeof ROLE_FILTERS)[number]['id']
 
+const SORT_ORDERS = [
+  { id: 'cost-asc', label: '1★–5★' },
+  { id: 'cost-desc', label: '5★–1★' },
+  { id: 'name', label: 'A–Z' },
+] as const
+
+export type SortOrder = (typeof SORT_ORDERS)[number]['id']
+
 const ROLE_CLASS: Record<string, string> = {
   carry: 'role-carry',
   tank: 'role-tank',
@@ -38,15 +46,22 @@ export default function ChampionPicker({
   startExpanded: boolean
 }) {
   const [roleFilter, setRoleFilter] = useState<RoleFilter>('all')
+  const [sortOrder, setSortOrder] = useState<SortOrder>('cost-asc')
   const [expanded, setExpanded] = useState(startExpanded)
   const pickedChampions = Object.entries(counts)
 
   const normalizedQuery = query.trim().toLowerCase()
-  const visibleChampions = championUniverse.filter((name) => {
-    if (normalizedQuery && !name.toLowerCase().includes(normalizedQuery)) return false
-    if (roleFilter !== 'all' && roleOf(name) !== roleFilter) return false
-    return true
-  })
+  const sortedChampions = championUniverse
+    .filter((name) => {
+      if (normalizedQuery && !name.toLowerCase().includes(normalizedQuery)) return false
+      if (roleFilter !== 'all' && roleOf(name) !== roleFilter) return false
+      return true
+    })
+    .sort((a, b) => {
+      if (sortOrder === 'name') return a.localeCompare(b)
+      const diff = championCostOf(a) - championCostOf(b) || a.localeCompare(b)
+      return sortOrder === 'cost-asc' ? diff : -diff
+    })
 
   return (
     <section className="panel">
@@ -99,9 +114,21 @@ export default function ChampionPicker({
             </button>
           ))}
         </div>
+        <div className="role-filter" role="group" aria-label="Sort champions">
+          {SORT_ORDERS.map((option) => (
+            <button
+              key={option.id}
+              type="button"
+              className={sortOrder === option.id ? 'active' : ''}
+              onClick={() => setSortOrder(option.id)}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
       </div>
       <div className="champ-cards">
-        {visibleChampions.map((name) => {
+        {sortedChampions.map((name) => {
           const role = roleOf(name)
           const RoleIcon = ROLE_ICONS[role]
           const copies = counts[name] ?? 0
@@ -156,7 +183,7 @@ export default function ChampionPicker({
             </div>
           )
         })}
-        {visibleChampions.length === 0 && <span className="champ-empty">No matches</span>}
+        {sortedChampions.length === 0 && <span className="champ-empty">No matches</span>}
       </div>
         </>
       )}
