@@ -18,10 +18,6 @@
   color: var(--text-dim);
 }
 
-.crafted-filter {
-  max-width: 240px;
-}
-
 .crafted-item-cards {
   display: flex;
   flex-wrap: wrap;

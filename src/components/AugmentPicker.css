@@ -1,7 +1,3 @@
-.augment-filter {
-  max-width: 240px;
-}
-
 .augment-cards {
   display: flex;
   flex-wrap: wrap;
