@@ -51,6 +51,8 @@ function App() {
           id: emblem.name,
           name: emblem.name,
           trait: emblem.name.replace(' Emblem', ''),
+          tier: 'gold' as const,
+          category: 'build' as const,
           icon: emblem.icon,
         })),
     [emblems],

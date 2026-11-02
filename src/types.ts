@@ -59,11 +59,18 @@ export interface SetMeta {
   patch: string
 }
 
+export type AugmentTier = 'silver' | 'gold' | 'prismatic'
+
+export type AugmentCategory = 'build' | 'economy' | 'reroll' | 'xp' | 'neutral'
+
 export interface Augment {
   id: string
   name: string
   trait?: string
   champion?: string
+  tier: AugmentTier
+  category: AugmentCategory
+  description?: string
   icon?: string
 }
 

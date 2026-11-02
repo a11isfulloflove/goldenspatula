@@ -4,6 +4,7 @@ import { primaryChampionName } from '../champions'
 import { items } from '../data'
 import type { Recommendation } from '../engine/recommend'
 import ChampionPortrait from './ChampionPortrait'
+import AugmentIcon from './AugmentIcon'
 import ItemName from './ItemName'
 import { needStatusClass, asset } from '../ui-helpers'
 import './CompCard.css'
@@ -107,13 +108,12 @@ export default function CompCard({
         <div className="augment-matches">
           {rec.matchedAugments.map((augment) => (
             <span key={augment.name} className="augment-match">
-              {augment.icon ? (
-                <img src={asset(`emblems/${augment.icon}`)} alt="" draggable={false} />
-              ) : (
-                <span className="augment-match-initial" aria-hidden="true">
-                  {augment.name.charAt(0)}
-                </span>
-              )}
+              <AugmentIcon
+                icon={augment.icon}
+                tier={augment.tier ?? 'gold'}
+                size={20}
+                fallbackChar={augment.name.charAt(0)}
+              />
               {augment.name} <em>(augment)</em>
             </span>
           ))}
