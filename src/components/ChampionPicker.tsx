@@ -6,13 +6,16 @@ import SparkleMark from './SparkleMark'
 import { ChevronUp } from '../ui'
 import './ChampionPicker.css'
 
-const SORT_ORDERS = [
-  { id: 'cost-asc', label: '1★–5★' },
-  { id: 'cost-desc', label: '5★–1★' },
-  { id: 'name', label: 'A–Z' },
+const STAR_FILTERS = [
+  { id: 'all', label: 'All' },
+  { id: 1, label: '1★' },
+  { id: 2, label: '2★' },
+  { id: 3, label: '3★' },
+  { id: 4, label: '4★' },
+  { id: 5, label: '5★' },
 ] as const
 
-export type SortOrder = (typeof SORT_ORDERS)[number]['id']
+export type StarFilter = (typeof STAR_FILTERS)[number]['id']
 
 const ROLE_CLASS: Record<string, string> = {
   carry: 'role-carry',
@@ -36,20 +39,16 @@ export default function ChampionPicker({
   onQueryChange: (query: string) => void
   startExpanded: boolean
 }) {
-  const [sortOrder, setSortOrder] = useState<SortOrder>('cost-asc')
+  const [starFilter, setStarFilter] = useState<StarFilter>('all')
   const [expanded, setExpanded] = useState(startExpanded)
   const pickedChampions = Object.entries(counts)
 
   const normalizedQuery = query.trim().toLowerCase()
-  const sortedChampions = championUniverse
-    .filter(
-      (name) => !normalizedQuery || name.toLowerCase().includes(normalizedQuery),
-    )
-    .sort((a, b) => {
-      if (sortOrder === 'name') return a.localeCompare(b)
-      const diff = championCostOf(a) - championCostOf(b) || a.localeCompare(b)
-      return sortOrder === 'cost-asc' ? diff : -diff
-    })
+  const visibleChampions = championUniverse.filter((name) => {
+    if (normalizedQuery && !name.toLowerCase().includes(normalizedQuery)) return false
+    if (starFilter !== 'all' && championCostOf(name) !== starFilter) return false
+    return true
+  })
 
   return (
     <section className="panel">
@@ -90,13 +89,13 @@ export default function ChampionPicker({
           value={query}
           onChange={(e) => onQueryChange(e.target.value)}
         />
-        <div className="role-filter" role="group" aria-label="Sort champions">
-          {SORT_ORDERS.map((option) => (
+        <div className="role-filter" role="group" aria-label="Filter champions by cost">
+          {STAR_FILTERS.map((option) => (
             <button
               key={option.id}
               type="button"
-              className={sortOrder === option.id ? 'active' : ''}
-              onClick={() => setSortOrder(option.id)}
+              className={starFilter === option.id ? 'active' : ''}
+              onClick={() => setStarFilter(option.id)}
             >
               {option.label}
             </button>
@@ -104,7 +103,7 @@ export default function ChampionPicker({
         </div>
       </div>
       <div className="champ-cards">
-        {sortedChampions.map((name) => {
+        {visibleChampions.map((name) => {
           const role = roleOf(name)
           const RoleIcon = ROLE_ICONS[role]
           const copies = counts[name] ?? 0
@@ -157,7 +156,7 @@ export default function ChampionPicker({
             </div>
           )
         })}
-        {sortedChampions.length === 0 && <span className="champ-empty">No matches</span>}
+        {visibleChampions.length === 0 && <span className="champ-empty">No matches</span>}
       </div>
         </>
       )}
