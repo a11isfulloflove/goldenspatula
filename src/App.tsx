@@ -171,6 +171,8 @@ function App() {
             onFocusCompHandled={() => setFocusComp(null)}
             onSelectComp={(id) => setFocusComp({ id, nonce: Date.now() })}
             pickedChampions={championCounts}
+            onAddChampion={addChampionCopy}
+            onRemoveChampion={removeChampionCopy}
           />
         </div>
       </div>

@@ -167,6 +167,26 @@
   letter-spacing: 0.4px;
 }
 
+.comp-card.committed {
+  border-color: var(--gold-border);
+  box-shadow:
+    var(--shadow-sm),
+    0 0 14px rgba(240, 192, 74, 0.18);
+}
+
+.committed-tag {
+  margin: 0;
+  display: inline-block;
+  align-self: flex-start;
+  color: #141518;
+  background: var(--gold-bright);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
 .needs {
   display: flex;
   flex-wrap: wrap;
