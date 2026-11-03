@@ -6,14 +6,16 @@ import SparkleMark from './SparkleMark'
 import { ChevronUp } from '../ui'
 import './ChampionPicker.css'
 
-const ROLE_FILTERS = [
+const STAR_FILTERS = [
   { id: 'all', label: 'All' },
-  { id: 'carry', label: 'Carries' },
-  { id: 'tank', label: 'Tanks' },
-  { id: 'support', label: 'Supports' },
+  { id: 1, label: '1★' },
+  { id: 2, label: '2★' },
+  { id: 3, label: '3★' },
+  { id: 4, label: '4★' },
+  { id: 5, label: '5★' },
 ] as const
 
-export type RoleFilter = (typeof ROLE_FILTERS)[number]['id']
+export type StarFilter = (typeof STAR_FILTERS)[number]['id']
 
 const ROLE_CLASS: Record<string, string> = {
   carry: 'role-carry',
@@ -37,14 +39,14 @@ export default function ChampionPicker({
   onQueryChange: (query: string) => void
   startExpanded: boolean
 }) {
-  const [roleFilter, setRoleFilter] = useState<RoleFilter>('all')
+  const [starFilter, setStarFilter] = useState<StarFilter>('all')
   const [expanded, setExpanded] = useState(startExpanded)
   const pickedChampions = Object.entries(counts)
 
   const normalizedQuery = query.trim().toLowerCase()
   const visibleChampions = championUniverse.filter((name) => {
     if (normalizedQuery && !name.toLowerCase().includes(normalizedQuery)) return false
-    if (roleFilter !== 'all' && roleOf(name) !== roleFilter) return false
+    if (starFilter !== 'all' && championCostOf(name) !== starFilter) return false
     return true
   })
 
@@ -87,13 +89,13 @@ export default function ChampionPicker({
           value={query}
           onChange={(e) => onQueryChange(e.target.value)}
         />
-        <div className="role-filter" role="group" aria-label="Filter champions by role">
-          {ROLE_FILTERS.map((option) => (
+        <div className="role-filter" role="group" aria-label="Filter champions by cost">
+          {STAR_FILTERS.map((option) => (
             <button
               key={option.id}
               type="button"
-              className={roleFilter === option.id ? 'active' : ''}
-              onClick={() => setRoleFilter(option.id)}
+              className={starFilter === option.id ? 'active' : ''}
+              onClick={() => setStarFilter(option.id)}
             >
               {option.label}
             </button>
@@ -119,15 +121,13 @@ export default function ChampionPicker({
               >
                 <span className="champ-portrait-wrap">
                   <ChampionPortrait name={name} size="lg" />
-                  {roleFilter === 'all' && (
-                    <span className="champ-role-badge">
-                      {RoleIcon ? (
-                        <RoleIcon className="champ-role-icon" />
-                      ) : (
-                        <span className="champ-role-dot" aria-hidden="true" />
-                      )}
-                    </span>
-                  )}
+                  <span className="champ-role-badge">
+                    {RoleIcon ? (
+                      <RoleIcon className="champ-role-icon" />
+                    ) : (
+                      <span className="champ-role-dot" aria-hidden="true" />
+                    )}
+                  </span>
                 </span>
                 <span
                   className="champ-cost-stars"

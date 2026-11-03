@@ -51,7 +51,10 @@ function App() {
           id: emblem.name,
           name: emblem.name,
           trait: emblem.name.replace(' Emblem', ''),
-          icon: emblem.icon,
+          tier: 'gold' as const,
+          category: 'build' as const,
+          isEmblem: true,
+          icon: 'emblems/' + emblem.icon,
         })),
     [emblems],
   )
@@ -167,6 +170,9 @@ function App() {
             focusComp={focusComp}
             onFocusCompHandled={() => setFocusComp(null)}
             onSelectComp={(id) => setFocusComp({ id, nonce: Date.now() })}
+            pickedChampions={championCounts}
+            onAddChampion={addChampionCopy}
+            onRemoveChampion={removeChampionCopy}
           />
         </div>
       </div>

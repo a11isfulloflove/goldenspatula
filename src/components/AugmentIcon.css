@@ -1,0 +1,64 @@
+.aug-frame {
+  display: inline-flex;
+  padding: 2px;
+  border-radius: 10px;
+  background: var(--bg-inset);
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.aug-frame.tier-silver {
+  background: #a3adbd;
+}
+
+.aug-frame.tier-gold {
+  background: #e2a93f;
+}
+
+.aug-frame.tier-prismatic {
+  background: conic-gradient(
+    from 180deg,
+    rgb(181, 249, 177) -25.61deg,
+    rgb(174, 167, 248) 0.63deg,
+    rgb(185, 232, 188) 27.2deg,
+    rgb(246, 254, 216) 56.21deg,
+    rgb(199, 251, 247) 83.01deg,
+    rgb(154, 240, 254) 109.35deg,
+    rgb(245, 236, 255) 129.56deg,
+    rgb(248, 153, 248) 154.85deg,
+    rgb(182, 252, 227) 181.24deg,
+    rgb(126, 147, 242) 210.86deg,
+    rgb(225, 164, 253) 244.3deg,
+    rgb(175, 230, 240) 264.6deg,
+    rgb(243, 241, 199) 287.41deg,
+    rgb(233, 159, 126) 306.52deg,
+    rgb(181, 249, 177) 334.39deg,
+    rgb(174, 167, 248) 360.63deg
+  );
+}
+
+.aug-frame img,
+.aug-frame .aug-letter {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background: var(--bg-inset);
+}
+
+.aug-frame .aug-letter {
+  display: grid;
+  place-items: center;
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.aug-frame.tier-silver .aug-letter {
+  color: #c9d2de;
+}
+
+.aug-frame.tier-prismatic .aug-letter {
+  color: #d9a8f5;
+}

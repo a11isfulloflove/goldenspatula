@@ -39,6 +39,12 @@ export interface CarryItems {
 
 export type Tier = 'S' | 'A' | 'B' | 'C'
 
+export interface FinalBoard {
+  front: string[]
+  back: string[]
+  flex?: number
+}
+
 export interface Comp {
   id: string
   name: string
@@ -50,6 +56,7 @@ export interface Comp {
   earlyChampions: string[]
   itemHolders: string[]
   roster: string[]
+  finalBoard?: FinalBoard
   carryItems: CarryItems[]
   tips: string[]
 }
@@ -59,12 +66,20 @@ export interface SetMeta {
   patch: string
 }
 
+export type AugmentTier = 'silver' | 'gold' | 'prismatic'
+
+export type AugmentCategory = 'build' | 'economy' | 'reroll' | 'xp' | 'neutral'
+
 export interface Augment {
   id: string
   name: string
   trait?: string
   champion?: string
+  tier: AugmentTier
+  category: AugmentCategory
+  description?: string
   icon?: string
+  isEmblem?: boolean
 }
 
 export type ChampionRole = 'carry' | 'tank' | 'support' | 'flex'

@@ -3,7 +3,7 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 18px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   gap: 13px;
@@ -86,6 +86,18 @@
   }
 }
 
+.comp-why {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.comp-card.best .comp-why {
+  color: var(--gold-bright);
+}
+
 .comp-header {
   display: flex;
   align-items: center;
@@ -153,6 +165,26 @@
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.4px;
+}
+
+.comp-card.committed {
+  border-color: var(--gold-border);
+  box-shadow:
+    var(--shadow-sm),
+    0 0 14px rgba(240, 192, 74, 0.18);
+}
+
+.committed-tag {
+  margin: 0;
+  display: inline-block;
+  align-self: flex-start;
+  color: #141518;
+  background: var(--gold-bright);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  padding: 3px 10px;
+  border-radius: 999px;
 }
 
 .needs {
@@ -227,6 +259,11 @@
   border-radius: 999px;
   padding: 0 5px;
   line-height: 15px;
+}
+
+.champ-match-carry {
+  color: var(--gold-bright);
+  font-size: 12px;
 }
 
 .augment-matches {

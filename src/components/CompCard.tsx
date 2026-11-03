@@ -4,6 +4,8 @@ import { primaryChampionName } from '../champions'
 import { items } from '../data'
 import type { Recommendation } from '../engine/recommend'
 import ChampionPortrait from './ChampionPortrait'
+import AugmentIcon from './AugmentIcon'
+import FinalBoard from './FinalBoard'
 import ItemName from './ItemName'
 import { needStatusClass, asset } from '../ui-helpers'
 import './CompCard.css'
@@ -54,16 +56,50 @@ export default function CompCard({
   rec,
   rank,
   delay,
+  pickedChampions,
+  compactBoard,
+  onAddChampion,
+  onRemoveChampion,
 }: {
   rec: Recommendation
   rank?: number
   delay?: number
+  pickedChampions?: Record<string, number>
+  compactBoard?: boolean
+  onAddChampion?: (name: string) => void
+  onRemoveChampion?: (name: string) => void
 }) {
   const { comp } = rec
+  const committed = rec.championCoverage >= 0.7
+
+  const joinNames = (names: string[]) =>
+    names.length <= 1
+      ? names[0]
+      : `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}`
+  const early = rec.matchedChampions.filter((m) => m.role === 'early').map((m) => m.name)
+  const holders = rec.matchedChampions
+    .filter((m) => m.role === 'item holder')
+    .map((m) => m.name)
+  const roster = rec.matchedChampions.filter((m) => m.role === 'roster').map((m) => m.name)
+  const whyParts: string[] = []
+  if (early.length > 0)
+    whyParts.push(
+      `${joinNames(early)} ${early.length > 1 ? 'are' : 'is'} this comp's early game — that's your opening board`,
+    )
+  if (holders.length > 0)
+    whyParts.push(`${joinNames(holders)} can hold your items in the meantime`)
+  if (roster.length > 0)
+    whyParts.push(`${joinNames(roster)} fit${roster.length > 1 ? '' : 's'} the final board`)
+  if (rec.matchedAugments.length > 0)
+    whyParts.push('your augments point this way')
+  if (rec.matchedCrafted.length > 0)
+    whyParts.push('your crafted items land here')
+  const whyLine = whyParts.length > 0 ? whyParts.join(' · ') : null
+
   return (
     <article
       id={`comp-${comp.id}`}
-      className={`comp-card ${rank === 0 ? 'best' : ''}`}
+      className={`comp-card ${rank === 0 ? 'best' : ''} ${committed ? 'committed' : ''}`}
       style={delay ? { animationDelay: `${delay}ms` } : undefined}
     >
       <header className="comp-header">
@@ -78,6 +114,14 @@ export default function CompCard({
       <ScoreBar score={rec.score} delay={delay ?? 0} />
 
       {rank === 0 && <p className="best-tag">TOP PICK FOR YOUR START</p>}
+
+      {committed && (
+        <p className="committed-tag">
+          COMMITTED · {rec.matchedChampions.length} of {rec.championPool} champs collected
+        </p>
+      )}
+
+      {whyLine && <p className="comp-why">{whyLine}</p>}
 
       <div className="needs">
         {rec.needs.map((need) => (
@@ -96,6 +140,7 @@ export default function CompCard({
             <span key={c.name} className="champ-match">
               <ChampionPortrait name={c.name} />
               {c.name}
+              {c.carry && <span className="champ-match-carry" title="carry">★</span>}
               {c.copies > 1 && <strong className="champ-match-copies">×{c.copies}</strong>}{' '}
               <em>({c.role})</em>
             </span>
@@ -107,14 +152,17 @@ export default function CompCard({
         <div className="augment-matches">
           {rec.matchedAugments.map((augment) => (
             <span key={augment.name} className="augment-match">
-              {augment.icon ? (
-                <img src={asset(`emblems/${augment.icon}`)} alt="" draggable={false} />
+              {augment.isEmblem ? (
+                <img src={asset(augment.icon ?? '')} alt="" draggable={false} />
               ) : (
-                <span className="augment-match-initial" aria-hidden="true">
-                  {augment.name.charAt(0)}
-                </span>
+                <AugmentIcon
+                  icon={augment.icon}
+                  tier={augment.tier ?? 'gold'}
+                  size={20}
+                  fallbackChar={augment.name.charAt(0)}
+                />
               )}
-              {augment.name} <em>(augment)</em>
+              {augment.name} <em>({augment.isEmblem ? 'emblem' : 'augment'})</em>
             </span>
           ))}
         </div>
@@ -131,6 +179,19 @@ export default function CompCard({
               </span>
             )
           })}
+        </div>
+      )}
+
+      {comp.finalBoard && (
+        <div className="comp-section">
+          <h4>Final board at level 8</h4>
+          <FinalBoard
+            comp={comp}
+            pickedChampions={pickedChampions ?? {}}
+            compact={compactBoard}
+            onAddChampion={onAddChampion}
+            onRemoveChampion={onRemoveChampion}
+          />
         </div>
       )}
 

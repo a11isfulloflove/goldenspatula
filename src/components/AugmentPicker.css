@@ -1,7 +1,3 @@
-.augment-filter {
-  max-width: 240px;
-}
-
 .augment-cards {
   display: flex;
   flex-wrap: wrap;
@@ -27,6 +23,33 @@
 .augment-card.active {
   border-color: var(--gold-border);
   background: var(--gold-soft);
+}
+
+.augment-card.tier-silver {
+  border-color: #6f7683;
+}
+
+.augment-card.tier-silver.active {
+  border-color: #a3adbd;
+  background: rgba(170, 179, 194, 0.14);
+}
+
+.augment-card.tier-gold {
+  border-color: #8a6a24;
+}
+
+.augment-card.tier-gold.active {
+  border-color: #e2a93f;
+  background: var(--gold-soft);
+}
+
+.augment-card.tier-prismatic {
+  border-color: #6c4a86;
+}
+
+.augment-card.tier-prismatic.active {
+  border-color: #c77ee8;
+  background: rgba(196, 138, 232, 0.15);
 }
 
 .augment-card.disabled {

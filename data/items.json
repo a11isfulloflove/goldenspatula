@@ -389,7 +389,9 @@
     "Nashor's Tooth": "tft_item_leviathan.png",
     "Striker's Flail": "tft_item_powergauntlet.png",
     "Void Staff": "tft_item_voidstaff.png",
-    "Lich Bane": "tft_item_artifact_lichbane.png"
+    "Lich Bane": "tft_item_artifact_lichbane.png",
+    "Hand of Justice": "tft_item_handofjustice.png",
+    "Runaan's Hurricane": "tft_item_runaanshurricane.png"
   },
   "emblemRecipes": [
     {
