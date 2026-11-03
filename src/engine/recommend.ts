@@ -1,5 +1,13 @@
 import type { Augment, Comp, ItemNeeds, ItemsData, Opener } from '../types'
 
+function primaryChampionName(raw: string): string {
+  return raw
+    .split('/')[0]
+    .trim()
+    .replace(/\s*\(.*\)$/, '')
+    .trim()
+}
+
 export interface NeedStatus {
   label: string
   have: number
@@ -10,6 +18,7 @@ export interface MatchedChampion {
   name: string
   role: string
   copies: number
+  carry?: boolean
 }
 
 export interface MatchedAugment {
@@ -90,24 +99,28 @@ function copyMultiplier(copies: number): number {
   return COPY_BONUS_STEPS[Math.min(copies, COPY_BONUS_STEPS.length) - 1]
 }
 
+const CARRY_BONUS_MULTIPLIER = 1.5
+
 function collectChampionMatches(
   early: string[],
   holders: string[],
   roster: string[],
   championCounts: Record<string, number>,
+  carryNames: Set<string> = new Set(),
 ): { matches: MatchedChampion[]; bonus: number } {
   const matches: MatchedChampion[] = []
   let bonus = 0
   for (const [name, copies] of Object.entries(championCounts)) {
+    const carryBoost = carryNames.has(name) ? CARRY_BONUS_MULTIPLIER : 1
     if (early.includes(name)) {
-      matches.push({ name, role: 'early', copies })
-      bonus += 0.3 * copyMultiplier(copies)
+      matches.push({ name, role: 'early', copies, carry: carryNames.has(name) || undefined })
+      bonus += 0.3 * copyMultiplier(copies) * carryBoost
     } else if (holders.includes(name)) {
-      matches.push({ name, role: 'item holder', copies })
-      bonus += 0.15 * copyMultiplier(copies)
+      matches.push({ name, role: 'item holder', copies, carry: carryNames.has(name) || undefined })
+      bonus += 0.15 * copyMultiplier(copies) * carryBoost
     } else if (roster.includes(name)) {
-      matches.push({ name, role: 'roster', copies })
-      bonus += 0.08 * copyMultiplier(copies)
+      matches.push({ name, role: 'roster', copies, carry: carryNames.has(name) || undefined })
+      bonus += 0.08 * copyMultiplier(copies) * carryBoost
     }
   }
   return { matches, bonus: Math.min(bonus, 0.6) }
@@ -219,11 +232,15 @@ export function recommend(
     .map((comp) => {
       const fit = computeFit(comp.itemNeeds, items, freeInventory)
       const wasteRatio = inventorySize > 0 ? fit.unusedCount / inventorySize : 0
+      const carryNames = new Set(
+        comp.carryItems.map((carry) => primaryChampionName(carry.champion)),
+      )
       const { matches, bonus } = collectChampionMatches(
         comp.earlyChampions,
         comp.itemHolders,
         comp.roster,
         championCounts,
+        carryNames,
       )
       const { matches: augmentMatches, bonus: augmentBonus } = collectAugmentMatches(comp, augments)
       const { matches: craftedMatches, bonus: craftedBonus } = collectCraftedMatches(

@@ -129,6 +129,7 @@ export default function CompCard({
             <span key={c.name} className="champ-match">
               <ChampionPortrait name={c.name} />
               {c.name}
+              {c.carry && <span className="champ-match-carry" title="carry">★</span>}
               {c.copies > 1 && <strong className="champ-match-copies">×{c.copies}</strong>}{' '}
               <em>({c.role})</em>
             </span>
