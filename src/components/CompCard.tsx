@@ -66,6 +66,31 @@ export default function CompCard({
   compactBoard?: boolean
 }) {
   const { comp } = rec
+
+  const joinNames = (names: string[]) =>
+    names.length <= 1
+      ? names[0]
+      : `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}`
+  const early = rec.matchedChampions.filter((m) => m.role === 'early').map((m) => m.name)
+  const holders = rec.matchedChampions
+    .filter((m) => m.role === 'item holder')
+    .map((m) => m.name)
+  const roster = rec.matchedChampions.filter((m) => m.role === 'roster').map((m) => m.name)
+  const whyParts: string[] = []
+  if (early.length > 0)
+    whyParts.push(
+      `${joinNames(early)} ${early.length > 1 ? 'are' : 'is'} this comp's early game — that's your opening board`,
+    )
+  if (holders.length > 0)
+    whyParts.push(`${joinNames(holders)} can hold your items in the meantime`)
+  if (roster.length > 0)
+    whyParts.push(`${joinNames(roster)} fit${roster.length > 1 ? '' : 's'} the final board`)
+  if (rec.matchedAugments.length > 0)
+    whyParts.push('your augments point this way')
+  if (rec.matchedCrafted.length > 0)
+    whyParts.push('your crafted items land here')
+  const whyLine = whyParts.length > 0 ? whyParts.join(' · ') : null
+
   return (
     <article
       id={`comp-${comp.id}`}
@@ -84,6 +109,8 @@ export default function CompCard({
       <ScoreBar score={rec.score} delay={delay ?? 0} />
 
       {rank === 0 && <p className="best-tag">TOP PICK FOR YOUR START</p>}
+
+      {whyLine && <p className="comp-why">{whyLine}</p>}
 
       <div className="needs">
         {rec.needs.map((need) => (
