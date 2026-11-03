@@ -6,9 +6,11 @@ import './FinalBoard.css'
 export default function FinalBoard({
   comp,
   pickedChampions,
+  compact,
 }: {
   comp: Comp
   pickedChampions: Record<string, number>
+  compact?: boolean
 }) {
   const board = comp.finalBoard
   if (!board) return null
@@ -33,7 +35,7 @@ export default function FinalBoard({
   const flex = board.flex ?? 0
 
   return (
-    <div className="final-board">
+    <div className={`final-board ${compact ? 'compact' : ''}`}>
       <div className="final-board-row">
         {board.front.map(slot)}
         {flex > 0 && <span className="board-flex">+{flex} flex</span>}

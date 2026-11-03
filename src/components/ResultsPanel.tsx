@@ -165,8 +165,8 @@ export default function ResultsPanel({
                 key={rec.opener.id}
                 rec={rec}
                 hasInput={hasInput}
-                comps={comps}
-                onSelectComp={onSelectComp}
+                recs={recs}
+                pickedChampions={pickedChampions}
                 delay={Math.min(index * 60, 480)}
               />
             ))}

@@ -53,7 +53,8 @@ function App() {
           trait: emblem.name.replace(' Emblem', ''),
           tier: 'gold' as const,
           category: 'build' as const,
-          icon: emblem.icon,
+          isEmblem: true,
+          icon: 'emblems/' + emblem.icon,
         })),
     [emblems],
   )

@@ -79,6 +79,7 @@ export interface Augment {
   category: AugmentCategory
   description?: string
   icon?: string
+  isEmblem?: boolean
 }
 
 export type ChampionRole = 'carry' | 'tank' | 'support' | 'flex'
