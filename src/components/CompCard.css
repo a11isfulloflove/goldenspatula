@@ -241,6 +241,11 @@
   line-height: 15px;
 }
 
+.champ-match-carry {
+  color: var(--gold-bright);
+  font-size: 12px;
+}
+
 .augment-matches {
   display: flex;
   flex-wrap: wrap;
