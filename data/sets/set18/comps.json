@@ -62,7 +62,19 @@
       "Rammus' shield scales with AP, so Crownguard is a natural fit on him",
       "Feed order for the Blackthorn: Teemo 3 first, then Soraka 2, then Teemo 2",
       "Level to 7 on 4-1, stabilize with 2-star Azir and Rammus, then slow roll here"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Rammus"
+      ],
+      "back": [
+        "Azir",
+        "Zyra",
+        "Teemo",
+        "Soraka"
+      ],
+      "flex": 3
+    }
   },
   {
     "id": "khazix-reroll",
@@ -136,7 +148,20 @@
       "Kha'Zix only evolves on takedowns, so an early copy starts snowballing much sooner",
       "Tuck Hecarim right beside Kha'Zix so he soaks the first damage aimed at him",
       "This is a tempo line: no Kha'Zix by stage 3 means pivot to something else"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Hecarim",
+        "Kha'Zix"
+      ],
+      "back": [
+        "Diana",
+        "Ezreal",
+        "Aphelios",
+        "Alune"
+      ],
+      "flex": 2
+    }
   },
   {
     "id": "draven-fast9",
@@ -211,7 +236,22 @@
       "The whole plan is hitting level 9 — if you catch yourself rolling deep on 8, the game has gone wrong",
       "Guinsoo's is non-negotiable on Draven; nearly everything else on the board is flexible",
       "Maokai grows with game length, so reach 9 and roll around 5-1 while there is still game left"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Maokai",
+        "Sentinel",
+        "Draven",
+        "Ezreal"
+      ],
+      "back": [
+        "Taric",
+        "Kennen",
+        "Gnar",
+        "Ivern"
+      ],
+      "flex": 1
+    }
   },
   {
     "id": "riftbeast-reroll",
@@ -284,7 +324,19 @@
       "Items are flexible on Cinderling, but Pebbles really wants his full core set",
       "Put the Alpha Mark on Scuttle Crab or a 3-star Krug to stall fights longer",
       "Have 5 Riftbeast active by 3-1, then climb levels toward the 7-unit breakpoint"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Krug",
+        "Scuttlecrab"
+      ],
+      "back": [
+        "Cinderling",
+        "Pebbles",
+        "Elder Dragon"
+      ],
+      "flex": 3
+    }
   },
   {
     "id": "aphelios-flex",
@@ -379,7 +431,21 @@
       "The go-to AD plan when your economy can't stretch to a Draven level-9 board",
       "Red Buff is his best item, but slamming Guinsoo's early for tempo is perfectly fine",
       "Give Nidalee a Shojin — she rescues games where you are low on HP"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Sentinel",
+        "Amumu",
+        "Aphelios",
+        "Nidalee"
+      ],
+      "back": [
+        "Brambleback",
+        "Kog'Maw",
+        "Alune",
+        "Lux"
+      ]
+    }
   },
   {
     "id": "cassiopeia-reroll",
@@ -457,7 +523,20 @@
       "Cassiopeia is item-hungry: without Deathcap or Archangel's her damage drops hard",
       "Rammus stands beside Fiddlesticks on the flank and taunts attackers away from him",
       "The 3-star targets are Cassiopeia, Rammus and Fiddlesticks — slow roll at level 7"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Rammus",
+        "Fiddlesticks",
+        "Elise"
+      ],
+      "back": [
+        "Cassiopeia",
+        "Soraka",
+        "Rengar"
+      ],
+      "flex": 2
+    }
   },
   {
     "id": "invoker-ahri-morgana",
@@ -532,7 +611,20 @@
       "Strict item requirements — if your components look poor, look for another line",
       "Front Ahri on the enemy carry's side of the board to reach the backline",
       "Plan a roll down on 4-2 for 2-star Ahri and Morgana"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Sett",
+        "Sentinel"
+      ],
+      "back": [
+        "Ahri",
+        "Morgana",
+        "Taric",
+        "Lux"
+      ],
+      "flex": 2
+    }
   },
   {
     "id": "elderwood-executioners",
@@ -609,7 +701,21 @@
       "Both AD and AP items are playable in this shell — slam early for tempo",
       "Mana items are mandatory on Ezreal and Soraka for them to function",
       "Cap the board at level 9 around Kennen, Gnar and an Elderwood Lux"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Hecarim",
+        "Ornn",
+        "Ezreal",
+        "Soraka"
+      ],
+      "back": [
+        "Kennen",
+        "Gnar",
+        "Lux",
+        "Kha'Zix"
+      ]
+    }
   },
   {
     "id": "veigar-reroll",
@@ -681,7 +787,22 @@
       "Sit at level 4 and roll on 3-1 for Veigar copies",
       "Veigar stacks AP from early kills — without the snowball he can't break late front lines",
       "Plan a second carry (Ahri or Alune) once stage 5 arrives"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Ornn",
+        "Rek'Sai",
+        "Alistar",
+        "Malphite"
+      ],
+      "back": [
+        "Veigar",
+        "LeBlanc",
+        "Karma",
+        "Ahri",
+        "Alune"
+      ]
+    }
   },
   {
     "id": "dragon-fast9",
@@ -767,7 +888,22 @@
       "Feast or famine: Elder Dragon at 1-star loses most fights, at 2-star he can win the lobby",
       "The frontline is completely open — pair any two of Sett + Krug, Maokai + Scuttle Crab, or Sentinel + Taric",
       "Skip Shred and Sunder items if you run Kog'Maw, his trait already applies them"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Maokai",
+        "Sentinel",
+        "Krug",
+        "Scuttlecrab",
+        "Sett"
+      ],
+      "back": [
+        "Elder Dragon",
+        "Draven",
+        "Taric",
+        "Kog'Maw"
+      ]
+    }
   },
   {
     "id": "kayle-reroll",
@@ -847,7 +983,21 @@
       "The comp needs five 3-stars total to come online — patience beats panic rolling",
       "If the bench fills up, sell Sejuani first and Rakan second; never sell Kayle, Ornn or Xayah",
       "At level 9 swap Hecarim out for a third Lunar unit to unlock Eclipse"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Ornn",
+        "Leona",
+        "Sejuani",
+        "Hecarim"
+      ],
+      "back": [
+        "Kayle",
+        "Xayah",
+        "Rakan"
+      ],
+      "flex": 1
+    }
   },
   {
     "id": "flora-malphite",
@@ -925,7 +1075,20 @@
       "The frontline trait is what keeps Malphite alive — the comp does not function without it",
       "Feed a 3-cost (usually Fiddlesticks) to the Blackthorn for maximum Malphite stats",
       "Only five units are mandatory, so the flex slots at level 8 adapt to whatever 5-costs you hit"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Malphite",
+        "Fiddlesticks"
+      ],
+      "back": [
+        "Soraka",
+        "Zyra",
+        "Azir",
+        "Kennen"
+      ],
+      "flex": 2
+    }
   },
   {
     "id": "juggernaut-flex",
@@ -1008,7 +1171,21 @@
       "Your slams pick the backline: AP items point at Zyra or Alune, AD items at Sivir into Ashe",
       "Pure tempo plan — slam early, keep winning, and ride the frontline to level 9",
       "Fielding Maokai as early as possible makes the late-game win-out much easier thanks to his HP scaling"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Amumu",
+        "Maokai",
+        "Scuttlecrab"
+      ],
+      "back": [
+        "Ashe",
+        "Zyra",
+        "Sivir",
+        "Alune"
+      ],
+      "flex": 1
+    }
   },
   {
     "id": "ashe-fast9",
@@ -1094,7 +1271,22 @@
       "The friendliest fast-9 entry: any Ahri, Sivir or Blossom start can funnel into it — the only real demands are a Shojin and the econ to hit 9",
       "Her arrow flies toward the biggest clump of enemies, so park her across from the enemy stack",
       "Don't waste items on a 1-star Maokai — he needs time to scale before he's worth equipping"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Maokai",
+        "Sett",
+        "Ashe",
+        "Ahri"
+      ],
+      "back": [
+        "Alune",
+        "Taric",
+        "Gnar",
+        "Sivir",
+        "Morgana"
+      ]
+    }
   },
   {
     "id": "solar-akali",
@@ -1154,7 +1346,20 @@
       "Akali likes AP and Camille likes AD, so there is almost always something worth slamming on 2-1",
       "Ornn copies matter as much as carry copies — the Forge artifact is what raises the cap",
       "Completely uncontested or premium augments required: missing your 3-stars here is punishing"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Ornn",
+        "Leona",
+        "Sejuani"
+      ],
+      "back": [
+        "Akali",
+        "Camille",
+        "Kayle"
+      ],
+      "flex": 2
+    }
   },
   {
     "id": "caitlyn-reroll",
@@ -1232,7 +1437,21 @@
       "She has no spell — mana items do literally nothing on her, stack attack speed instead",
       "Stabilize on 3-2 around 2-star Caitlyn with 2 Hunter and 4 Juggernaut",
       "After the 3-stars, climb levels and look for Ashe at 9 — a Shojin Ashe here is a top-2 board"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Scuttlecrab",
+        "Sejuani",
+        "Caitlyn",
+        "Sivir"
+      ],
+      "back": [
+        "Ashe",
+        "Gnar",
+        "Draven",
+        "Brambleback"
+      ]
+    }
   },
   {
     "id": "blossom-ahri",
@@ -1313,7 +1532,22 @@
       "Three Blossom must stay on the board for a full fight to earn the upgraded wisp — you can't toggle it mid-round",
       "Click econ wisps by default and only grab combat wisps when protecting a streak or when they cost 1 gold",
       "The plan stalls at level 8 — reaching Ashe is what actually caps the board"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Sett",
+        "Yorick",
+        "Ahri",
+        "Ashe"
+      ],
+      "back": [
+        "Gnar",
+        "Karma",
+        "Sivir",
+        "Zyra",
+        "Alune"
+      ]
+    }
   },
   {
     "id": "invoker-nidalee",
@@ -1385,7 +1619,22 @@
       "It fights the lobby for Sentinel and Morgana, so stay flexible on 4-2 and build the frontline from whatever 2-stars you find",
       "Nidalee wants Guinsoo's plus ideally a Jeweled Gauntlet; Morgana genuinely needs her burn item",
       "The Nidalee emblem is the best spatula use here and bumps the whole comp up"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Sentinel",
+        "Vi",
+        "Amumu",
+        "Nidalee"
+      ],
+      "back": [
+        "Morgana",
+        "Kog'Maw",
+        "Rakan",
+        "Taric",
+        "Alune"
+      ]
+    }
   },
   {
     "id": "adaptor-yi-reroll",
@@ -1471,7 +1720,20 @@
       "Yi's build direction follows his partner: solo Yi goes AP items, Yi with Rengar goes AD",
       "Yi 3-star is the one non-negotiable — a 2-star Kog'Maw can cover the rest of the damage",
       "This line struggles from behind, so only enter it with an early Yi, an orb or an artifact in hand"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Vi",
+        "Krug"
+      ],
+      "back": [
+        "Master Yi",
+        "Kog'Maw",
+        "Rengar",
+        "Nidalee"
+      ],
+      "flex": 2
+    }
   },
   {
     "id": "trist-rengar-reroll",
@@ -1546,7 +1808,20 @@
       "The emblem you find decides the shape of the board — Rengar is the best holder of all three",
       "A Lilia pickup is a cheap way to stabilize stage 4 while slow rolling",
       "Only level past the reroll point after the 3-stars land, then add whatever trait the emblem needs"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Rammus",
+        "Lillia"
+      ],
+      "back": [
+        "Rengar",
+        "Tristana",
+        "Xayah",
+        "Rakan"
+      ],
+      "flex": 2
+    }
   },
   {
     "id": "primal-malphite",
@@ -1635,7 +1910,21 @@
       "Nidalee jumps to the least-equipped nearby unit after a kill — point her at the enemy's weak side",
       "The Blackthorn sacrifice gives Malphite his biggest stat boost, but never Alpha-Mark the unit you feed",
       "It contests Malphite and Sentinel with the lobby, so be the richest player on 4-2 and roll first"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Malphite",
+        "Sentinel",
+        "Krug",
+        "Nidalee"
+      ],
+      "back": [
+        "Sivir",
+        "Kog'Maw",
+        "Ashe",
+        "Taric"
+      ]
+    }
   },
   {
     "id": "solar-yunara",
@@ -1717,6 +2006,19 @@
       "Five 3-stars plus level 8 is a lot to ask — the Blossom and LeBlanc econ engines are what make it possible",
       "Staying strong through stages 3 and 4 is the whole game: her clones print units while you're ahead",
       "At level 7 swap Azir out for a third Solar, then bring him back at 8"
-    ]
+    ],
+    "finalBoard": {
+      "front": [
+        "Yorick",
+        "Sejuani"
+      ],
+      "back": [
+        "Yunara",
+        "LeBlanc",
+        "Karma",
+        "Azir"
+      ],
+      "flex": 2
+    }
   }
 ]

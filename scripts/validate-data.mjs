@@ -69,6 +69,22 @@ console.log(`\nValidating ${setId} data...\n`)
         .trim()
       if (!roster.has(primary)) fails.push(`${comp.id}: carry "${carry.champion}" not in roster`)
     }
+    if (comp.finalBoard) {
+      const rows = [
+        ['front', comp.finalBoard.front],
+        ['back', comp.finalBoard.back],
+      ]
+      for (const [label, row] of rows) {
+        for (const name of row) {
+          if (!roster.has(name)) fails.push(`${comp.id}: finalBoard.${label} has "${name}" not in roster`)
+        }
+        if (row.length > 5) fails.push(`${comp.id}: finalBoard.${label} has ${row.length} champs (max 5)`)
+      }
+      const total = comp.finalBoard.front.length + comp.finalBoard.back.length + (comp.finalBoard.flex ?? 0)
+      if (total < 8 || total > 9) {
+        fails.push(`${comp.id}: finalBoard totals ${total} slots (expected 8-9)`)
+      }
+    }
     if (!tiers.has(comp.tier)) fails.push(`${comp.id}: tier "${comp.tier}"`)
     for (const key of Object.keys(comp.itemNeeds)) {
       if (!needKeys.has(key)) fails.push(`${comp.id}: itemNeeds key "${key}"`)

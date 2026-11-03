@@ -26,6 +26,7 @@ export default function ResultsPanel({
   focusComp,
   onFocusCompHandled,
   onSelectComp,
+  pickedChampions,
 }: {
   recs: Recommendation[]
   openerRecs: OpenerRecommendation[]
@@ -37,6 +38,7 @@ export default function ResultsPanel({
   focusComp: { id: string; nonce: number } | null
   onFocusCompHandled: () => void
   onSelectComp: (id: string) => void
+  pickedChampions: Record<string, number>
 }) {
   const [viewMode, setViewMode] = useState<'ranked' | 'tiers' | 'openers'>('ranked')
   const [expanded, setExpanded] = useState<ExpandedState>({ id: null, epoch: 0 })
@@ -117,6 +119,7 @@ export default function ResultsPanel({
                 rec={rec}
                 rank={index}
                 delay={Math.min(index * 60, 480)}
+                pickedChampions={pickedChampions}
               />
             ))}
             {!showAll && recs.length > TOP_COUNT && (
@@ -125,6 +128,7 @@ export default function ResultsPanel({
                   rec={recs[TOP_COUNT]}
                   rank={TOP_COUNT}
                   delay={Math.min(TOP_COUNT * 60, 480)}
+                  pickedChampions={pickedChampions}
                 />
               </div>
             )}
@@ -146,6 +150,7 @@ export default function ResultsPanel({
           recs={recs}
           hasInput={hasInput}
           expandedId={expandedId}
+          pickedChampions={pickedChampions}
           onToggle={(id) =>
             setExpanded({ id: expandedId === id ? null : id, epoch: resetSignal })
           }

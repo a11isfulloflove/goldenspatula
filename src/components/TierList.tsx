@@ -7,11 +7,13 @@ export default function TierList({
   recs,
   hasInput,
   expandedId,
+  pickedChampions,
   onToggle,
 }: {
   recs: Recommendation[]
   hasInput: boolean
   expandedId: string | null
+  pickedChampions: Record<string, number>
   onToggle: (id: string) => void
 }) {
   const groups = TIER_ORDER.map((tier) => ({
@@ -51,7 +53,9 @@ export default function TierList({
                     </span>
                   )}
                 </button>
-                {expandedId === rec.comp.id && <CompCard rec={rec} />}
+                {expandedId === rec.comp.id && (
+                  <CompCard rec={rec} pickedChampions={pickedChampions} />
+                )}
               </div>
             ))}
           </div>

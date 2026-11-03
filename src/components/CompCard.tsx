@@ -5,6 +5,7 @@ import { items } from '../data'
 import type { Recommendation } from '../engine/recommend'
 import ChampionPortrait from './ChampionPortrait'
 import AugmentIcon from './AugmentIcon'
+import FinalBoard from './FinalBoard'
 import ItemName from './ItemName'
 import { needStatusClass, asset } from '../ui-helpers'
 import './CompCard.css'
@@ -55,10 +56,12 @@ export default function CompCard({
   rec,
   rank,
   delay,
+  pickedChampions,
 }: {
   rec: Recommendation
   rank?: number
   delay?: number
+  pickedChampions?: Record<string, number>
 }) {
   const { comp } = rec
   return (
@@ -131,6 +134,13 @@ export default function CompCard({
               </span>
             )
           })}
+        </div>
+      )}
+
+      {comp.finalBoard && (
+        <div className="comp-section">
+          <h4>Final board at level 8</h4>
+          <FinalBoard comp={comp} pickedChampions={pickedChampions ?? {}} />
         </div>
       )}
 
