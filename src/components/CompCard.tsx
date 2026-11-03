@@ -58,14 +58,19 @@ export default function CompCard({
   delay,
   pickedChampions,
   compactBoard,
+  onAddChampion,
+  onRemoveChampion,
 }: {
   rec: Recommendation
   rank?: number
   delay?: number
   pickedChampions?: Record<string, number>
   compactBoard?: boolean
+  onAddChampion?: (name: string) => void
+  onRemoveChampion?: (name: string) => void
 }) {
   const { comp } = rec
+  const committed = rec.championCoverage >= 0.7
 
   const joinNames = (names: string[]) =>
     names.length <= 1
@@ -94,7 +99,7 @@ export default function CompCard({
   return (
     <article
       id={`comp-${comp.id}`}
-      className={`comp-card ${rank === 0 ? 'best' : ''}`}
+      className={`comp-card ${rank === 0 ? 'best' : ''} ${committed ? 'committed' : ''}`}
       style={delay ? { animationDelay: `${delay}ms` } : undefined}
     >
       <header className="comp-header">
@@ -109,6 +114,12 @@ export default function CompCard({
       <ScoreBar score={rec.score} delay={delay ?? 0} />
 
       {rank === 0 && <p className="best-tag">TOP PICK FOR YOUR START</p>}
+
+      {committed && (
+        <p className="committed-tag">
+          COMMITTED · {rec.matchedChampions.length} of {rec.championPool} champs collected
+        </p>
+      )}
 
       {whyLine && <p className="comp-why">{whyLine}</p>}
 
@@ -174,7 +185,13 @@ export default function CompCard({
       {comp.finalBoard && (
         <div className="comp-section">
           <h4>Final board at level 8</h4>
-          <FinalBoard comp={comp} pickedChampions={pickedChampions ?? {}} compact={compactBoard} />
+          <FinalBoard
+            comp={comp}
+            pickedChampions={pickedChampions ?? {}}
+            compact={compactBoard}
+            onAddChampion={onAddChampion}
+            onRemoveChampion={onRemoveChampion}
+          />
         </div>
       )}
 

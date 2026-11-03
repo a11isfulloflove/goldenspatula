@@ -15,12 +15,16 @@ export default function OpenerCard({
   hasInput,
   recs,
   pickedChampions,
+  onAddChampion,
+  onRemoveChampion,
   delay,
 }: {
   rec: OpenerRecommendation
   hasInput: boolean
   recs: Recommendation[]
   pickedChampions: Record<string, number>
+  onAddChampion?: (name: string) => void
+  onRemoveChampion?: (name: string) => void
   delay?: number
 }) {
   const { opener } = rec
@@ -125,7 +129,13 @@ export default function OpenerCard({
                 </button>
                 {open && (
                   <div className="opener-destination-detail">
-                    <CompCard rec={entry} pickedChampions={pickedChampions} compactBoard />
+                    <CompCard
+                      rec={entry}
+                      pickedChampions={pickedChampions}
+                      compactBoard
+                      onAddChampion={onAddChampion}
+                      onRemoveChampion={onRemoveChampion}
+                    />
                   </div>
                 )}
               </div>
@@ -151,7 +161,13 @@ export default function OpenerCard({
               .filter((entry) => openDestId === entry.comp.id)
               .map((entry) => (
                 <div key={entry.comp.id} className="opener-destination-detail standalone">
-                  <CompCard rec={entry} pickedChampions={pickedChampions} compactBoard />
+                  <CompCard
+                      rec={entry}
+                      pickedChampions={pickedChampions}
+                      compactBoard
+                      onAddChampion={onAddChampion}
+                      onRemoveChampion={onRemoveChampion}
+                    />
                 </div>
               ))}
           </div>
