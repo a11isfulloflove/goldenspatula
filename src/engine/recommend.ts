@@ -16,6 +16,7 @@ export interface MatchedAugment {
   name: string
   icon?: string
   tier?: string
+  isEmblem?: boolean
 }
 
 export interface Recommendation {
@@ -128,7 +129,12 @@ function collectAugmentMatches(
       augment.champion !== undefined &&
       [...comp.earlyChampions, ...comp.itemHolders, ...comp.roster].includes(augment.champion)
     if (matchesTrait || matchesChampion) {
-      matches.push({ name: augment.name, icon: augment.icon, tier: augment.tier })
+      matches.push({
+        name: augment.name,
+        icon: augment.icon,
+        tier: augment.tier,
+        isEmblem: augment.isEmblem,
+      })
       bonus += AUGMENT_TIER_BONUS[augment.tier] ?? 0.25
     }
   }

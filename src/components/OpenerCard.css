@@ -2,7 +2,7 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 18px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 13px;
@@ -111,6 +111,99 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  margin-top: 8px;
+}
+
+.opener-destinations {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.opener-destination {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 3px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-inset);
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.opener-destination:hover {
+  border-color: var(--gold-border);
+  background: var(--gold-soft);
+}
+
+.opener-destination.open {
+  border-color: var(--gold-border);
+}
+
+.opener-destination-toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.opener-destination .final-board {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.opener-destination-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.opener-destination-head:hover .opener-destination-name {
+  color: var(--gold-bright);
+}
+
+.opener-destination-caret {
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+.opener-destination-detail {
+  width: 100%;
+  margin-top: 2px;
+}
+
+.opener-destination-detail .comp-card {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 10px;
+  padding: 8px 2px;
+}
+
+.opener-destination-detail.standalone {
+  flex-basis: 100%;
+}
+
+.opener-destination-name {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-strong);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.opener-destination-pct {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold-bright);
 }
 
 .opener-leads-chip {

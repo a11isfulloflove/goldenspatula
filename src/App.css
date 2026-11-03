@@ -19,6 +19,16 @@
   gap: 24px;
 }
 
+@media (max-width: 640px) {
+  .app {
+    padding: 24px 12px 64px;
+  }
+
+  .panel {
+    padding: 12px;
+  }
+}
+
 @media (min-width: 1100px) {
   .app {
     max-width: 1360px;
@@ -36,7 +46,7 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 20px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   gap: 14px;

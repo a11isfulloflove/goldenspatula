@@ -5,6 +5,7 @@ import { items } from '../data'
 import type { Recommendation } from '../engine/recommend'
 import ChampionPortrait from './ChampionPortrait'
 import AugmentIcon from './AugmentIcon'
+import FinalBoard from './FinalBoard'
 import ItemName from './ItemName'
 import { needStatusClass, asset } from '../ui-helpers'
 import './CompCard.css'
@@ -55,10 +56,14 @@ export default function CompCard({
   rec,
   rank,
   delay,
+  pickedChampions,
+  compactBoard,
 }: {
   rec: Recommendation
   rank?: number
   delay?: number
+  pickedChampions?: Record<string, number>
+  compactBoard?: boolean
 }) {
   const { comp } = rec
   return (
@@ -108,13 +113,17 @@ export default function CompCard({
         <div className="augment-matches">
           {rec.matchedAugments.map((augment) => (
             <span key={augment.name} className="augment-match">
-              <AugmentIcon
-                icon={augment.icon}
-                tier={augment.tier ?? 'gold'}
-                size={20}
-                fallbackChar={augment.name.charAt(0)}
-              />
-              {augment.name} <em>(augment)</em>
+              {augment.isEmblem ? (
+                <img src={asset(augment.icon ?? '')} alt="" draggable={false} />
+              ) : (
+                <AugmentIcon
+                  icon={augment.icon}
+                  tier={augment.tier ?? 'gold'}
+                  size={20}
+                  fallbackChar={augment.name.charAt(0)}
+                />
+              )}
+              {augment.name} <em>({augment.isEmblem ? 'emblem' : 'augment'})</em>
             </span>
           ))}
         </div>
@@ -131,6 +140,13 @@ export default function CompCard({
               </span>
             )
           })}
+        </div>
+      )}
+
+      {comp.finalBoard && (
+        <div className="comp-section">
+          <h4>Final board at level 8</h4>
+          <FinalBoard comp={comp} pickedChampions={pickedChampions ?? {}} compact={compactBoard} />
         </div>
       )}
 

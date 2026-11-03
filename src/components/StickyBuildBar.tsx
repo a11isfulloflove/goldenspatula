@@ -156,7 +156,7 @@ export default function StickyBuildBar({
           >
             <img
               className="sticky-bar-pick-augment"
-              src={asset(`emblems/${emblem.icon ?? 'tft18_emblem_fae.png'}`)}
+              src={asset(emblem.icon ?? 'emblems/tft18_emblem_fae.png')}
               alt=""
               draggable={false}
             />
