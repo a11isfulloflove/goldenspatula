@@ -35,6 +35,8 @@ export interface Recommendation {
   matchedChampions: MatchedChampion[]
   matchedAugments: MatchedAugment[]
   matchedCrafted: string[]
+  championCoverage: number
+  championPool: number
   unusedCount: number
 }
 
@@ -100,6 +102,8 @@ function copyMultiplier(copies: number): number {
 }
 
 const CARRY_BONUS_MULTIPLIER = 1.5
+const BREADTH_DECAY = 0.4
+const CHAMPION_BONUS_CAP = 1.0
 
 function collectChampionMatches(
   early: string[],
@@ -109,21 +113,26 @@ function collectChampionMatches(
   carryNames: Set<string> = new Set(),
 ): { matches: MatchedChampion[]; bonus: number } {
   const matches: MatchedChampion[] = []
-  let bonus = 0
+  const perChampion: number[] = []
   for (const [name, copies] of Object.entries(championCounts)) {
     const carryBoost = carryNames.has(name) ? CARRY_BONUS_MULTIPLIER : 1
     if (early.includes(name)) {
       matches.push({ name, role: 'early', copies, carry: carryNames.has(name) || undefined })
-      bonus += 0.3 * copyMultiplier(copies) * carryBoost
+      perChampion.push(0.3 * copyMultiplier(copies) * carryBoost)
     } else if (holders.includes(name)) {
       matches.push({ name, role: 'item holder', copies, carry: carryNames.has(name) || undefined })
-      bonus += 0.15 * copyMultiplier(copies) * carryBoost
+      perChampion.push(0.15 * copyMultiplier(copies) * carryBoost)
     } else if (roster.includes(name)) {
       matches.push({ name, role: 'roster', copies, carry: carryNames.has(name) || undefined })
-      bonus += 0.08 * copyMultiplier(copies) * carryBoost
+      perChampion.push(0.08 * copyMultiplier(copies) * carryBoost)
     }
   }
-  return { matches, bonus: Math.min(bonus, 0.6) }
+  perChampion.sort((a, b) => b - a)
+  let bonus = 0
+  for (let i = 0; i < perChampion.length; i++) {
+    bonus += perChampion[i] / (1 + BREADTH_DECAY * i)
+  }
+  return { matches, bonus: Math.min(bonus, CHAMPION_BONUS_CAP) }
 }
 
 const AUGMENT_TIER_BONUS: Record<string, number> = { silver: 0.2, gold: 0.25, prismatic: 0.3 }
@@ -231,6 +240,11 @@ export function recommend(
   return comps
     .map((comp) => {
       const fit = computeFit(comp.itemNeeds, items, freeInventory)
+      const championPool = new Set([
+        ...comp.earlyChampions,
+        ...comp.itemHolders,
+        ...comp.roster,
+      ]).size
       const wasteRatio = inventorySize > 0 ? fit.unusedCount / inventorySize : 0
       const carryNames = new Set(
         comp.carryItems.map((carry) => primaryChampionName(carry.champion)),
@@ -262,6 +276,8 @@ export function recommend(
         matchedChampions: matches,
         matchedAugments: augmentMatches,
         matchedCrafted: craftedMatches,
+        championCoverage: championPool > 0 ? matches.length / championPool : 0,
+        championPool,
         unusedCount: fit.unusedCount,
       }
     })
