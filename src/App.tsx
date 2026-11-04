@@ -134,6 +134,14 @@ function App() {
       <Header />
       <div className="app-columns">
         <div className="column-pickers" key={resetSignal}>
+          <ChampionPicker
+            counts={championCounts}
+            onAdd={addChampionCopy}
+            onRemove={removeChampionCopy}
+            query={query}
+            onQueryChange={setQuery}
+            startExpanded={!hasInput}
+          />
           <ComponentPicker
             counts={counts}
             onAdd={addComponent}
@@ -147,14 +155,6 @@ function App() {
           <AugmentPicker
             selected={augments}
             onToggle={toggleAugment}
-            startExpanded={!hasInput}
-          />
-          <ChampionPicker
-            counts={championCounts}
-            onAdd={addChampionCopy}
-            onRemove={removeChampionCopy}
-            query={query}
-            onQueryChange={setQuery}
             startExpanded={!hasInput}
           />
         </div>

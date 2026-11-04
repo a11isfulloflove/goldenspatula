@@ -183,7 +183,7 @@ export default function ComponentPicker({
         onClick={() => setExpanded((value) => !value)}
       >
         <div className="panel-head-text">
-          <h2>1 · Your item components</h2>
+          <h2>2 · Your item components</h2>
           {expanded ? (
             <span className="panel-hint">
               Tap to add <SparkleMark /> − removes <SparkleMark /> tap a spatula tool to craft
