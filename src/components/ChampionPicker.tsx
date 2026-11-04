@@ -59,7 +59,7 @@ export default function ChampionPicker({
         onClick={() => setExpanded((value) => !value)}
       >
         <div className="panel-head-text">
-          <h2>3 · Champions you&apos;ve been offered</h2>
+          <h2>1 · Champions you&apos;ve been offered</h2>
           {expanded ? (
             <span className="panel-hint">
               Tap once per copy <SparkleMark /> stacked duplicates signal a reroll start
