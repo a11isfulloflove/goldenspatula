@@ -2020,5 +2020,1572 @@
       ],
       "flex": 2
     }
+  },
+  {
+    "id": "elderwood-spellweaver",
+    "name": "Elderwood Spellweaver",
+    "tier": "S",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Elderwood",
+      "Spellweaver",
+      "Blackthorn"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Ornn",
+      "Rek'Sai",
+      "Veigar"
+    ],
+    "itemHolders": [
+      "Veigar",
+      "LeBlanc"
+    ],
+    "roster": [
+      "Ornn",
+      "Rek'Sai",
+      "Veigar",
+      "Alistar",
+      "LeBlanc",
+      "Cassiopeia",
+      "Soraka"
+    ],
+    "finalBoard": {
+      "front": [
+        "Ornn",
+        "Rek'Sai",
+        "Alistar"
+      ],
+      "back": [
+        "Veigar",
+        "LeBlanc",
+        "Cassiopeia",
+        "Soraka"
+      ],
+      "flex": 2
+    },
+    "carryItems": [
+      {
+        "champion": "Veigar",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "LeBlanc",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "elderwood-defender",
+    "name": "Elderwood Defender",
+    "tier": "S",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Elderwood",
+      "Defender",
+      "Fae"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Ornn",
+      "Xayah",
+      "Alistar"
+    ],
+    "itemHolders": [
+      "Xayah",
+      "LeBlanc"
+    ],
+    "roster": [
+      "Ornn",
+      "Xayah",
+      "Alistar",
+      "LeBlanc",
+      "Aphelios",
+      "Lillia",
+      "Alune",
+      "Gnar"
+    ],
+    "finalBoard": {
+      "front": [
+        "Ornn",
+        "Alistar",
+        "Lillia"
+      ],
+      "back": [
+        "Xayah",
+        "LeBlanc",
+        "Aphelios",
+        "Alune",
+        "Gnar"
+      ],
+      "flex": 1
+    },
+    "carryItems": [
+      {
+        "champion": "Xayah",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "LeBlanc",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "vanguard-lunar",
+    "name": "Vanguard Lunar",
+    "tier": "S",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Vanguard",
+      "Lunar",
+      "Defender"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Diana",
+      "Fiddlesticks",
+      "Lillia"
+    ],
+    "itemHolders": [
+      "Diana"
+    ],
+    "roster": [
+      "Diana",
+      "Fiddlesticks",
+      "Lillia",
+      "Sentinel",
+      "Alune",
+      "Taric"
+    ],
+    "finalBoard": {
+      "front": [
+        "Fiddlesticks",
+        "Lillia",
+        "Sentinel"
+      ],
+      "back": [
+        "Diana",
+        "Alune",
+        "Taric"
+      ],
+      "flex": 3
+    },
+    "carryItems": [
+      {
+        "champion": "Diana",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "riftbeast-invoker",
+    "name": "Riftbeast Invoker",
+    "tier": "S",
+    "playstyle": "Draft — level 8 cap",
+    "traits": [
+      "Riftbeast",
+      "Invoker",
+      "Brawler"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Pebbles",
+      "Krug",
+      "Sentinel"
+    ],
+    "itemHolders": [
+      "Pebbles",
+      "Gnar"
+    ],
+    "roster": [
+      "Pebbles",
+      "Krug",
+      "Sentinel",
+      "Gnar"
+    ],
+    "finalBoard": {
+      "front": [
+        "Krug",
+        "Sentinel"
+      ],
+      "back": [
+        "Pebbles",
+        "Gnar"
+      ],
+      "flex": 4
+    },
+    "carryItems": [
+      {
+        "champion": "Pebbles",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "Gnar",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "blackthorn-sprykin",
+    "name": "Blackthorn Sprykin",
+    "tier": "S",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Blackthorn",
+      "Sprykin",
+      "Spellweaver"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Veigar",
+      "Teemo",
+      "Azir"
+    ],
+    "itemHolders": [
+      "Veigar",
+      "Azir"
+    ],
+    "roster": [
+      "Veigar",
+      "Teemo",
+      "Azir",
+      "Fiddlesticks",
+      "Soraka",
+      "Zyra"
+    ],
+    "finalBoard": {
+      "front": [
+        "Fiddlesticks"
+      ],
+      "back": [
+        "Veigar",
+        "Teemo",
+        "Azir",
+        "Soraka",
+        "Zyra"
+      ],
+      "flex": 3
+    },
+    "carryItems": [
+      {
+        "champion": "Veigar",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "Azir",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "riftbeast-invoker-alt",
+    "name": "Riftbeast Invoker alt",
+    "tier": "A",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Riftbeast",
+      "Invoker",
+      "Brawler"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Pebbles",
+      "Krug",
+      "Sentinel"
+    ],
+    "itemHolders": [
+      "Pebbles",
+      "Gnar"
+    ],
+    "roster": [
+      "Pebbles",
+      "Krug",
+      "Sentinel",
+      "Gnar",
+      "Taric"
+    ],
+    "finalBoard": {
+      "front": [
+        "Krug",
+        "Sentinel"
+      ],
+      "back": [
+        "Pebbles",
+        "Gnar",
+        "Taric"
+      ],
+      "flex": 4
+    },
+    "carryItems": [
+      {
+        "champion": "Pebbles",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "Gnar",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "executioner-elderwood",
+    "name": "Executioner Elderwood",
+    "tier": "A",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Executioner",
+      "Elderwood",
+      "Blossom"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Alistar",
+      "LeBlanc",
+      "Yunara"
+    ],
+    "itemHolders": [
+      "LeBlanc",
+      "Yunara"
+    ],
+    "roster": [
+      "Alistar",
+      "LeBlanc",
+      "Yunara",
+      "Ahri",
+      "Ezreal",
+      "Sett",
+      "Soraka",
+      "Kennen"
+    ],
+    "finalBoard": {
+      "front": [
+        "Alistar",
+        "Sett",
+        "LeBlanc"
+      ],
+      "back": [
+        "Yunara",
+        "Ahri",
+        "Ezreal",
+        "Soraka",
+        "Kennen"
+      ],
+      "flex": 1
+    },
+    "carryItems": [
+      {
+        "champion": "LeBlanc",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "Yunara",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "vanguard-riftbeast",
+    "name": "Vanguard Riftbeast",
+    "tier": "A",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Vanguard",
+      "Riftbeast",
+      "Invoker"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Pebbles",
+      "Diana",
+      "Hecarim"
+    ],
+    "itemHolders": [
+      "Pebbles",
+      "Diana"
+    ],
+    "roster": [
+      "Pebbles",
+      "Diana",
+      "Hecarim",
+      "Sentinel",
+      "Taric"
+    ],
+    "finalBoard": {
+      "front": [
+        "Hecarim",
+        "Sentinel"
+      ],
+      "back": [
+        "Pebbles",
+        "Diana",
+        "Taric"
+      ],
+      "flex": 4
+    },
+    "carryItems": [
+      {
+        "champion": "Pebbles",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "Diana",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "elderwood-defender-alt",
+    "name": "Elderwood Defender alt",
+    "tier": "A",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Elderwood",
+      "Defender",
+      "Blossom"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Ornn",
+      "Yunara",
+      "Fiddlesticks"
+    ],
+    "itemHolders": [
+      "Yunara",
+      "Soraka"
+    ],
+    "roster": [
+      "Ornn",
+      "Yunara",
+      "Fiddlesticks",
+      "Sett",
+      "Soraka",
+      "Gnar"
+    ],
+    "finalBoard": {
+      "front": [
+        "Ornn",
+        "Fiddlesticks",
+        "Sett"
+      ],
+      "back": [
+        "Yunara",
+        "Soraka",
+        "Gnar"
+      ],
+      "flex": 3
+    },
+    "carryItems": [
+      {
+        "champion": "Yunara",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "Soraka",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "spellweaver-blossom",
+    "name": "Spellweaver Blossom",
+    "tier": "A",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Spellweaver",
+      "Blossom",
+      "Juggernaut"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Karma",
+      "Rakan",
+      "Yorick"
+    ],
+    "itemHolders": [
+      "Diana"
+    ],
+    "roster": [
+      "Karma",
+      "Rakan",
+      "Yorick",
+      "Diana",
+      "Fiddlesticks",
+      "Alune"
+    ],
+    "finalBoard": {
+      "front": [
+        "Yorick",
+        "Fiddlesticks"
+      ],
+      "back": [
+        "Karma",
+        "Rakan",
+        "Diana",
+        "Alune"
+      ],
+      "flex": 3
+    },
+    "carryItems": [
+      {
+        "champion": "Diana",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "blossom-riftbeast",
+    "name": "Blossom Riftbeast",
+    "tier": "A",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Blossom",
+      "Riftbeast",
+      "Spellweaver"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Karma",
+      "Pebbles",
+      "Krug"
+    ],
+    "itemHolders": [
+      "Pebbles",
+      "Ahri"
+    ],
+    "roster": [
+      "Karma",
+      "Pebbles",
+      "Krug",
+      "Sett",
+      "Ahri",
+      "Sentinel",
+      "Taric"
+    ],
+    "finalBoard": {
+      "front": [
+        "Krug",
+        "Sett",
+        "Sentinel"
+      ],
+      "back": [
+        "Karma",
+        "Pebbles",
+        "Ahri",
+        "Taric"
+      ],
+      "flex": 2
+    },
+    "carryItems": [
+      {
+        "champion": "Pebbles",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "Ahri",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "vanguard-juggernaut",
+    "name": "Vanguard Juggernaut",
+    "tier": "A",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Vanguard",
+      "Juggernaut",
+      "Primal"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Rakan",
+      "Diana",
+      "Vi"
+    ],
+    "itemHolders": [
+      "Diana",
+      "Nidalee"
+    ],
+    "roster": [
+      "Rakan",
+      "Diana",
+      "Vi",
+      "Nidalee",
+      "Sentinel",
+      "Taric"
+    ],
+    "finalBoard": {
+      "front": [
+        "Vi",
+        "Sentinel"
+      ],
+      "back": [
+        "Rakan",
+        "Diana",
+        "Nidalee",
+        "Taric"
+      ],
+      "flex": 3
+    },
+    "carryItems": [
+      {
+        "champion": "Diana",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "Nidalee",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "hunter-juggernaut",
+    "name": "Hunter Juggernaut",
+    "tier": "A",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Hunter",
+      "Juggernaut",
+      "Fae"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Rakan",
+      "Caitlyn",
+      "Sejuani"
+    ],
+    "itemHolders": [
+      "Caitlyn",
+      "Tristana"
+    ],
+    "roster": [
+      "Rakan",
+      "Caitlyn",
+      "Sejuani",
+      "Tristana",
+      "Vi",
+      "Sivir",
+      "Ashe"
+    ],
+    "finalBoard": {
+      "front": [
+        "Sejuani",
+        "Vi"
+      ],
+      "back": [
+        "Rakan",
+        "Caitlyn",
+        "Tristana",
+        "Sivir",
+        "Ashe"
+      ],
+      "flex": 2
+    },
+    "carryItems": [
+      {
+        "champion": "Caitlyn",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "Tristana",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "juggernaut-summoner",
+    "name": "Juggernaut Summoner",
+    "tier": "A",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Juggernaut",
+      "Summoner",
+      "Primal"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Yorick",
+      "Sejuani",
+      "Vi"
+    ],
+    "itemHolders": [
+      "Sivir",
+      "Zyra"
+    ],
+    "roster": [
+      "Yorick",
+      "Sejuani",
+      "Vi",
+      "Amumu",
+      "Sivir",
+      "Zyra",
+      "Maokai"
+    ],
+    "finalBoard": {
+      "front": [
+        "Yorick",
+        "Sejuani",
+        "Vi",
+        "Amumu",
+        "Maokai"
+      ],
+      "back": [
+        "Sivir",
+        "Zyra"
+      ],
+      "flex": 2
+    },
+    "carryItems": [
+      {
+        "champion": "Sivir",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "Zyra",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "inferno-rapidfire",
+    "name": "Inferno Rapidfire",
+    "tier": "A",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Inferno",
+      "Rapidfire",
+      "Lunar"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Varus",
+      "Diana",
+      "Vi"
+    ],
+    "itemHolders": [
+      "Varus",
+      "Diana"
+    ],
+    "roster": [
+      "Varus",
+      "Diana",
+      "Vi",
+      "Amumu",
+      "Aphelios",
+      "Nidalee",
+      "Sentinel"
+    ],
+    "finalBoard": {
+      "front": [
+        "Vi",
+        "Amumu",
+        "Sentinel"
+      ],
+      "back": [
+        "Varus",
+        "Diana",
+        "Aphelios",
+        "Nidalee"
+      ],
+      "flex": 2
+    },
+    "carryItems": [
+      {
+        "champion": "Varus",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "Diana",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "inferno-adaptor",
+    "name": "Inferno Adaptor",
+    "tier": "A",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Inferno",
+      "Adaptor",
+      "Ravager"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Akali",
+      "Diana",
+      "Vi"
+    ],
+    "itemHolders": [
+      "Akali",
+      "Diana"
+    ],
+    "roster": [
+      "Akali",
+      "Diana",
+      "Vi",
+      "Amumu",
+      "Nidalee",
+      "Sentinel"
+    ],
+    "finalBoard": {
+      "front": [
+        "Vi",
+        "Amumu",
+        "Sentinel"
+      ],
+      "back": [
+        "Akali",
+        "Diana",
+        "Nidalee"
+      ],
+      "flex": 3
+    },
+    "carryItems": [
+      {
+        "champion": "Akali",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "Diana",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "inferno-hunter",
+    "name": "Inferno Hunter",
+    "tier": "A",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Inferno",
+      "Hunter",
+      "Defender"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Shen",
+      "Tristana",
+      "Vi"
+    ],
+    "itemHolders": [
+      "Tristana",
+      "Sivir"
+    ],
+    "roster": [
+      "Shen",
+      "Tristana",
+      "Vi",
+      "Amumu",
+      "Lillia",
+      "Sivir",
+      "Ashe",
+      "Kennen"
+    ],
+    "finalBoard": {
+      "front": [
+        "Shen",
+        "Vi",
+        "Amumu",
+        "Lillia"
+      ],
+      "back": [
+        "Tristana",
+        "Sivir",
+        "Ashe",
+        "Kennen"
+      ],
+      "flex": 1
+    },
+    "carryItems": [
+      {
+        "champion": "Tristana",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "Sivir",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "vanguard-lunar-alt",
+    "name": "Vanguard Lunar alt",
+    "tier": "A",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Vanguard",
+      "Lunar"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Diana",
+      "Hecarim",
+      "Rengar"
+    ],
+    "itemHolders": [
+      "Diana",
+      "Rengar"
+    ],
+    "roster": [
+      "Diana",
+      "Hecarim",
+      "Rengar",
+      "Aphelios",
+      "Sentinel",
+      "Taric"
+    ],
+    "finalBoard": {
+      "front": [
+        "Hecarim",
+        "Sentinel"
+      ],
+      "back": [
+        "Diana",
+        "Rengar",
+        "Aphelios",
+        "Taric"
+      ],
+      "flex": 3
+    },
+    "carryItems": [
+      {
+        "champion": "Diana",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "Rengar",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "solar-rapidfire",
+    "name": "Solar Rapidfire",
+    "tier": "A",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Solar",
+      "Rapidfire",
+      "Lunar"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Leona",
+      "Varus",
+      "Kayle"
+    ],
+    "itemHolders": [
+      "Varus",
+      "Kayle"
+    ],
+    "roster": [
+      "Leona",
+      "Varus",
+      "Kayle",
+      "Sejuani",
+      "Shen",
+      "Diana",
+      "Aphelios",
+      "Alune"
+    ],
+    "finalBoard": {
+      "front": [
+        "Leona",
+        "Sejuani",
+        "Shen"
+      ],
+      "back": [
+        "Varus",
+        "Kayle",
+        "Diana",
+        "Aphelios",
+        "Alune"
+      ],
+      "flex": 1
+    },
+    "carryItems": [
+      {
+        "champion": "Varus",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "Kayle",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "sprykin-brawler",
+    "name": "Sprykin Brawler",
+    "tier": "A",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Sprykin",
+      "Brawler",
+      "Invoker"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Kobuko",
+      "Teemo",
+      "Tristana"
+    ],
+    "itemHolders": [
+      "Tristana",
+      "Ashe"
+    ],
+    "roster": [
+      "Kobuko",
+      "Teemo",
+      "Tristana",
+      "Sentinel",
+      "Lillia",
+      "Ashe",
+      "Gnar"
+    ],
+    "finalBoard": {
+      "front": [
+        "Kobuko",
+        "Sentinel",
+        "Lillia"
+      ],
+      "back": [
+        "Teemo",
+        "Tristana",
+        "Ashe",
+        "Gnar"
+      ],
+      "flex": 2
+    },
+    "carryItems": [
+      {
+        "champion": "Tristana",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "Ashe",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "sprykin-brawler-alt",
+    "name": "Sprykin Brawler alt",
+    "tier": "A",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Sprykin",
+      "Brawler",
+      "Invoker"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Kobuko",
+      "Teemo",
+      "Tristana"
+    ],
+    "itemHolders": [
+      "Tristana",
+      "Gnar"
+    ],
+    "roster": [
+      "Kobuko",
+      "Teemo",
+      "Tristana",
+      "Sentinel",
+      "Lillia",
+      "Gnar",
+      "Taric"
+    ],
+    "finalBoard": {
+      "front": [
+        "Kobuko",
+        "Sentinel",
+        "Lillia"
+      ],
+      "back": [
+        "Teemo",
+        "Tristana",
+        "Gnar",
+        "Taric"
+      ],
+      "flex": 2
+    },
+    "carryItems": [
+      {
+        "champion": "Tristana",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "Gnar",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "blackthorn-brawler",
+    "name": "Blackthorn Brawler",
+    "tier": "B",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Blackthorn",
+      "Brawler",
+      "Ravager"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Rek'Sai",
+      "Warwick",
+      "Azir"
+    ],
+    "itemHolders": [
+      "Warwick",
+      "Azir"
+    ],
+    "roster": [
+      "Rek'Sai",
+      "Warwick",
+      "Azir",
+      "Diana",
+      "Krug"
+    ],
+    "finalBoard": {
+      "front": [
+        "Rek'Sai",
+        "Krug"
+      ],
+      "back": [
+        "Warwick",
+        "Azir",
+        "Diana"
+      ],
+      "flex": 4
+    },
+    "carryItems": [
+      {
+        "champion": "Warwick",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "Azir",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "vanguard-coven",
+    "name": "Vanguard Coven",
+    "tier": "B",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Vanguard",
+      "Coven",
+      "Spellweaver"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Elise",
+      "Cassiopeia",
+      "Fiddlesticks"
+    ],
+    "itemHolders": [
+      "Cassiopeia"
+    ],
+    "roster": [
+      "Elise",
+      "Cassiopeia",
+      "Fiddlesticks",
+      "Sentinel",
+      "Taric"
+    ],
+    "finalBoard": {
+      "front": [
+        "Elise",
+        "Fiddlesticks",
+        "Sentinel"
+      ],
+      "back": [
+        "Cassiopeia",
+        "Taric"
+      ],
+      "flex": 4
+    },
+    "carryItems": [
+      {
+        "champion": "Cassiopeia",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "elderwood-brawler",
+    "name": "Elderwood Brawler",
+    "tier": "B",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Elderwood",
+      "Brawler",
+      "Executioner"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Ornn",
+      "Xayah",
+      "Alistar"
+    ],
+    "itemHolders": [
+      "Xayah",
+      "LeBlanc"
+    ],
+    "roster": [
+      "Ornn",
+      "Xayah",
+      "Alistar",
+      "LeBlanc",
+      "Hecarim",
+      "Ezreal",
+      "Soraka",
+      "Gnar"
+    ],
+    "finalBoard": {
+      "front": [
+        "Ornn",
+        "Alistar",
+        "Hecarim"
+      ],
+      "back": [
+        "Xayah",
+        "LeBlanc",
+        "Ezreal",
+        "Soraka",
+        "Gnar"
+      ],
+      "flex": 1
+    },
+    "carryItems": [
+      {
+        "champion": "Xayah",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "LeBlanc",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "fae-elderwood",
+    "name": "Fae Elderwood",
+    "tier": "B",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Fae",
+      "Elderwood",
+      "Defender"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Ornn",
+      "Rakan",
+      "Varus"
+    ],
+    "itemHolders": [
+      "Varus",
+      "Xayah"
+    ],
+    "roster": [
+      "Ornn",
+      "Rakan",
+      "Varus",
+      "Xayah",
+      "Hecarim",
+      "Tristana",
+      "Amumu",
+      "Lillia"
+    ],
+    "finalBoard": {
+      "front": [
+        "Ornn",
+        "Hecarim",
+        "Amumu",
+        "Lillia"
+      ],
+      "back": [
+        "Rakan",
+        "Varus",
+        "Xayah",
+        "Tristana"
+      ],
+      "flex": 1
+    },
+    "carryItems": [
+      {
+        "champion": "Varus",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "Xayah",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
+  },
+  {
+    "id": "solar-inferno",
+    "name": "Solar Inferno",
+    "tier": "B",
+    "playstyle": "Draft — level 9 cap",
+    "traits": [
+      "Solar",
+      "Inferno",
+      "Adaptor"
+    ],
+    "conditions": [
+      "Draft entry — refine after playing it or reading a meta source"
+    ],
+    "itemNeeds": {},
+    "earlyChampions": [
+      "Akali",
+      "Leona",
+      "Gromp"
+    ],
+    "itemHolders": [
+      "Akali",
+      "Kayle"
+    ],
+    "roster": [
+      "Akali",
+      "Leona",
+      "Gromp",
+      "Kayle",
+      "Sejuani",
+      "Shen"
+    ],
+    "finalBoard": {
+      "front": [
+        "Leona",
+        "Gromp",
+        "Sejuani",
+        "Shen"
+      ],
+      "back": [
+        "Akali",
+        "Kayle"
+      ],
+      "flex": 3
+    },
+    "carryItems": [
+      {
+        "champion": "Akali",
+        "bis": [],
+        "note": "draft — add best items"
+      },
+      {
+        "champion": "Kayle",
+        "bis": [],
+        "note": "draft — add best items"
+      }
+    ],
+    "tips": [
+      "Draft tip — write your own after trying it"
+    ]
   }
 ]

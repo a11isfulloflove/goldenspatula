@@ -57,7 +57,7 @@ export default function AugmentPicker({
         onClick={() => setExpanded((value) => !value)}
       >
         <div className="panel-head-text">
-          <h2>2 · Augments you&apos;ve been offered</h2>
+          <h2>3 · Augments you&apos;ve been offered</h2>
           {expanded ? (
             <span className="panel-hint">
               Pick up to {MAX_AUGMENTS} <SparkleMark /> crests and trait augments pick your comp
